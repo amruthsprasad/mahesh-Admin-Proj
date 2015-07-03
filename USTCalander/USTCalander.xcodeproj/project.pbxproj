@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		F033B17B1B1DC29B0018B8CC /* ActivityFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F033B1791B1DC29B0018B8CC /* ActivityFeedCell.m */; };
 		F033B17C1B1DC29B0018B8CC /* ActivityFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F033B17A1B1DC29B0018B8CC /* ActivityFeedCell.xib */; };
+		F04FCB681B4711DE0046AD2B /* SlidebarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F04FCB661B4711DE0046AD2B /* SlidebarTableViewCell.m */; };
+		F04FCB691B4711DE0046AD2B /* SlidebarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F04FCB671B4711DE0046AD2B /* SlidebarTableViewCell.xib */; };
+		F04FCB6D1B4713CC0046AD2B /* SlideBarTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F04FCB6B1B4713CC0046AD2B /* SlideBarTitleTableViewCell.m */; };
+		F04FCB6E1B4713CC0046AD2B /* SlideBarTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F04FCB6C1B4713CC0046AD2B /* SlideBarTitleTableViewCell.xib */; };
 		F07A193E1B1CCF2800A67D85 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F07A193D1B1CCF2800A67D85 /* main.m */; };
 		F07A19411B1CCF2800A67D85 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F07A19401B1CCF2800A67D85 /* AppDelegate.m */; };
 		F07A19441B1CCF2800A67D85 /* USTCalander.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F07A19421B1CCF2800A67D85 /* USTCalander.xcdatamodeld */; };
@@ -35,6 +39,12 @@
 		F033B1781B1DC29B0018B8CC /* ActivityFeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityFeedCell.h; sourceTree = "<group>"; };
 		F033B1791B1DC29B0018B8CC /* ActivityFeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityFeedCell.m; sourceTree = "<group>"; };
 		F033B17A1B1DC29B0018B8CC /* ActivityFeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityFeedCell.xib; sourceTree = "<group>"; };
+		F04FCB651B4711DE0046AD2B /* SlidebarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlidebarTableViewCell.h; sourceTree = "<group>"; };
+		F04FCB661B4711DE0046AD2B /* SlidebarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlidebarTableViewCell.m; sourceTree = "<group>"; };
+		F04FCB671B4711DE0046AD2B /* SlidebarTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SlidebarTableViewCell.xib; sourceTree = "<group>"; };
+		F04FCB6A1B4713CC0046AD2B /* SlideBarTitleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideBarTitleTableViewCell.h; sourceTree = "<group>"; };
+		F04FCB6B1B4713CC0046AD2B /* SlideBarTitleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideBarTitleTableViewCell.m; sourceTree = "<group>"; };
+		F04FCB6C1B4713CC0046AD2B /* SlideBarTitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SlideBarTitleTableViewCell.xib; sourceTree = "<group>"; };
 		F07A19381B1CCF2800A67D85 /* USTCalander.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = USTCalander.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F07A193C1B1CCF2800A67D85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F07A193D1B1CCF2800A67D85 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -160,6 +170,12 @@
 			children = (
 				F07A19691B1CD85C00A67D85 /* SideBarViewController.h */,
 				F07A196A1B1CD85C00A67D85 /* SideBarViewController.m */,
+				F04FCB651B4711DE0046AD2B /* SlidebarTableViewCell.h */,
+				F04FCB661B4711DE0046AD2B /* SlidebarTableViewCell.m */,
+				F04FCB671B4711DE0046AD2B /* SlidebarTableViewCell.xib */,
+				F04FCB6A1B4713CC0046AD2B /* SlideBarTitleTableViewCell.h */,
+				F04FCB6B1B4713CC0046AD2B /* SlideBarTitleTableViewCell.m */,
+				F04FCB6C1B4713CC0046AD2B /* SlideBarTitleTableViewCell.xib */,
 			);
 			name = SideBar;
 			sourceTree = "<group>";
@@ -247,6 +263,8 @@
 				F07A194A1B1CCF2800A67D85 /* Main.storyboard in Resources */,
 				F07A194F1B1CCF2800A67D85 /* LaunchScreen.xib in Resources */,
 				F033B17C1B1DC29B0018B8CC /* ActivityFeedCell.xib in Resources */,
+				F04FCB691B4711DE0046AD2B /* SlidebarTableViewCell.xib in Resources */,
+				F04FCB6E1B4713CC0046AD2B /* SlideBarTitleTableViewCell.xib in Resources */,
 				F07A194C1B1CCF2800A67D85 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -268,6 +286,8 @@
 				F033B17B1B1DC29B0018B8CC /* ActivityFeedCell.m in Sources */,
 				F07A19441B1CCF2800A67D85 /* USTCalander.xcdatamodeld in Sources */,
 				F07A19411B1CCF2800A67D85 /* AppDelegate.m in Sources */,
+				F04FCB6D1B4713CC0046AD2B /* SlideBarTitleTableViewCell.m in Sources */,
+				F04FCB681B4711DE0046AD2B /* SlidebarTableViewCell.m in Sources */,
 				F07A19671B1CD61F00A67D85 /* SWRevealViewController.m in Sources */,
 				F07A196B1B1CD85C00A67D85 /* SideBarViewController.m in Sources */,
 				F07A19471B1CCF2800A67D85 /* ViewController.m in Sources */,

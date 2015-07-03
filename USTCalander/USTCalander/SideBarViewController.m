@@ -7,10 +7,13 @@
 //
 
 #import "SideBarViewController.h"
+#import "SlidebarTableViewCell.h"
+#import "SlideBarTitleTableViewCell.h"
 
 @interface SideBarViewController ()
 {
     NSArray * menuItems;
+    NSArray * imageArray;
 }
 @end
 
@@ -19,13 +22,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.tableView registerNib:[UINib nibWithNibName:@"SlidebarTableViewCell" bundle:nil]
+         forCellReuseIdentifier:@"MenuItem"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"SlideBarTitleTableViewCell" bundle:nil]
+         forCellReuseIdentifier:@"Title"];
+
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-     menuItems = @[@"TITLE",@"AMRUTH", @"ACHU", @"RAJESH", @"MAHESH"];
+     menuItems = @[@"TITLE", @"Home",@"Activity feed", @"Agenda", @"Speakers", @"Attendees", @"Leaderboard", @"Polls", @"Log out"];
+    
+    imageArray = @[@"MenuIconHome", @"MenuIconHome",@"MenuIconActivityFeed", @"MenuIconAgenda", @"MenuIconSpeakers", @"MenuIconAttendees", @"MenuIconLeaderboard", @"MenuIconPolls", @"MenuIconLogout"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,15 +58,31 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-     NSString *CellIdentifier = [menuItems objectAtIndex:indexPath.row];
-    //@"sliderCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
+    NSString * CellIdentifier1 = @"MenuItem";
+    NSString * CellIdentifier2 = @"Title";
+    if (indexPath.row ==0) {
+        SlideBarTitleTableViewCell *cell= [tableView dequeueReusableCellWithIdentifier:CellIdentifier2 forIndexPath:indexPath];
+        return cell;
+    }
+    else
+    {
+        SlidebarTableViewCell *cell =  [tableView dequeueReusableCellWithIdentifier:CellIdentifier1 forIndexPath:indexPath];
+        cell.icon_imageView.image=[UIImage imageNamed:[imageArray objectAtIndex:indexPath.row]];
+        cell.title_Label.text=[menuItems objectAtIndex:indexPath.row];
+        
+        return cell;
+    }
+        return nil;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat height=60;
+    if (indexPath.row==0) {
+        height=175;
+    }
+    return height;
+}
 
 /*
 // Override to support conditional editing of the table view.
