@@ -61,17 +61,17 @@
             </objects>
             <point key="canvasLocation" x="453.33333333333331" y="1039.4400000000001"/>
         </scene>
-        <!--UST-->
+        <!--Activity Feed-->
         <scene sceneID="hsN-kM-YDu">
             <objects>
-                <viewController id="xrf-x9-oC5" customClass="ViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ActivityFeedVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xrf-x9-oC5" userLabel="Activity Feed" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wb1-6K-3t9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" id="SlL-Kp-ni2">
-                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="190" sectionHeaderHeight="22" sectionFooterHeight="22" id="xQ1-wu-EUT">
                                 <rect key="frame" x="16" y="80" width="382" height="656"/>
@@ -86,12 +86,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="UST" id="Ggn-ge-VSF" userLabel="Navigation Item">
-                        <barButtonItem key="leftBarButtonItem" image="menu" id="IGb-af-tw9"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="UST" id="Ggn-ge-VSF" userLabel="Navigation Item"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
-                        <outlet property="sidebarButton" destination="IGb-af-tw9" id="3cP-J7-ohD"/>
                         <outlet property="tableView" destination="xQ1-wu-EUT" id="9iV-9a-Zrv"/>
                     </connections>
                 </viewController>
@@ -102,7 +101,6 @@
     </scenes>
     <resources>
         <image name="background" width="372" height="696"/>
-        <image name="menu" width="28" height="20"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

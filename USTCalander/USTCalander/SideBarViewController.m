@@ -9,6 +9,9 @@
 #import "SideBarViewController.h"
 #import "SlidebarTableViewCell.h"
 #import "SlideBarTitleTableViewCell.h"
+#import "SWRevealViewController.h"
+
+#import "ViewController.h"
 
 @interface SideBarViewController ()
 {
@@ -84,6 +87,31 @@
     return height;
 }
 
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UIViewController *FrontVC=nil;
+    switch (indexPath.row) {
+        case 1:
+        {
+            UIStoryboard * storyboard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            ViewController * activityFeed=[storyboard instantiateViewControllerWithIdentifier:@"ActivityFeedVC"];
+            FrontVC=activityFeed;
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    SWRevealViewController *revealViewController = self.revealViewController;
+    if (FrontVC) {
+        [revealViewController pushFrontViewController:FrontVC animated:FrontViewPositionRightMostRemoved];
+
+    }
+
+}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
