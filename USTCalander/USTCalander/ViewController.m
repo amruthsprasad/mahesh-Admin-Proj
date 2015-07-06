@@ -21,14 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    SWRevealViewController *revealViewController = self.revealViewController;
-    if ( revealViewController )
-    {
-        [self.sidebarButton setTarget: self.revealViewController];
-        [self.sidebarButton setAction: @selector( revealToggle: )];
-        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-    }
-    [self.tableView registerNib:[UINib nibWithNibName:@"ActivityFeedCell" bundle:nil]
+       [self.tableView registerNib:[UINib nibWithNibName:@"ActivityFeedCell" bundle:nil]
          forCellReuseIdentifier:@"Activity"];
 }
 

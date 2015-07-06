@@ -13,6 +13,9 @@
 		F04FCB691B4711DE0046AD2B /* SlidebarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F04FCB671B4711DE0046AD2B /* SlidebarTableViewCell.xib */; };
 		F04FCB6D1B4713CC0046AD2B /* SlideBarTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F04FCB6B1B4713CC0046AD2B /* SlideBarTitleTableViewCell.m */; };
 		F04FCB6E1B4713CC0046AD2B /* SlideBarTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F04FCB6C1B4713CC0046AD2B /* SlideBarTitleTableViewCell.xib */; };
+		F0655EC11B4B228C00D064B6 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0655EC01B4B228C00D064B6 /* BaseViewController.m */; };
+		F0655EC41B4B22AC00D064B6 /* BaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0655EC31B4B22AC00D064B6 /* BaseView.m */; };
+		F0655EC61B4B22DE00D064B6 /* BaseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0655EC51B4B22DE00D064B6 /* BaseView.xib */; };
 		F07A193E1B1CCF2800A67D85 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F07A193D1B1CCF2800A67D85 /* main.m */; };
 		F07A19411B1CCF2800A67D85 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F07A19401B1CCF2800A67D85 /* AppDelegate.m */; };
 		F07A19441B1CCF2800A67D85 /* USTCalander.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F07A19421B1CCF2800A67D85 /* USTCalander.xcdatamodeld */; };
@@ -45,6 +48,11 @@
 		F04FCB6A1B4713CC0046AD2B /* SlideBarTitleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideBarTitleTableViewCell.h; sourceTree = "<group>"; };
 		F04FCB6B1B4713CC0046AD2B /* SlideBarTitleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideBarTitleTableViewCell.m; sourceTree = "<group>"; };
 		F04FCB6C1B4713CC0046AD2B /* SlideBarTitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SlideBarTitleTableViewCell.xib; sourceTree = "<group>"; };
+		F0655EBF1B4B228C00D064B6 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		F0655EC01B4B228C00D064B6 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		F0655EC21B4B22AC00D064B6 /* BaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseView.h; sourceTree = "<group>"; };
+		F0655EC31B4B22AC00D064B6 /* BaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseView.m; sourceTree = "<group>"; };
+		F0655EC51B4B22DE00D064B6 /* BaseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaseView.xib; sourceTree = "<group>"; };
 		F07A19381B1CCF2800A67D85 /* USTCalander.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = USTCalander.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F07A193C1B1CCF2800A67D85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F07A193D1B1CCF2800A67D85 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -93,6 +101,18 @@
 			name = ActivityFeedCell;
 			sourceTree = "<group>";
 		};
+		F0655EBE1B4B226900D064B6 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				F0655EBF1B4B228C00D064B6 /* BaseViewController.h */,
+				F0655EC01B4B228C00D064B6 /* BaseViewController.m */,
+				F0655EC21B4B22AC00D064B6 /* BaseView.h */,
+				F0655EC31B4B22AC00D064B6 /* BaseView.m */,
+				F0655EC51B4B22DE00D064B6 /* BaseView.xib */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
 		F07A192F1B1CCF2800A67D85 = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +134,7 @@
 		F07A193A1B1CCF2800A67D85 /* USTCalander */ = {
 			isa = PBXGroup;
 			children = (
+				F0655EBE1B4B226900D064B6 /* Base */,
 				F033B1771B1DC2310018B8CC /* ActivityFeedCell */,
 				F07A19681B1CD7C700A67D85 /* SideBar */,
 				F07A19641B1CD5B500A67D85 /* slideViewController */,
@@ -264,6 +285,7 @@
 				F07A194F1B1CCF2800A67D85 /* LaunchScreen.xib in Resources */,
 				F033B17C1B1DC29B0018B8CC /* ActivityFeedCell.xib in Resources */,
 				F04FCB691B4711DE0046AD2B /* SlidebarTableViewCell.xib in Resources */,
+				F0655EC61B4B22DE00D064B6 /* BaseView.xib in Resources */,
 				F04FCB6E1B4713CC0046AD2B /* SlideBarTitleTableViewCell.xib in Resources */,
 				F07A194C1B1CCF2800A67D85 /* Images.xcassets in Resources */,
 			);
@@ -283,7 +305,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0655EC41B4B22AC00D064B6 /* BaseView.m in Sources */,
 				F033B17B1B1DC29B0018B8CC /* ActivityFeedCell.m in Sources */,
+				F0655EC11B4B228C00D064B6 /* BaseViewController.m in Sources */,
 				F07A19441B1CCF2800A67D85 /* USTCalander.xcdatamodeld in Sources */,
 				F07A19411B1CCF2800A67D85 /* AppDelegate.m in Sources */,
 				F04FCB6D1B4713CC0046AD2B /* SlideBarTitleTableViewCell.m in Sources */,
