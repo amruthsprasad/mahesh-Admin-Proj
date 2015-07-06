@@ -12,6 +12,7 @@
 #import "SWRevealViewController.h"
 
 #import "ViewController.h"
+#import "AgendaViewController.h"
 
 @interface SideBarViewController ()
 {
@@ -99,6 +100,13 @@
             FrontVC=activityFeed;
         }
             break;
+            
+        case 2:
+        {
+            UIStoryboard * storyboard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            ViewController * agenda=[storyboard instantiateViewControllerWithIdentifier:@"AgendaVC"];
+            FrontVC=agenda;
+        }
             
         default:
             break;
