@@ -15,5 +15,7 @@
 @dynamic jsonData;
 @dynamic timeStamp;
 @dynamic serviceType;
+@dynamic serviceName;
+@dynamic pageId;
 
 @end

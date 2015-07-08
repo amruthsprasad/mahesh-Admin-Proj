@@ -13,6 +13,7 @@
 
 #import "ViewController.h"
 #import "AgendaViewController.h"
+#import "AppDelegate.h"
 
 @interface SideBarViewController ()
 {
@@ -107,10 +108,21 @@
             ViewController * agenda=[storyboard instantiateViewControllerWithIdentifier:@"AgendaVC"];
             FrontVC=agenda;
         }
+        case 8:
+        {
+            AppDelegate *appDelegateTemp = [[UIApplication sharedApplication]delegate];
+            
+            UIViewController* rootController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"LoginViewController"];
+            
+            UINavigationController* navigation = [[UINavigationController alloc] initWithRootViewController:rootController];
+            appDelegateTemp.window.rootViewController = navigation;
+        }
+            break;
             
         default:
             break;
     }
+    
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     SWRevealViewController *revealViewController = self.revealViewController;

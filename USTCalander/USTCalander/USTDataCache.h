@@ -16,5 +16,7 @@
 @property (nonatomic, retain) NSData * jsonData;
 @property (nonatomic, retain) NSString * timeStamp;
 @property (nonatomic, retain) NSString * serviceType;
+@property (nonatomic, retain) NSString * serviceName;
+@property (nonatomic, retain) NSString * pageId;
 
 @end

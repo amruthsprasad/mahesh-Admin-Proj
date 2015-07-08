@@ -2,11 +2,13 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14A389" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="USTDataCache" representedClassName="USTDataCache" syncable="YES">
         <attribute name="jsonData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="pageId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="serviceId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="serviceName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="serviceType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="timeStamp" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="USTDataCache" positionX="-63" positionY="-18" width="128" height="103"/>
+        <element name="USTDataCache" positionX="-63" positionY="-18" width="128" height="135"/>
     </elements>
 </model>
