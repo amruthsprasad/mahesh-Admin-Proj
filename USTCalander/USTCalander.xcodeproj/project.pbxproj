@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E8FA7DEC1B4ED5E50066F5A3 /* Agenda.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8FA7DEB1B4ED5E50066F5A3 /* Agenda.storyboard */; };
+		E8FA7DF11B4EDD310066F5A3 /* AgendaFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FA7DEF1B4EDD310066F5A3 /* AgendaFeedCell.m */; };
 		F033B17B1B1DC29B0018B8CC /* ActivityFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F033B1791B1DC29B0018B8CC /* ActivityFeedCell.m */; };
 		F033B17C1B1DC29B0018B8CC /* ActivityFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F033B17A1B1DC29B0018B8CC /* ActivityFeedCell.xib */; };
 		F034B2C31B4D92A90063B4A5 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F034B2C21B4D92A90063B4A5 /* LoginViewController.m */; };
@@ -45,6 +47,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E8FA7DEB1B4ED5E50066F5A3 /* Agenda.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Agenda.storyboard; sourceTree = "<group>"; };
+		E8FA7DEE1B4EDD310066F5A3 /* AgendaFeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgendaFeedCell.h; sourceTree = "<group>"; };
+		E8FA7DEF1B4EDD310066F5A3 /* AgendaFeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgendaFeedCell.m; sourceTree = "<group>"; };
 		F033B1781B1DC29B0018B8CC /* ActivityFeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityFeedCell.h; sourceTree = "<group>"; };
 		F033B1791B1DC29B0018B8CC /* ActivityFeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityFeedCell.m; sourceTree = "<group>"; };
 		F033B17A1B1DC29B0018B8CC /* ActivityFeedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityFeedCell.xib; sourceTree = "<group>"; };
@@ -109,6 +114,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E8FA7DED1B4EDCFC0066F5A3 /* AgendaFeedCell */ = {
+			isa = PBXGroup;
+			children = (
+				E8FA7DEE1B4EDD310066F5A3 /* AgendaFeedCell.h */,
+				E8FA7DEF1B4EDD310066F5A3 /* AgendaFeedCell.m */,
+			);
+			name = AgendaFeedCell;
+			sourceTree = "<group>";
+		};
 		F033B1771B1DC2310018B8CC /* ActivityFeedCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +206,7 @@
 		F07A193A1B1CCF2800A67D85 /* USTCalander */ = {
 			isa = PBXGroup;
 			children = (
+				E8FA7DED1B4EDCFC0066F5A3 /* AgendaFeedCell */,
 				F034B2C01B4D92860063B4A5 /* LoginView */,
 				F0655ECF1B4B2BC200D064B6 /* Webservice */,
 				F0655ECB1B4B2B5900D064B6 /* User */,
@@ -205,6 +220,7 @@
 				F07A19451B1CCF2800A67D85 /* ViewController.h */,
 				F07A19461B1CCF2800A67D85 /* ViewController.m */,
 				F07A19481B1CCF2800A67D85 /* Main.storyboard */,
+				E8FA7DEB1B4ED5E50066F5A3 /* Agenda.storyboard */,
 				F07A194B1B1CCF2800A67D85 /* Images.xcassets */,
 				F07A194D1B1CCF2800A67D85 /* LaunchScreen.xib */,
 				F07A19421B1CCF2800A67D85 /* USTCalander.xcdatamodeld */,
@@ -343,6 +359,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8FA7DEC1B4ED5E50066F5A3 /* Agenda.storyboard in Resources */,
 				F07A194A1B1CCF2800A67D85 /* Main.storyboard in Resources */,
 				F07A194F1B1CCF2800A67D85 /* LaunchScreen.xib in Resources */,
 				F033B17C1B1DC29B0018B8CC /* ActivityFeedCell.xib in Resources */,
@@ -378,6 +395,7 @@
 				F07A19671B1CD61F00A67D85 /* SWRevealViewController.m in Sources */,
 				F0819A471B4C5A5500714609 /* USTDataCacheHandler.m in Sources */,
 				F0655ECA1B4B2A3C00D064B6 /* AgendaViewController.m in Sources */,
+				E8FA7DF11B4EDD310066F5A3 /* AgendaFeedCell.m in Sources */,
 				F07A196B1B1CD85C00A67D85 /* SideBarViewController.m in Sources */,
 				F0655ED21B4B2BE300D064B6 /* USTRequest.m in Sources */,
 				F0655ECE1B4B2B7700D064B6 /* USTUser.m in Sources */,
@@ -511,7 +529,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = USTCalander/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -521,7 +541,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = USTCalander/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
