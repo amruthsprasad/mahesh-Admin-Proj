@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "AppDelegate.h"
+#import "USTServiceProvider.h"
 
 @interface LoginViewController ()
 @property (nonatomic,weak)UITextField * selectedTextField;
@@ -43,9 +44,13 @@
 */
 
 - (IBAction)loginAction:(id)sender {
-    AppDelegate *appDelegateTemp = [[UIApplication sharedApplication]delegate];
-    
-    appDelegateTemp.window.rootViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
+    [USTServiceProvider loginWithUserId:_userNameTextField.text andPassword:_passwordTextField.text withCompletionHandler:^(USTRequest * request) {
+        
+        AppDelegate *appDelegateTemp = [[UIApplication sharedApplication]delegate];
+        
+        appDelegateTemp.window.rootViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
+        
+    }];
 }
 
 - (IBAction)rememberMeAction:(id)sender {

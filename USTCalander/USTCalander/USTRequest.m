@@ -53,7 +53,6 @@
         return;
     }
     
-    
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:nil];
@@ -69,6 +68,7 @@
                     self.statusCode = httpResponse.statusCode;
                     self.errorResponse = error;
                     self.errorJSON = errorInJSON;
+                    NSLog(@"\n response string :---> \n\n %@",json);
                     dispatch_async(dispatch_get_main_queue(), ^{
                         completionBlock(self);
                         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;

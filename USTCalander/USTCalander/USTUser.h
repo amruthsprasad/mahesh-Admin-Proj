@@ -10,7 +10,17 @@
 
 @interface USTUser : NSObject
 
-@property(nonatomic) NSString * user;
-@property(nonatomic) NSString * password;
+@property(nonatomic,strong) NSString * userID;
+@property(nonatomic,strong) NSString * userPassword;
+@property(nonatomic,strong) NSString * userFirstName;
+@property(nonatomic,strong) NSString * userLastName;
+@property(nonatomic,strong) NSString * userSessionID;
+
+
++ (id)sharedInstance;
+-(void)setCredentialsToKeychain;
+-(void)loadCredentialsFromKeychain;
+-(void)clearCredentialsFromKeychain;
+-(void)logOut;
 
 @end
