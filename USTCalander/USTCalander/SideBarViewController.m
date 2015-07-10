@@ -99,14 +99,15 @@
             UIStoryboard * storyboard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
             ViewController * activityFeed=[storyboard instantiateViewControllerWithIdentifier:@"ActivityFeedVC"];
             FrontVC=activityFeed;
-        }
             break;
+        }
             
-        case 2:
+        case 3:
         {
-            UIStoryboard * storyboard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UIStoryboard * storyboard=[UIStoryboard storyboardWithName:@"Agenda" bundle:nil];
             ViewController * agenda=[storyboard instantiateViewControllerWithIdentifier:@"AgendaVC"];
             FrontVC=agenda;
+            break;
         }
         case 8:
         {
