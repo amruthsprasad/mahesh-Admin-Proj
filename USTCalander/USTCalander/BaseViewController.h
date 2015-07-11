@@ -11,4 +11,5 @@
 @interface BaseViewController : UIViewController
 @property (weak, nonatomic)  UIButton *slideMenuButton;
 
+-(void)showAlertWithMessage:(NSString *)message;
 @end

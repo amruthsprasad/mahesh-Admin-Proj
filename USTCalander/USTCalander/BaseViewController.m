@@ -38,6 +38,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)showAlertWithMessage:(NSString *)message
+{
+    UIAlertView * alert=[[UIAlertView alloc]initWithTitle:@"UST" message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [alert show];
+}
+
 /*
 #pragma mark - Navigation
 

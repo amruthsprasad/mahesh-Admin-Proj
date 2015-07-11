@@ -9,7 +9,7 @@
 #import "AgendaFeedCell.h"
 
 @implementation AgendaFeedCell
-
+@synthesize description;
 - (void)awakeFromNib {
     // Initialization code
 }

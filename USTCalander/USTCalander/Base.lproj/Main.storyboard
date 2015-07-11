@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13A598" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -142,6 +143,10 @@
                                             <action selector="loginAction:" destination="gkq-sJ-sKA" eventType="touchUpInside" id="08O-Ma-aPM"/>
                                         </connections>
                                     </button>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" id="88U-fk-lYQ">
+                                        <rect key="frame" x="59" y="10" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.13725490196078433" green="0.4392156862745098" blue="0.72156862745098038" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
@@ -157,6 +162,8 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="88U-fk-lYQ" id="yQp-9u-2l6"/>
+                        <outlet property="loginButton" destination="xP4-sK-T9V" id="fXP-t5-V8R"/>
                         <outlet property="passwordBG" destination="QYn-Lx-GCN" id="fdd-PT-VL3"/>
                         <outlet property="passwordTextField" destination="wpk-bB-AQN" id="Dv5-hO-upG"/>
                         <outlet property="signinView" destination="fj7-sm-vg4" id="bEq-tA-tRl"/>
@@ -292,7 +299,7 @@
         <image name="RememberPwd" width="21" height="21"/>
         <image name="USTLoginLogo" width="642" height="187"/>
         <image name="UserLogo" width="21" height="21"/>
-        <image name="background" width="372" height="696"/>
+        <image name="background" width="744" height="1392"/>
         <image name="loginBG" width="1080" height="1920"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

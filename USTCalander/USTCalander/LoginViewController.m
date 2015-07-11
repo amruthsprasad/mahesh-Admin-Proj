@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "AppDelegate.h"
 #import "USTServiceProvider.h"
+#import "USTUser.h"
 
 @interface LoginViewController ()
 @property (nonatomic,weak)UITextField * selectedTextField;
@@ -25,7 +26,8 @@
     _signinView.layer.cornerRadius = _signinView.frame.size.height/2;
     _userNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Your Userame" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
     _passwordTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Your Password" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
-
+    
+    _activityIndicator.hidden=true;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,13 +46,7 @@
 */
 
 - (IBAction)loginAction:(id)sender {
-    [USTServiceProvider loginWithUserId:_userNameTextField.text andPassword:_passwordTextField.text withCompletionHandler:^(USTRequest * request) {
-        
-        AppDelegate *appDelegateTemp = [[UIApplication sharedApplication]delegate];
-        
-        appDelegateTemp.window.rootViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
-        
-    }];
+    [self executeServiceRequest];
 }
 
 - (IBAction)rememberMeAction:(id)sender {
@@ -59,6 +55,72 @@
 - (IBAction)forgotPasswordAction:(id)sender {
 }
 
+-(void)executeServiceRequest{
+    _loginButton.enabled=NO;
+    _activityIndicator.hidden=false;
+    [self.activityIndicator startAnimating];
+    USTUser *sharedUser = [USTUser sharedInstance];
+    [sharedUser loadCredentialsFromKeychain];
+    sharedUser.userID = _userNameTextField.text;
+    sharedUser.userPassword = _passwordTextField.text;
+    
+    [USTServiceProvider loginWithUserId:_userNameTextField.text andPassword:_passwordTextField.text withCompletionHandler:^(USTRequest * request) {
+        
+        [self.activityIndicator stopAnimating];
+        _activityIndicator.hidden=true;
+        _loginButton.enabled = YES;
+        NSString * success=[NSString stringWithFormat:@"%@",[NSNumber numberWithInt:1]];
+        NSString * fail = [NSString stringWithFormat:@"%@",[NSNumber numberWithInt:0]];
+        NSString * status = [NSString stringWithFormat:@"%@",[request.responseDict objectForKey:@"status"]];
+        if ([status isEqualToString:success] ) {
+            NSDictionary * userData=[request.responseDict objectForKey:@"user"];
+            sharedUser.userData = [request.responseDict objectForKey:@"user"];
+            sharedUser.userSessionID = [userData objectForKey:@"deviceid"];
+            sharedUser.userFirstName = [userData objectForKey:@"firstname"];
+            sharedUser.userLastName = [userData objectForKey:@"lastname"];
+            sharedUser.userDesignation = [userData objectForKey:@"designation"];
+            sharedUser.userEventID = [userData objectForKey:@"event_active"];
+            sharedUser.userEventWelcomeMessage = [userData objectForKey:@"event_welcome"];
+            sharedUser.userLocation = [userData objectForKey:@"location"];
+            sharedUser.userImage = [userData objectForKey:@"user_image"];
+            sharedUser.userImageStatus = [userData objectForKey:@"user_image_stat"];
+            [sharedUser setCredentialsToKeychain];
+            [self goToHomeScreen];
+            
+        }
+        else if ([status isEqualToString:fail]){
+            [self showAlertWithMessage:@"Failed to login please check your credentials"];
+        }
+        else{
+            if ([self performOfflineLogin]) {
+                
+            }
+            else
+            {
+                [self showAlertWithMessage:@"Login failed please check your credentials"];
+            }
+        }
+        
+        
+        
+    }];
+
+}
+
+-(BOOL)performOfflineLogin{
+    return YES;
+    
+}
+-(void)goToHomeScreen{
+    AppDelegate *appDelegateTemp = [[UIApplication sharedApplication]delegate];
+    appDelegateTemp.window.rootViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
+}
+
+-(void)showAlertWithMessage:(NSString *)message
+{
+    UIAlertView * alert=[[UIAlertView alloc]initWithTitle:@"UST" message:message delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [alert show];
+}
 
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
