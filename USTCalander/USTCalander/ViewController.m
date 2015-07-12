@@ -21,8 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-       [self.tableView registerNib:[UINib nibWithNibName:@"ActivityFeedCell" bundle:nil]
-         forCellReuseIdentifier:@"Activity"];
+     //  [self.tableView registerNib:[UINib nibWithNibName:@"ActivityFeedCell" bundle:nil] forCellReuseIdentifier:@"Activity"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,7 +46,7 @@
     NSString *CellIdentifier =@"Activity";
     ActivityFeedCell *cell ;
     cell= [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];    
-    if(cell == nil)
+   /* if(cell == nil)
     {
         cell = [[ActivityFeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
@@ -55,7 +54,7 @@
     float xPos=(rect.size.width-3)/4;
     cell.seperator1.frame=CGRectMake(xPos+1, cell.seperator1.frame.origin.y, cell.seperator1.frame.size.width, cell.seperator1.frame.size.height);
     cell.seperator2.frame=CGRectMake(xPos*2+2, cell.seperator2.frame.origin.y, cell.seperator2.frame.size.width, cell.seperator2.frame.size.height);
-    cell.seperator3.frame=CGRectMake(xPos*3+3, cell.seperator3.frame.origin.y, cell.seperator3.frame.size.width, cell.seperator3.frame.size.height);
+    cell.seperator3.frame=CGRectMake(xPos*3+3, cell.seperator3.frame.origin.y, cell.seperator3.frame.size.width, cell.seperator3.frame.size.height);*/
     return cell;
 }
 @end

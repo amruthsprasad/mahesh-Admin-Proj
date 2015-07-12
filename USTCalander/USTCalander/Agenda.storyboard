@@ -148,7 +148,7 @@
     </scenes>
     <resources>
         <image name="activate_icon" width="105" height="106"/>
-        <image name="background" width="372" height="696"/>
+        <image name="background" width="744" height="1392"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

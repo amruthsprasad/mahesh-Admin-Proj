@@ -14,6 +14,14 @@
 #import "ViewController.h"
 #import "AgendaViewController.h"
 #import "AppDelegate.h"
+#import "ContainerBridgeView.h"
+
+#define SegueIdentifierActivity @"embedActivity"
+#define SegueIdentifierAgenda @"embedAgenda"
+#define SegueIdentifierSpeakers @"embedSpeakers"
+#define SegueIdentifierLeaderboard @"embedLeaderboard"
+#define SegueIdentifierAttendees @"embedAttendees"
+#define SegueIdentifierPolls @"embedPolls"
 
 @interface SideBarViewController ()
 {
@@ -92,21 +100,36 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    ContainerBridgeView * contBrdgObj = [ContainerBridgeView sharedInstance];
     UIViewController *FrontVC=nil;
     switch (indexPath.row) {
         case 1:
         {
-            UIStoryboard * storyboard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            /*UIStoryboard * storyboard=[UIStoryboard storyboardWithName:@"Main" bundle:nil];
             ViewController * activityFeed=[storyboard instantiateViewControllerWithIdentifier:@"ActivityFeedVC"];
-            FrontVC=activityFeed;
+            FrontVC=activityFeed;*/
+            [contBrdgObj swapViewControllers:SegueIdentifierActivity];
             break;
         }
-            
         case 3:
         {
-            UIStoryboard * storyboard=[UIStoryboard storyboardWithName:@"Agenda" bundle:nil];
-            ViewController * agenda=[storyboard instantiateViewControllerWithIdentifier:@"AgendaVC"];
-            FrontVC=agenda;
+            [contBrdgObj swapViewControllers:SegueIdentifierAgenda];
+            break;
+        }
+        case 4:{
+            [contBrdgObj swapViewControllers:SegueIdentifierSpeakers];
+            break;
+        }
+        case 5:{
+            [contBrdgObj swapViewControllers:SegueIdentifierAttendees];
+            break;
+        }
+        case 6:{
+            [contBrdgObj swapViewControllers:SegueIdentifierLeaderboard];
+            break;
+        }
+        case 7:{
+            [contBrdgObj swapViewControllers:SegueIdentifierPolls];
             break;
         }
         case 8:
