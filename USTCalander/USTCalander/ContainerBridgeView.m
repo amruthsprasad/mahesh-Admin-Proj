@@ -135,6 +135,10 @@ static ContainerBridgeView * sharedContBridObj;
     
 }
 
+-(UIViewController *)getRootContainerObj{
+    return self.parentViewController;
+}
+
 
 @end
 

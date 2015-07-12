@@ -9,6 +9,8 @@
 #import "ViewController.h"
 #import "SWRevealViewController.h"
 #import "ActivityFeedCell.h"
+#import "RootContainerView.h"
+#import "ContainerBridgeView.h"
 
 @interface ViewController ()
 
@@ -22,6 +24,11 @@
     // Do any additional setup after loading the view, typically from a nib.
     
      //  [self.tableView registerNib:[UINib nibWithNibName:@"ActivityFeedCell" bundle:nil] forCellReuseIdentifier:@"Activity"];
+    
+    ContainerBridgeView * contBridgObj = [ContainerBridgeView sharedInstance];
+    RootContainerView * rootContObj = (RootContainerView *)[contBridgObj getRootContainerObj];
+    rootContObj.headerView.hidden = NO;
+
 }
 
 - (void)didReceiveMemoryWarning {

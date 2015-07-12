@@ -35,7 +35,7 @@
         [self.slideMenuButton addTarget:self.revealViewController action:@selector( revealToggle: ) forControlEvents:UIControlEventTouchUpInside];
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     }
-    self.navigationController.navigationBarHidden=true;
+    self.navigationController.navigationBarHidden=YES;
 
 }
 

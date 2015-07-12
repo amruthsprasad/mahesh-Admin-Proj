@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RootContainerView.h"
 
 @interface ContainerBridgeView : UIViewController{
 }
 
 + (ContainerBridgeView *)sharedInstance;
 - (void)swapViewControllers:(NSString *)segueIdentifier;
+-(UIViewController *)getRootContainerObj;
 
 @end
 
