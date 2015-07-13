@@ -10,6 +10,6 @@
 #import "BaseViewController.h"
 #import "AgendaFeedCell.h"
 
-@interface AgendaViewController : BaseViewController
+@interface AgendaViewController : UIViewController
 
 @end

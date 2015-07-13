@@ -23,7 +23,8 @@
     self.navigationController.navigationBarHidden=true;
     _userBG.layer.cornerRadius = _userBG.frame.size.height/2;
     _passwordBG.layer.cornerRadius = _passwordBG.frame.size.height/2;
-    _signinView.layer.cornerRadius = _signinView.frame.size.height/2;
+    _signinView
+    .layer.cornerRadius = _signinView.frame.size.height/2;
     _userNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Your Userame" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
     _passwordTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Your Password" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
     
@@ -46,7 +47,8 @@
 */
 
 - (IBAction)loginAction:(id)sender {
-    [self executeServiceRequest];
+    //[self executeServiceRequest];
+    [self goToHomeScreen];
 }
 
 - (IBAction)rememberMeAction:(id)sender {
