@@ -9,6 +9,8 @@
 #import "ViewController.h"
 #import "SWRevealViewController.h"
 #import "ActivityFeedCell.h"
+#import "RootContainerView.h"
+#import "ContainerBridgeView.h"
 #import "USTServiceProvider.h"
 
 @interface ViewController ()
@@ -22,9 +24,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-       [self.tableView registerNib:[UINib nibWithNibName:@"ActivityFeedCell" bundle:nil]
-         forCellReuseIdentifier:@"Activity"];
+     //  [self.tableView registerNib:[UINib nibWithNibName:@"ActivityFeedCell" bundle:nil] forCellReuseIdentifier:@"Activity"];
     
+    ContainerBridgeView * contBridgObj = [ContainerBridgeView sharedInstance];
+    RootContainerView * rootContObj = (RootContainerView *)[contBridgObj getRootContainerObj];
+    rootContObj.headerView.hidden = NO;
+
     [self executeNetworkService];
     
     
@@ -32,7 +37,11 @@
 
 
 -(void)executeNetworkService{
-    [USTServiceProvider getActivityFeed:[NSNumber numberWithInt:10] andPage:[NSNumber numberWithInt:0] withCompletionHandler:^(USTRequest * request) {
+//    [USTServiceProvider getActivityFeed:[NSNumber numberWithInt:10] andPage:[NSNumber numberWithInt:0] withCompletionHandler:^(USTRequest * request) {
+//        
+//    }];
+    
+    [USTServiceProvider getAgendawithCompletionHandler:^(USTRequest *request) {
         
     }];
 }

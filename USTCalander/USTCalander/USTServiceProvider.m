@@ -58,7 +58,7 @@
 
 +(void)getAgendawithCompletionHandler:(requestCompletion)completionBlock{
     USTUser * user=[USTUser sharedInstance];
-    NSString * url=[NSString stringWithFormat:@"%@post.php?action=agenda&userid=%@&eventid=%@",BaseUrl,user.userID,user.userEventID];
+    NSString * url=[NSString stringWithFormat:@"%@post.php?action=agenda&user_id=%@&event_id=%@",BaseUrl,user.userID,user.userEventID];
     USTRequest * request =[[USTRequest alloc]initWithUrl:url];
     
     [request makeGETNetworkRequestWithCompletionHandler:^(USTRequest *request) {
