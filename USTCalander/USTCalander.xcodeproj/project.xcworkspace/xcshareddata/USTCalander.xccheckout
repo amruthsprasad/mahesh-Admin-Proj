@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>D1BC896F-059A-4D2E-865E-AD47A7FA13A3</string>
 	<key>IDESourceControlProjectName</key>
-	<string>USTCalander</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>15E693C41CDD79143C403C879EC67A19F44594FA</key>
 		<string>https://github.com/amruthsprasad/mahesh-Admin-Proj.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>USTCalander/USTCalander.xcodeproj</string>
+	<string>USTCalander/USTCalander.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>15E693C41CDD79143C403C879EC67A19F44594FA</key>
