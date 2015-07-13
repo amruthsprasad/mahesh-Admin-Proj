@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "SWRevealViewController.h"
 #import "ActivityFeedCell.h"
+#import "USTServiceProvider.h"
 
 @interface ViewController ()
 
@@ -23,6 +24,17 @@
     
        [self.tableView registerNib:[UINib nibWithNibName:@"ActivityFeedCell" bundle:nil]
          forCellReuseIdentifier:@"Activity"];
+    
+    [self executeNetworkService];
+    
+    
+}
+
+
+-(void)executeNetworkService{
+    [USTServiceProvider getActivityFeed:[NSNumber numberWithInt:10] andPage:[NSNumber numberWithInt:0] withCompletionHandler:^(USTRequest * request) {
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
