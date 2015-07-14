@@ -19,6 +19,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    AgendaFeedCell * agendaCellObj = [[AgendaFeedCell alloc]init];
+    agendaCellObj.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -107,7 +110,15 @@
     return 200;
 }
 
+#pragma mark - Agenda Feed Cell Delegate Methods
 
+- (void) cellButtonAction:(id)sender{
+    NSLog(@"Sender...%@",sender);
+}
+
+- (void) activateButtonAction:(id)sender{
+     NSLog(@"Sender...%@",sender);
+}
 
 
 @end
