@@ -47,8 +47,8 @@
 */
 
 - (IBAction)loginAction:(id)sender {
-    //[self executeServiceRequest];
-    [self goToHomeScreen];
+    [self executeServiceRequest];
+    //[self goToHomeScreen];
 }
 
 - (IBAction)rememberMeAction:(id)sender {
@@ -63,7 +63,7 @@
     [self.activityIndicator startAnimating];
     USTUser *sharedUser = [USTUser sharedInstance];
     [sharedUser loadCredentialsFromKeychain];
-    sharedUser.userID = _userNameTextField.text;
+    sharedUser.username = _userNameTextField.text;
     sharedUser.userPassword = _passwordTextField.text;
     
     [USTServiceProvider loginWithUserId:_userNameTextField.text andPassword:_passwordTextField.text withCompletionHandler:^(USTRequest * request) {
@@ -77,6 +77,7 @@
         if ([status isEqualToString:success] ) {
             NSDictionary * userData=[request.responseDict objectForKey:@"user"];
             sharedUser.userData = [request.responseDict objectForKey:@"user"];
+            sharedUser.userID = [userData objectForKey:@"id"];
             sharedUser.userSessionID = [userData objectForKey:@"deviceid"];
             sharedUser.userFirstName = [userData objectForKey:@"firstname"];
             sharedUser.userLastName = [userData objectForKey:@"lastname"];

@@ -20,5 +20,16 @@ typedef void(^requestCompletion)(USTRequest *);
 
 + (void)loginWithUserId:(NSString *)userID andPassword:(NSString *)password withCompletionHandler:(requestCompletion)completionBlock;
 
+//********************************
+//*Activity service
+//********************************
+
++ (void)getActivityFeed:(NSNumber *)count andPage:(NSNumber *)page withCompletionHandler:(requestCompletion)completionBlock;
+
+//********************************
+//*Agenda service
+//********************************
+
++(void)getAgendawithCompletionHandler:(requestCompletion)completionBlock;
 
 @end

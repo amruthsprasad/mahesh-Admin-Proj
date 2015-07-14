@@ -15,3 +15,11 @@
 
 
 #define k_AppSessionID @"UserSessionID"
+
+
+////******************************************
+// Service Identifiers
+///*******************************************
+
+#define k_ActivityListServiceID @"activitylist"
+#define k_AgendaListServiceID @"agendalist"
