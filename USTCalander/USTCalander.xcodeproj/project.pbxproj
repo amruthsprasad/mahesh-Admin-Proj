@@ -18,6 +18,7 @@
 		F04FCB691B4711DE0046AD2B /* SlidebarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F04FCB671B4711DE0046AD2B /* SlidebarTableViewCell.xib */; };
 		F04FCB6D1B4713CC0046AD2B /* SlideBarTitleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F04FCB6B1B4713CC0046AD2B /* SlideBarTitleTableViewCell.m */; };
 		F04FCB6E1B4713CC0046AD2B /* SlideBarTitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F04FCB6C1B4713CC0046AD2B /* SlideBarTitleTableViewCell.xib */; };
+		F05EC3EC1B55A4D100894E95 /* ActivityPage.png in Resources */ = {isa = PBXBuildFile; fileRef = F05EC3EB1B55A4D100894E95 /* ActivityPage.png */; };
 		F0655EC11B4B228C00D064B6 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0655EC01B4B228C00D064B6 /* BaseViewController.m */; };
 		F0655EC41B4B22AC00D064B6 /* BaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = F0655EC31B4B22AC00D064B6 /* BaseView.m */; };
 		F0655EC61B4B22DE00D064B6 /* BaseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0655EC51B4B22DE00D064B6 /* BaseView.xib */; };
@@ -69,6 +70,7 @@
 		F04FCB6A1B4713CC0046AD2B /* SlideBarTitleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlideBarTitleTableViewCell.h; sourceTree = "<group>"; };
 		F04FCB6B1B4713CC0046AD2B /* SlideBarTitleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlideBarTitleTableViewCell.m; sourceTree = "<group>"; };
 		F04FCB6C1B4713CC0046AD2B /* SlideBarTitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SlideBarTitleTableViewCell.xib; sourceTree = "<group>"; };
+		F05EC3EB1B55A4D100894E95 /* ActivityPage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ActivityPage.png; sourceTree = "<group>"; };
 		F0655EBF1B4B228C00D064B6 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		F0655EC01B4B228C00D064B6 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		F0655EC21B4B22AC00D064B6 /* BaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseView.h; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 		F07A193B1B1CCF2800A67D85 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F05EC3EB1B55A4D100894E95 /* ActivityPage.png */,
 				F07A193C1B1CCF2800A67D85 /* Info.plist */,
 				F07A193D1B1CCF2800A67D85 /* main.m */,
 			);
@@ -401,6 +404,7 @@
 				F07A194A1B1CCF2800A67D85 /* Main.storyboard in Resources */,
 				F07A194F1B1CCF2800A67D85 /* LaunchScreen.xib in Resources */,
 				F033B17C1B1DC29B0018B8CC /* ActivityFeedCell.xib in Resources */,
+				F05EC3EC1B55A4D100894E95 /* ActivityPage.png in Resources */,
 				F04FCB691B4711DE0046AD2B /* SlidebarTableViewCell.xib in Resources */,
 				F0655EC61B4B22DE00D064B6 /* BaseView.xib in Resources */,
 				F04FCB6E1B4713CC0046AD2B /* SlideBarTitleTableViewCell.xib in Resources */,

@@ -78,6 +78,95 @@
                 }] resume];
 }
 
+- (void)makeUploadRequestFromFile:(NSData *)imageData WithCompletionHandler:(requestCompletion)completionBlock{
+    
+//    
+//    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+//    request.timeoutInterval = TIME_OUT_INTERVAL;
+//    [request setURL:_url];
+//    NSLog(@"ServiceURL:%@",_url);
+//    request.HTTPMethod = @"GET";
+//    NSString *boundary = @"0xLhTaLbOkNdArZ";
+//    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
+//    [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
+    
+    
+    
+    NSMutableURLRequest * request = [NSMutableURLRequest new];
+    request.timeoutInterval = 20.0;
+    [request setURL:_url];
+    [request setHTTPMethod:@"POST"];
+    //[request setCachePolicy:NSURLCacheStorageNotAllowed];
+    
+    NSString *boundary = @"---------------------------14737809831466499882746641449";
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@",boundary];
+    [request addValue:contentType forHTTPHeaderField: @"Content-Type"];
+    [request setValue:@"text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_5) AppleWebKit/536.26.14 (KHTML, like Gecko) Version/6.0.1 Safari/536.26.14" forHTTPHeaderField:@"User-Agent"];
+    
+    NSMutableData *body = [NSMutableData data];
+    [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"uploaded_file\"; filename=\"%@.png\"\r\n", @"Uploaded_file"] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [body appendData:[NSData dataWithData:imageData]];
+    
+    [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    
+    [request setHTTPBody:body];
+    [request addValue:[NSString stringWithFormat:@"%d", [body length]] forHTTPHeaderField:@"Content-Length"];
+    
+    
+    if (/* DISABLES CODE check network rechability here amruth*/ (0)) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completionBlock(self);
+            
+        });
+        return;
+    }
+    
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    NSOperationQueue *queue = [[NSOperationQueue alloc]init];
+    
+    // Loads the data for a URL request and executes a handler block on an operation queue when the request completes or fails.
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:queue
+                           completionHandler:^(NSURLResponse *urlResponse, NSData *data, NSError *error){
+                               NSLog(@"Completed");
+                               
+                               
+                               [UIApplication sharedApplication].networkActivityIndicatorVisible = FALSE;
+                               
+                               if (error) {
+                                   NSLog(@"error:%@", error.localizedDescription);
+                               }
+                               
+                               self.responseData = [NSMutableData dataWithData:data];
+                               NSError *errorInJSON = nil;
+                               NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
+                                                                                    options:kNilOptions
+                                                                                      error:&errorInJSON];
+                               self.responseDict = json;
+                               NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) urlResponse;
+                               self.statusCode = httpResponse.statusCode;
+                               self.errorResponse = error;
+                               self.errorJSON = errorInJSON;
+                               NSLog(@"\n response string :---> \n\n %@",json);
+                               dispatch_async(dispatch_get_main_queue(), ^{
+                                   completionBlock(self);
+                                   [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                                   
+                               });
+
+                               
+                           }];
+  
+    
+}
+
 //NSURLSession API not working properly in Cognizant proxy, NSURLConnection API is used for POST for the time being.
 - (void)makePOSTNetworkRequestWithParameters:(NSDictionary *)parameters completionHandler:(requestCompletion)completionBlock{
     

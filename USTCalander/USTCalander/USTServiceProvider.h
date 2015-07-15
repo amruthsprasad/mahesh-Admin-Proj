@@ -32,4 +32,34 @@ typedef void(^requestCompletion)(USTRequest *);
 
 +(void)getAgendawithCompletionHandler:(requestCompletion)completionBlock;
 
+//********************************
+//*Speaker List service
+//********************************
+
++(void)getSpeakerListwithCompletionHandler:(requestCompletion)completionBlock;
+
+//********************************
+//*Speaker Details service
+//********************************
+
++(void)getSpeakerDetailsWithId:(NSString *)speakerID withCompletionHandler:(requestCompletion)completionBlock;
+
+//********************************
+//*LeaderBoard service
+//********************************
+
++(void)getLeaderBoardwithCompletionHandler:(requestCompletion)completionBlock;
+
+//********************************
+//*Attendees List service
+//********************************
+
++(void)getAttendeesListWithCompletionHandler:(requestCompletion)completionBlock;
+
+//********************************
+//*Add Post service
+//********************************
+
++(void)uploadImage:(NSData *)imageData WithCompletionHandler:(requestCompletion)completionBlock;
+
 @end

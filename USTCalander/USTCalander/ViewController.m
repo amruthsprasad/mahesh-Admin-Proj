@@ -41,9 +41,11 @@
 //        
 //    }];
     
-    [USTServiceProvider getAgendawithCompletionHandler:^(USTRequest *request) {
-        
+    UIImage * image=[UIImage imageNamed:@"ActivityPage"];
+    NSData *data= UIImagePNGRepresentation(image);
+    [USTServiceProvider uploadImage:data WithCompletionHandler:^(USTRequest * request) {
     }];
+    
 }
 
 - (void)didReceiveMemoryWarning {

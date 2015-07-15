@@ -26,6 +26,7 @@ typedef void(^requestCompletion)(USTRequest *);
 - (instancetype)initWithUrl:(NSString *)urlString;
 - (void)makeGETNetworkRequestWithCompletionHandler:(requestCompletion)completionBlock;
 - (void)makePOSTNetworkRequestWithParameters:(NSDictionary *)parameters completionHandler:(requestCompletion)completionBlock;
+- (void)makeUploadRequestFromFile:(NSData *)imageData WithCompletionHandler:(requestCompletion)completionBlock;
 - (void)retryPost;
 
 
