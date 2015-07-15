@@ -10,8 +10,17 @@
 
 @implementation AgendaFeedCell
 @synthesize description;
+
 - (void)awakeFromNib {
     // Initialization code
+}
+
+- (IBAction)cellButtonAction:(id)sender{
+    [self.delegate cellButtonAction:sender];
+}
+
+- (IBAction)activateButtonAction:(id)sender{
+    [self.delegate activateButtonAction:sender];
 }
 
 
