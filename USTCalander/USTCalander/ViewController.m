@@ -41,10 +41,17 @@
 //        
 //    }];
     
-    UIImage * image=[UIImage imageNamed:@"ActivityPage"];
-    NSData *data= UIImagePNGRepresentation(image);
-    [USTServiceProvider uploadImage:data WithCompletionHandler:^(USTRequest * request) {
-    }];
+//    UIImage * image=[UIImage imageNamed:@"ActivityPage"];
+//    NSData *data= [[NSData alloc]init];//
+//    data=UIImagePNGRepresentation(image);
+//    NSMutableDictionary * dict = [[NSMutableDictionary alloc]init];
+//    [dict setObject:@"text" forKey:@"text"];
+//    [dict setObject:@"" forKey:@"agendaId"];
+//    [dict setObject:data forKey:@"imageData"];
+//    
+//    [USTServiceProvider addPost:[dict mutableCopy] WithCompletionHandler:^(USTRequest * request) {
+//        
+//    }];
     
 }
 

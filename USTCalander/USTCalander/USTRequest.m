@@ -58,15 +58,24 @@
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:nil];
     [[session dataTaskWithRequest:request
                 completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+                    
+                    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+                    self.statusCode = httpResponse.statusCode;
+                    self.errorResponse = error;
+                    if (error) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            completionBlock(self);
+                            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                            
+                        });
+                        return;
+                    }
                     self.responseData = [NSMutableData dataWithData:data];
                     NSError *errorInJSON = nil;
                     NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
                                                                          options:kNilOptions
                                                                            error:&errorInJSON];
                     self.responseDict = json;
-                    NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
-                    self.statusCode = httpResponse.statusCode;
-                    self.errorResponse = error;
                     self.errorJSON = errorInJSON;
                     NSLog(@"\n response string :---> \n\n %@",json);
                     dispatch_async(dispatch_get_main_queue(), ^{
@@ -107,7 +116,7 @@
     NSMutableData *body = [NSMutableData data];
     [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
     
-    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"uploaded_file\"; filename=\"%@.png\"\r\n", @"Uploaded_file"] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"file\"; filename=\"%@.jpg\"\r\n", @"file"] dataUsingEncoding:NSUTF8StringEncoding]];
     
     [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
     
@@ -135,13 +144,22 @@
     [NSURLConnection sendAsynchronousRequest:request
                                        queue:queue
                            completionHandler:^(NSURLResponse *urlResponse, NSData *data, NSError *error){
-                               NSLog(@"Completed");
+                               //NSLog(@"Completed %@",[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding]);
                                
                                
                                [UIApplication sharedApplication].networkActivityIndicatorVisible = FALSE;
-                               
+                               NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) urlResponse;
+                               self.statusCode = httpResponse.statusCode;
+                               self.errorResponse = error;
+
                                if (error) {
                                    NSLog(@"error:%@", error.localizedDescription);
+                                   dispatch_async(dispatch_get_main_queue(), ^{
+                                       completionBlock(self);
+                                       [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                                       
+                                   });
+                                   return ;
                                }
                                
                                self.responseData = [NSMutableData dataWithData:data];
@@ -150,9 +168,6 @@
                                                                                     options:kNilOptions
                                                                                       error:&errorInJSON];
                                self.responseDict = json;
-                               NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) urlResponse;
-                               self.statusCode = httpResponse.statusCode;
-                               self.errorResponse = error;
                                self.errorJSON = errorInJSON;
                                NSLog(@"\n response string :---> \n\n %@",json);
                                dispatch_async(dispatch_get_main_queue(), ^{

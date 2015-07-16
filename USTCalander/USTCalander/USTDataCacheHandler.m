@@ -87,7 +87,7 @@
 {
     NSArray *cacheArray = [self getAllCacheData];
     for (USTDataCache * cache in cacheArray) {
-        if ([cache.serviceId isEqualToString:serviceId]) {
+        if ([cache.serviceId isEqualToString:serviceId] && [cache.pageId isEqualToString:pageID]) {
             return cache;
         }
     }

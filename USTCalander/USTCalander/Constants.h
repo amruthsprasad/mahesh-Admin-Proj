@@ -23,7 +23,11 @@
 
 #define k_ActivityListServiceID @"activitylist"
 #define k_AgendaListServiceID @"agendalist"
+#define k_AgendaDetailServiceID @"agendadetail"
+#define k_AgendaActivityListlServiceID @"agendaactivitylist"
 #define k_SpeakerListServiceID @"speakerlist"
 #define k_SpeakerDetailsServiceID @"speakerdetails"
 #define k_LeaderBoardServiceID @"Leaderboardlist"
 #define k_AttendeesListServiceID @"attendeeslist"
+#define k_LikersListServiceID @"likerslist"
+#define k_CommentersListServiceID @"commenterslist"

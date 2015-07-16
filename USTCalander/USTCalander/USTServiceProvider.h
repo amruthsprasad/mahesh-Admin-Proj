@@ -30,7 +30,10 @@ typedef void(^requestCompletion)(USTRequest *);
 //*Agenda service
 //********************************
 
-+(void)getAgendawithCompletionHandler:(requestCompletion)completionBlock;
++(void)getAgendaListwithCompletionHandler:(requestCompletion)completionBlock;
++(void)attendingAgendaWithAgendaID:(NSString *)agendaID withCompletionHandler:(requestCompletion)completionBlock;
++(void)getAgendaDetail:(NSString *)agendaID withCompletionHandler:(requestCompletion)completionBlock;
++(void)getSingleAgendaActivityList:(NSString *)agendaID andPage:(NSNumber *)page withCompletionHandler:(requestCompletion)completionBlock;
 
 //********************************
 //*Speaker List service
@@ -61,5 +64,22 @@ typedef void(^requestCompletion)(USTRequest *);
 //********************************
 
 +(void)uploadImage:(NSData *)imageData WithCompletionHandler:(requestCompletion)completionBlock;
+
++(void)addPost:(NSDictionary *)parameters WithCompletionHandler:(requestCompletion)completionBlock;
+
+//********************************
+//*Like Post service
+//********************************
+
++(void)likePostWithPostId:(NSString *)postID WithCompletionHandler:(requestCompletion)completionBlock;
++(void)getLikersListForPostWithID:(NSString *)postID WithCompletionHandler:(requestCompletion)completionBlock;
+
+
+//********************************
+//*Comment Post service
+//********************************
+
++(void)commentPostWithPostId:(NSString *)postID andComment:(NSString *)comment WithCompletionHandler:(requestCompletion)completionBlock;
++(void)getCommentListForPostWithID:(NSString *)postID WithCompletionHandler:(requestCompletion)completionBlock;
 
 @end

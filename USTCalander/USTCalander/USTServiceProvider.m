@@ -56,7 +56,7 @@
 }
 
 
-+(void)getAgendawithCompletionHandler:(requestCompletion)completionBlock{
++(void)getAgendaListwithCompletionHandler:(requestCompletion)completionBlock{
     USTUser * user=[USTUser sharedInstance];
     NSString * url=[NSString stringWithFormat:@"%@post.php?action=agenda&user_id=%@&event_id=%@",BaseUrl,user.userID,user.userEventID];
     USTRequest * request =[[USTRequest alloc]initWithUrl:url];
@@ -64,11 +64,11 @@
     [request makeGETNetworkRequestWithCompletionHandler:^(USTRequest *request) {
         
         if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"success"]) {
-            [USTDataCacheHandler cacheData:request.responseData forServiceId:k_AgendaListServiceID andPageID:[NSString stringWithFormat:@"%@",@""]];
+            [USTDataCacheHandler cacheData:request.responseData forServiceId:k_AgendaListServiceID andPageID:@""];
         }
         else if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
         {
-            request.responseData = [NSMutableData dataWithData:[USTDataCacheHandler getDataforServiceId:k_AgendaListServiceID andPageID:[NSString stringWithFormat:@"%@",@""]]];
+            request.responseData = [NSMutableData dataWithData:[USTDataCacheHandler getDataforServiceId:k_AgendaListServiceID andPageID:@""]];
             
         }
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -79,6 +79,79 @@
     }];
 }
 
+
++(void)attendingAgendaWithAgendaID:(NSString *)agendaID withCompletionHandler:(requestCompletion)completionBlock{
+    
+    USTUser * user=[USTUser sharedInstance];
+    NSString * url=[NSString stringWithFormat:@"%@post.php?action=addattendagenda&agenda_id=%@&user_id=%@",BaseUrl,agendaID,user.userID];
+    USTRequest * request =[[USTRequest alloc]initWithUrl:url];
+    
+    [request makeGETNetworkRequestWithCompletionHandler:^(USTRequest *request) {
+        
+        if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"success"]) {
+        }
+        else if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
+        {
+            
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completionBlock(request);
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            
+        });
+    }];
+    
+}
+
++(void)getAgendaDetail:(NSString *)agendaID withCompletionHandler:(requestCompletion)completionBlock{
+    
+    USTUser * user=[USTUser sharedInstance];
+    NSString * url=[NSString stringWithFormat:@"%@post.php?action=singleagenda&agenda_id=%@&user_id=%@",BaseUrl,agendaID,user.userID];
+    USTRequest * request =[[USTRequest alloc]initWithUrl:url];
+    
+    [request makeGETNetworkRequestWithCompletionHandler:^(USTRequest *request) {
+        
+        if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"success"]) {
+            [USTDataCacheHandler cacheData:request.responseData forServiceId:k_AgendaDetailServiceID andPageID:@""];
+        }
+        else if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
+        {
+            request.responseData = [NSMutableData dataWithData:[USTDataCacheHandler getDataforServiceId:k_AgendaDetailServiceID andPageID:@""]];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completionBlock(request);
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            
+        });
+    }];
+    
+}
+
+
++(void)getSingleAgendaActivityList:(NSString *)agendaID andPage:(NSNumber *)page withCompletionHandler:(requestCompletion)completionBlock{
+    
+    USTUser * user=[USTUser sharedInstance];
+    NSString * url=[NSString stringWithFormat:@"%@post.php?action=getagendaactivity&agenda_id=%@&stat=1&user_id=%@&user_group=%@&counter=%@",BaseUrl,agendaID,user.userID,user.userGroup,page];
+    USTRequest * request =[[USTRequest alloc]initWithUrl:url];
+    
+    [request makeGETNetworkRequestWithCompletionHandler:^(USTRequest *request) {
+        
+        if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"success"]) {
+            [USTDataCacheHandler cacheData:request.responseData forServiceId:k_AgendaActivityListlServiceID andPageID:[NSString stringWithFormat:@"%@",page]];
+        }
+        else if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
+        {
+            request.responseData = [NSMutableData dataWithData:[USTDataCacheHandler getDataforServiceId:k_AgendaActivityListlServiceID andPageID:[NSString stringWithFormat:@"%@",page]]];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completionBlock(request);
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            
+        });
+    }];
+
+    
+}
 
 +(void)getSpeakerListwithCompletionHandler:(requestCompletion)completionBlock{
     USTUser * user=[USTUser sharedInstance];
@@ -192,5 +265,171 @@
 
 }
 
++(void)addPost:(NSDictionary *)parameters WithCompletionHandler:(requestCompletion)completionBlock{
+    
+    
+    NSData * imageData = [parameters objectForKey:@"imageData"];
+   NSString *imageName=@"";
+    
+    if (imageData.length) {
+        [self uploadImage:imageData WithCompletionHandler:^(USTRequest * request){
+            NSString* imageName = [NSString stringWithFormat:@"%@",[request.responseDict objectForKey:@"image_name"]];
+            if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"success"]) {
+                
+                [self addPostWithData:parameters andImageName:imageName WithCompletionHandler:^(USTRequest * request) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        completionBlock(request);
+                        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                        
+                    });
+                }];
+            }
+            else{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    completionBlock(request);
+                    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                    
+                });
+            }
+        }];
 
+    }
+    else{
+        [self addPostWithData:parameters andImageName:imageName WithCompletionHandler:^(USTRequest * request) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                completionBlock(request);
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                
+            });
+        }];
+
+    }
+    
+}
+
++(void)addPostWithData:(NSDictionary *)parameters andImageName:(NSString *)image_Name WithCompletionHandler:(requestCompletion)completionBlock{
+    
+    USTUser * user=[USTUser sharedInstance];
+
+    NSString * text = [parameters objectForKey:@"text"];
+    NSString * agendaId = [parameters objectForKey:@"agendaId"];
+    
+    NSString * url=[NSString stringWithFormat:@"%@post.php?action=add&userid=%@&text=%@&agendaid=%@&image=%@&eventid=%@",BaseUrl,user.userID,text,agendaId,image_Name,user.userEventID];
+    
+    USTRequest * request =[[USTRequest alloc]initWithUrl:url];
+    
+    [request makeGETNetworkRequestWithCompletionHandler:^(USTRequest *request) {
+        
+        if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"success"]) {
+        }
+        else if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
+        {
+            
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completionBlock(request);
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            
+        });
+    }];
+}
+
+
++(void)likePostWithPostId:(NSString *)postID WithCompletionHandler:(requestCompletion)completionBlock{
+   
+    USTUser * user=[USTUser sharedInstance];
+    
+    
+    NSString * url=[NSString stringWithFormat:@"%@post.php?action=addlike&post_id=%@&user_id=%@&event_id=%@",BaseUrl,postID,user.userID,user.userEventID];
+    
+    USTRequest * request =[[USTRequest alloc]initWithUrl:url];
+    
+    [request makeGETNetworkRequestWithCompletionHandler:^(USTRequest *request) {
+        
+        if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"success"]) {
+        }
+        else if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
+        {
+            
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completionBlock(request);
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            
+        });
+    }];
+
+}
+
++(void)getLikersListForPostWithID:(NSString *)postID WithCompletionHandler:(requestCompletion)completionBlock{
+    
+    NSString * url=[NSString stringWithFormat:@"%@post.php?action=like&post_id=%@",BaseUrl,postID];
+    
+    USTRequest * request =[[USTRequest alloc]initWithUrl:url];
+    
+    [request makeGETNetworkRequestWithCompletionHandler:^(USTRequest *request) {
+        
+        if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"success"]) {
+             [USTDataCacheHandler cacheData:request.responseData forServiceId:k_LikersListServiceID andPageID:postID];
+        }
+        else if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
+        {
+            [USTDataCacheHandler getDataforServiceId:k_LikersListServiceID andPageID:postID];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completionBlock(request);
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            
+        });
+    }];
+
+}
+
++(void)commentPostWithPostId:(NSString *)postID andComment:(NSString *)comment WithCompletionHandler:(requestCompletion)completionBlock{
+    
+    USTUser * user=[USTUser sharedInstance];
+    
+    NSString * url=[NSString stringWithFormat:@"%@post.php?action=addcomment&post_id=%@&user_id=%@&cmnt_text=%@&event_id=%@",BaseUrl,postID,user.userID,comment,user.userEventID];
+    
+    USTRequest * request =[[USTRequest alloc]initWithUrl:url];
+    
+    [request makeGETNetworkRequestWithCompletionHandler:^(USTRequest *request) {
+        
+        if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"success"]) {
+        }
+        else if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
+        {
+            
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completionBlock(request);
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            
+        });
+    }];
+}
+
++(void)getCommentListForPostWithID:(NSString *)postID WithCompletionHandler:(requestCompletion)completionBlock{
+    
+    NSString * url=[NSString stringWithFormat:@"%@post.php?action=comment&post_id=%@",BaseUrl,postID];
+    
+    USTRequest * request =[[USTRequest alloc]initWithUrl:url];
+    
+    [request makeGETNetworkRequestWithCompletionHandler:^(USTRequest *request) {
+        
+        if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"success"]) {
+            [USTDataCacheHandler cacheData:request.responseData forServiceId:k_CommentersListServiceID andPageID:postID];
+        }
+        else if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
+        {
+            [USTDataCacheHandler getDataforServiceId:k_CommentersListServiceID andPageID:postID];
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completionBlock(request);
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            
+        });
+    }];
+
+}
 @end

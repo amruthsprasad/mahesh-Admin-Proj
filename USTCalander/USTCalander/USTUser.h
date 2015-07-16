@@ -17,6 +17,7 @@
 @property(nonatomic,strong) NSString * userLastName;
 @property(nonatomic,strong) NSString * userSessionID;
 @property(nonatomic,strong) NSString * userDesignation;
+@property(nonatomic,strong) NSString * userGroup;
 @property(nonatomic,strong) NSString * userEventID;
 @property(nonatomic,strong) NSString * userEventWelcomeMessage;
 @property(nonatomic,strong) NSString * userLocation;

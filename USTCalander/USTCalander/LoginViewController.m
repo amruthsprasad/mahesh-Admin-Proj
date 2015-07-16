@@ -82,6 +82,7 @@
             sharedUser.userFirstName = [userData objectForKey:@"firstname"];
             sharedUser.userLastName = [userData objectForKey:@"lastname"];
             sharedUser.userDesignation = [userData objectForKey:@"designation"];
+            sharedUser.userGroup = [NSString stringWithFormat:@"%@",[userData objectForKey:@"user_group"]];
             sharedUser.userEventID = [userData objectForKey:@"event_active"];
             sharedUser.userEventWelcomeMessage = [userData objectForKey:@"event_welcome"];
             sharedUser.userLocation = [userData objectForKey:@"location"];
