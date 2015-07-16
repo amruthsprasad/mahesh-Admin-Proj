@@ -12,6 +12,9 @@
 
 #endif
 #define BaseUrl @"http://www.ustglobaleventapp.com/php/"
+#define BaseImageUrlFull @"http://www.ustglobaleventapp.com/php/uploads/image_full/"
+#define BaseImageUrlCroped @"http://www.ustglobaleventapp.com/php/uploads/"
+
 
 
 #define k_AppSessionID @"UserSessionID"

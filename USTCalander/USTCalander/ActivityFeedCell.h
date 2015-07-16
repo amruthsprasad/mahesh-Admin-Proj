@@ -15,5 +15,8 @@
 @property (weak, nonatomic) IBOutlet UIView *seperator3;
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *activityImageView;
+@property (weak, nonatomic) IBOutlet UILabel * authorNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel * post_dateLabel;
+@property (weak, nonatomic) IBOutlet UILabel * post_textLabel;
 
 @end

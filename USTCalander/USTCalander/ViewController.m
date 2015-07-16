@@ -12,10 +12,16 @@
 #import "RootContainerView.h"
 #import "ContainerBridgeView.h"
 #import "USTServiceProvider.h"
+#import "Constants.h"
 
-@interface ViewController ()
+
+#define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+
+
+@interface ViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong)NSMutableArray * dataArray;
 @end
 
 @implementation ViewController
@@ -31,16 +37,24 @@
     rootContObj.headerView.hidden = NO;
     rootContObj.titleLabel.text = @"Activity Feed";
 
+    _dataArray=[[NSMutableArray alloc]init];
     [self executeNetworkService];
+    
     
     
 }
 
 
 -(void)executeNetworkService{
-//    [USTServiceProvider getActivityFeed:[NSNumber numberWithInt:10] andPage:[NSNumber numberWithInt:0] withCompletionHandler:^(USTRequest * request) {
-//        
-//    }];
+    [USTServiceProvider getActivityFeed:[NSNumber numberWithInt:20] andPage:[NSNumber numberWithInt:0] withCompletionHandler:^(USTRequest * request) {
+        
+        if (request.responseDict) {
+            self.dataArray = [NSMutableArray arrayWithArray:[request.responseDict objectForKey:@"post"]];
+            [_tableView reloadData];
+        }
+        
+    }];
+    
     
 //    UIImage * image=[UIImage imageNamed:@"ActivityPage"];
 //    NSData *data= [[NSData alloc]init];//
@@ -70,22 +84,47 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 5;
+    return [_dataArray count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ActivityFeedCell *cell ;
-    if(indexPath.row%2==0){
-        NSString *CellIdentifier =@"Activity";
-        cell= [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    NSString *CellIdentifier;
+    NSDictionary * post = [self.dataArray objectAtIndex:indexPath.row];
+    NSNumber * imageStatus = [post objectForKey:@"user_image_stat"];
+    NSString * postImageName = [post objectForKey:@"post_image"];
+    if (postImageName.length)
+    {
+         CellIdentifier =@"ActivityWithImage";
     }
-    else{
-        NSString *CellIdentifier =@"ActivityWithImage";
+    else
+    {
+          CellIdentifier =@"Activity";
+    }
+    
         cell= [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    cell.post_textLabel.text=[post objectForKey:@"post_text"];
+    cell.post_dateLabel.text=[post objectForKey:@"post_date"];
+    if (postImageName.length) {
         
+    dispatch_async(kBgQueue, ^{
+        NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseImageUrlFull,postImageName]]];
+        if (imgData) {
+            UIImage *image = [UIImage imageWithData:imgData];
+            if (image) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                   ActivityFeedCell * cell = (id)[tableView cellForRowAtIndexPath:indexPath];
+                    if (cell)
+                        cell.activityImageView.image = image;
+                });
+            }
+        }
+    });
     }
+    
     
     /* if(cell == nil)
      {
