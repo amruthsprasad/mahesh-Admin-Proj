@@ -19,9 +19,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    AgendaFeedCell * agendaCellObj = [[AgendaFeedCell alloc]init];
-    agendaCellObj.delegate = self;
+    ContainerBridgeView * contBridgObj = [ContainerBridgeView sharedInstance];
+    RootContainerView * rootContObj = (RootContainerView *)[contBridgObj getRootContainerObj];
+    rootContObj.titleLabel.text = @"Agenda";
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,6 +57,7 @@
     
     NSString *CellIdentifier =@"AgendaCell";
     AgendaFeedCell * cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    cell.delegate=self;
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }

@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseViewController.h"
 #import "AgendaFeedCell.h"
+#import "ContainerBridgeView.h"
 
-@interface AgendaViewController : UIViewController<AgendaFeedCellDelegate>
+@interface AgendaViewController : UIViewController<AgendaFeedCellDelegate>{
+}
 
 @end

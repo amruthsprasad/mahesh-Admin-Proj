@@ -15,5 +15,6 @@
 - (IBAction)slideMenuAction:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIView *headerView;
+@property (weak, nonatomic) IBOutlet UILabel * titleLabel;
 
 @end

@@ -29,6 +29,7 @@
     ContainerBridgeView * contBridgObj = [ContainerBridgeView sharedInstance];
     RootContainerView * rootContObj = (RootContainerView *)[contBridgObj getRootContainerObj];
     rootContObj.headerView.hidden = NO;
+    rootContObj.titleLabel.text = @"Activity Feed";
 
     [self executeNetworkService];
     
@@ -66,19 +67,43 @@
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSString *CellIdentifier =@"Activity";
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     ActivityFeedCell *cell ;
-    cell= [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];    
-   /* if(cell == nil)
-    {
-        cell = [[ActivityFeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    if(indexPath.row%2==0){
+        NSString *CellIdentifier =@"Activity";
+        cell= [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     }
-    CGRect rect=cell.contentView.frame;
-    float xPos=(rect.size.width-3)/4;
-    cell.seperator1.frame=CGRectMake(xPos+1, cell.seperator1.frame.origin.y, cell.seperator1.frame.size.width, cell.seperator1.frame.size.height);
-    cell.seperator2.frame=CGRectMake(xPos*2+2, cell.seperator2.frame.origin.y, cell.seperator2.frame.size.width, cell.seperator2.frame.size.height);
-    cell.seperator3.frame=CGRectMake(xPos*3+3, cell.seperator3.frame.origin.y, cell.seperator3.frame.size.width, cell.seperator3.frame.size.height);*/
+    else{
+        NSString *CellIdentifier =@"ActivityWithImage";
+        cell= [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+        
+    }
+    
+    /* if(cell == nil)
+     {
+     cell = [[ActivityFeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+     }
+     CGRect rect=cell.contentView.frame;
+     float xPos=(rect.size.width-3)/4;
+     cell.seperator1.frame=CGRectMake(xPos+1, cell.seperator1.frame.origin.y, cell.seperator1.frame.size.width, cell.seperator1.frame.size.height);
+     cell.seperator2.frame=CGRectMake(xPos*2+2, cell.seperator2.frame.origin.y, cell.seperator2.frame.size.width, cell.seperator2.frame.size.height);
+     cell.seperator3.frame=CGRectMake(xPos*3+3, cell.seperator3.frame.origin.y, cell.seperator3.frame.size.width, cell.seperator3.frame.size.height);*/
+    
     return cell;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    float height;
+    if(indexPath.row%2==0){
+        height= 190;
+    }
+    else{
+        height= 380;
+    }
+    return height;
+}
+
+
+
 @end

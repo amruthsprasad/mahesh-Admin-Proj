@@ -36,6 +36,8 @@
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     }
     self.navigationController.navigationBarHidden=YES;
+    
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(detectOrientation) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
 
 }
 
@@ -55,6 +57,21 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+-(void) detectOrientation
+{
+    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft || [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight)
+    {
+        //It's Landscape
+        NSLog(@"...Landscape...%f.....",self.headerView.frame.origin.y);
+        
+    }
+    else if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationPortrait || [[UIDevice currentDevice] orientation] == UIDeviceOrientationPortraitUpsideDown)
+    {
+        //It's portrait time!
+         NSLog(@"....Portrait...%f.....",self.headerView.frame.origin.y);
+    }
+}
 
 - (IBAction)slideMenuAction:(id)sender {
     

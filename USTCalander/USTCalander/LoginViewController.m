@@ -29,6 +29,9 @@
     _passwordTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter Your Password" attributes:@{NSForegroundColorAttributeName: [UIColor lightGrayColor]}];
     
     _activityIndicator.hidden=true;
+    
+    self.userNameTextField.text=@"manoj";
+    self.passwordTextField.text=@"manoj123";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -47,6 +50,7 @@
 */
 
 - (IBAction)loginAction:(id)sender {
+
     [self executeServiceRequest];
     //[self goToHomeScreen];
 }

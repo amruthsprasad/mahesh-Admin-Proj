@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		E82062121B51529C0020BC11 /* RootContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82062111B51529C0020BC11 /* RootContainerView.m */; };
 		E82062161B516C8B0020BC11 /* ContainerBridgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E82062151B516C8B0020BC11 /* ContainerBridgeView.m */; };
+		E88AC1521B56DC6600E8AAD2 /* AgendaActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E88AC1511B56DC6600E8AAD2 /* AgendaActivity.m */; };
+		E88AC1551B56DC7800E8AAD2 /* AgendaAbout.m in Sources */ = {isa = PBXBuildFile; fileRef = E88AC1541B56DC7800E8AAD2 /* AgendaAbout.m */; };
+		E894B6471B56F8DF000F44B4 /* AttendeesController.m in Sources */ = {isa = PBXBuildFile; fileRef = E894B6461B56F8DF000F44B4 /* AttendeesController.m */; };
+		E894B64A1B56FBB6000F44B4 /* AttendeesFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E894B6491B56FBB6000F44B4 /* AttendeesFeedCell.m */; };
+		E8CB6F3F1B556C7800FDA950 /* AgendaDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CB6F3E1B556C7800FDA950 /* AgendaDetailView.m */; };
 		E8FA7DEC1B4ED5E50066F5A3 /* Agenda.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8FA7DEB1B4ED5E50066F5A3 /* Agenda.storyboard */; };
 		E8FA7DF11B4EDD310066F5A3 /* AgendaFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FA7DEF1B4EDD310066F5A3 /* AgendaFeedCell.m */; };
 		F033B17B1B1DC29B0018B8CC /* ActivityFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F033B1791B1DC29B0018B8CC /* ActivityFeedCell.m */; };
@@ -56,6 +61,16 @@
 		E82062111B51529C0020BC11 /* RootContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootContainerView.m; sourceTree = "<group>"; };
 		E82062141B516C8B0020BC11 /* ContainerBridgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerBridgeView.h; sourceTree = "<group>"; };
 		E82062151B516C8B0020BC11 /* ContainerBridgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerBridgeView.m; sourceTree = "<group>"; };
+		E88AC1501B56DC6600E8AAD2 /* AgendaActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgendaActivity.h; sourceTree = "<group>"; };
+		E88AC1511B56DC6600E8AAD2 /* AgendaActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgendaActivity.m; sourceTree = "<group>"; };
+		E88AC1531B56DC7800E8AAD2 /* AgendaAbout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgendaAbout.h; sourceTree = "<group>"; };
+		E88AC1541B56DC7800E8AAD2 /* AgendaAbout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgendaAbout.m; sourceTree = "<group>"; };
+		E894B6451B56F8DF000F44B4 /* AttendeesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendeesController.h; sourceTree = "<group>"; };
+		E894B6461B56F8DF000F44B4 /* AttendeesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttendeesController.m; sourceTree = "<group>"; };
+		E894B6481B56FBB6000F44B4 /* AttendeesFeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendeesFeedCell.h; sourceTree = "<group>"; };
+		E894B6491B56FBB6000F44B4 /* AttendeesFeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttendeesFeedCell.m; sourceTree = "<group>"; };
+		E8CB6F3D1B556C7800FDA950 /* AgendaDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgendaDetailView.h; sourceTree = "<group>"; };
+		E8CB6F3E1B556C7800FDA950 /* AgendaDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgendaDetailView.m; sourceTree = "<group>"; };
 		E8FA7DEB1B4ED5E50066F5A3 /* Agenda.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Agenda.storyboard; sourceTree = "<group>"; };
 		E8FA7DEE1B4EDD310066F5A3 /* AgendaFeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgendaFeedCell.h; sourceTree = "<group>"; };
 		E8FA7DEF1B4EDD310066F5A3 /* AgendaFeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgendaFeedCell.m; sourceTree = "<group>"; };
@@ -140,6 +155,17 @@
 			name = CustomRootView;
 			sourceTree = "<group>";
 		};
+		E894B6441B56F8B3000F44B4 /* Attendees */ = {
+			isa = PBXGroup;
+			children = (
+				E894B6451B56F8DF000F44B4 /* AttendeesController.h */,
+				E894B6461B56F8DF000F44B4 /* AttendeesController.m */,
+				E894B6481B56FBB6000F44B4 /* AttendeesFeedCell.h */,
+				E894B6491B56FBB6000F44B4 /* AttendeesFeedCell.m */,
+			);
+			name = Attendees;
+			sourceTree = "<group>";
+		};
 		E8FA7DED1B4EDCFC0066F5A3 /* AgendaFeedCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,6 +211,12 @@
 			children = (
 				F0655EC81B4B2A3C00D064B6 /* AgendaViewController.h */,
 				F0655EC91B4B2A3C00D064B6 /* AgendaViewController.m */,
+				E8CB6F3D1B556C7800FDA950 /* AgendaDetailView.h */,
+				E8CB6F3E1B556C7800FDA950 /* AgendaDetailView.m */,
+				E88AC1501B56DC6600E8AAD2 /* AgendaActivity.h */,
+				E88AC1511B56DC6600E8AAD2 /* AgendaActivity.m */,
+				E88AC1531B56DC7800E8AAD2 /* AgendaAbout.h */,
+				E88AC1541B56DC7800E8AAD2 /* AgendaAbout.m */,
 			);
 			name = Agenda;
 			sourceTree = "<group>";
@@ -234,6 +266,7 @@
 		F07A193A1B1CCF2800A67D85 /* USTCalander */ = {
 			isa = PBXGroup;
 			children = (
+				E894B6441B56F8B3000F44B4 /* Attendees */,
 				F0DBEC1F1B4EEE12007CF992 /* Security */,
 				E8FA7DED1B4EDCFC0066F5A3 /* AgendaFeedCell */,
 				F034B2C01B4D92860063B4A5 /* LoginView */,
@@ -428,11 +461,14 @@
 			files = (
 				F0655EC41B4B22AC00D064B6 /* BaseView.m in Sources */,
 				F033B17B1B1DC29B0018B8CC /* ActivityFeedCell.m in Sources */,
+				E8CB6F3F1B556C7800FDA950 /* AgendaDetailView.m in Sources */,
 				F0655EC11B4B228C00D064B6 /* BaseViewController.m in Sources */,
 				F07A19441B1CCF2800A67D85 /* USTCalander.xcdatamodeld in Sources */,
 				F0DBEC261B4EF701007CF992 /* USTServiceProvider.m in Sources */,
 				E82062161B516C8B0020BC11 /* ContainerBridgeView.m in Sources */,
+				E894B6471B56F8DF000F44B4 /* AttendeesController.m in Sources */,
 				F07A19411B1CCF2800A67D85 /* AppDelegate.m in Sources */,
+				E88AC1521B56DC6600E8AAD2 /* AgendaActivity.m in Sources */,
 				F04FCB6D1B4713CC0046AD2B /* SlideBarTitleTableViewCell.m in Sources */,
 				F04FCB681B4711DE0046AD2B /* SlidebarTableViewCell.m in Sources */,
 				F034B2C31B4D92A90063B4A5 /* LoginViewController.m in Sources */,
@@ -443,7 +479,9 @@
 				E82062121B51529C0020BC11 /* RootContainerView.m in Sources */,
 				E8FA7DF11B4EDD310066F5A3 /* AgendaFeedCell.m in Sources */,
 				F07A196B1B1CD85C00A67D85 /* SideBarViewController.m in Sources */,
+				E894B64A1B56FBB6000F44B4 /* AttendeesFeedCell.m in Sources */,
 				F0655ED21B4B2BE300D064B6 /* USTRequest.m in Sources */,
+				E88AC1551B56DC7800E8AAD2 /* AgendaAbout.m in Sources */,
 				F0655ECE1B4B2B7700D064B6 /* USTUser.m in Sources */,
 				F07A19471B1CCF2800A67D85 /* ViewController.m in Sources */,
 				F0819A441B4C598300714609 /* USTDataCache.m in Sources */,
