@@ -166,15 +166,6 @@
 			name = Attendees;
 			sourceTree = "<group>";
 		};
-		E8FA7DED1B4EDCFC0066F5A3 /* AgendaFeedCell */ = {
-			isa = PBXGroup;
-			children = (
-				E8FA7DEE1B4EDD310066F5A3 /* AgendaFeedCell.h */,
-				E8FA7DEF1B4EDD310066F5A3 /* AgendaFeedCell.m */,
-			);
-			name = AgendaFeedCell;
-			sourceTree = "<group>";
-		};
 		F033B1771B1DC2310018B8CC /* ActivityFeedCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -217,6 +208,8 @@
 				E88AC1511B56DC6600E8AAD2 /* AgendaActivity.m */,
 				E88AC1531B56DC7800E8AAD2 /* AgendaAbout.h */,
 				E88AC1541B56DC7800E8AAD2 /* AgendaAbout.m */,
+				E8FA7DEE1B4EDD310066F5A3 /* AgendaFeedCell.h */,
+				E8FA7DEF1B4EDD310066F5A3 /* AgendaFeedCell.m */,
 			);
 			name = Agenda;
 			sourceTree = "<group>";
@@ -268,7 +261,6 @@
 			children = (
 				E894B6441B56F8B3000F44B4 /* Attendees */,
 				F0DBEC1F1B4EEE12007CF992 /* Security */,
-				E8FA7DED1B4EDCFC0066F5A3 /* AgendaFeedCell */,
 				F034B2C01B4D92860063B4A5 /* LoginView */,
 				F0655ECF1B4B2BC200D064B6 /* Webservice */,
 				F0655ECB1B4B2B5900D064B6 /* User */,
