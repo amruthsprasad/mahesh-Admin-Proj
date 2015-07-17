@@ -99,12 +99,12 @@
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+/*- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ActivityFeedCell *cell ;
     NSString *CellIdentifier;
     NSDictionary * post = [self.dataArray objectAtIndex:indexPath.row];
-    NSNumber * imageStatus = [post objectForKey:@"user_image_stat"];
+   // NSNumber * imageStatus = [post objectForKey:@"user_image_stat"];
     NSString * postImageName = [post objectForKey:@"post_image"];
     if (postImageName.length)
     {
@@ -115,7 +115,7 @@
           CellIdentifier =@"Activity";
     }
     
-        cell= [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    cell= [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     cell.post_textLabel.text=[post objectForKey:@"post_text"];
     cell.post_dateLabel.text=[post objectForKey:@"post_date"];
@@ -138,17 +138,6 @@
     });
     }
     
-    
-    /* if(cell == nil)
-     {
-     cell = [[ActivityFeedCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-     }
-     CGRect rect=cell.contentView.frame;
-     float xPos=(rect.size.width-3)/4;
-     cell.seperator1.frame=CGRectMake(xPos+1, cell.seperator1.frame.origin.y, cell.seperator1.frame.size.width, cell.seperator1.frame.size.height);
-     cell.seperator2.frame=CGRectMake(xPos*2+2, cell.seperator2.frame.origin.y, cell.seperator2.frame.size.width, cell.seperator2.frame.size.height);
-     cell.seperator3.frame=CGRectMake(xPos*3+3, cell.seperator3.frame.origin.y, cell.seperator3.frame.size.width, cell.seperator3.frame.size.height);*/
-    
     return cell;
 }
 
@@ -162,6 +151,110 @@
     }
     return height;
 }
+*/
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ActivityFeedCell *cell ;
+    NSString *CellIdentifier;
+    NSDictionary * post = [self.dataArray objectAtIndex:indexPath.row];
+    // NSNumber * imageStatus = [post objectForKey:@"user_image_stat"];
+    NSString * postImageName = [post objectForKey:@"post_image"];
+    if (postImageName.length)
+    {
+        CellIdentifier =@"ActivityWithImage";
+    }
+    else
+    {
+        CellIdentifier =@"Activity";
+    }
+    cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    [self configureCell:cell cellDict:post atIndexPath:indexPath];
+    return cell;
+}
+
+- (void)configureCell:(ActivityFeedCell *)cell cellDict:(NSDictionary *)post atIndexPath:(NSIndexPath *)indexPath {
+    
+    cell.post_textLabel.text=[post objectForKey:@"post_text"];
+    cell.post_dateLabel.text=[post objectForKey:@"post_date"];
+    NSString * postImageName = [post objectForKey:@"post_image"];
+    if (postImageName.length) {
+        
+        dispatch_async(kBgQueue, ^{
+           // NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseImageUrlFull,postImageName]]];
+            NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.ustglobaleventapp.com/php/uploads/image_full/(null)_1437157044.jpg"]]];
+            NSLog(@"Image URL...%@%@..",BaseImageUrlFull,postImageName);
+            if (imgData) {
+                UIImage *image = [UIImage imageWithData:imgData];
+                if (image) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        //ActivityFeedCell * cell = (id)[self.tableView cellForRowAtIndexPath:indexPath];
+                        //if (cell)
+                            cell.activityImageView.image = image;
+                    });
+                }
+            }
+        });
+    }
+    
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [self heightForCellAtIndexPath:indexPath];
+}
+
+
+- (CGFloat)heightForCellAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSString * CellIdentifier;
+    NSDictionary * post = [self.dataArray objectAtIndex:indexPath.row];
+    NSString * postImageName = [post objectForKey:@"post_image"];
+    if (postImageName.length)
+    {
+        CellIdentifier = @"ActivityWithImage";
+    }
+    else
+    {
+        CellIdentifier = @"Activity";
+    }
+
+    static ActivityFeedCell * sizingCell = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sizingCell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    });
+   
+    [self configureCell:sizingCell cellDict:post atIndexPath:indexPath];
+    return [self calculateHeightForConfiguredSizingCell:sizingCell];
+}
+
+- (CGFloat)calculateHeightForConfiguredSizingCell:(UITableViewCell *)sizingCell {
+    
+    sizingCell.bounds = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.tableView.frame), CGRectGetHeight(sizingCell.bounds));
+    
+    [sizingCell setNeedsLayout];
+    [sizingCell layoutIfNeeded];
+    
+    CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    return size.height + 1.0f; // Add 1.0f for the cell separator height
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    float height;
+    NSDictionary * post = [self.dataArray objectAtIndex:indexPath.row];
+    NSString * postImageName = [post objectForKey:@"post_image"];
+    if (postImageName.length){
+         height= 380;
+    }
+    else{
+        height= 190;
+    }
+    return height;
+
+}
+
 
 
 
