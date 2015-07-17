@@ -48,21 +48,21 @@
 -(void)executeNetworkService{
     
     
-    
-    UIImage * image=[UIImage imageNamed:@"images.jpeg"];
-    NSData *data= [[NSData alloc]init];//
-    data=UIImagePNGRepresentation(image);
-    NSMutableDictionary * dict = [[NSMutableDictionary alloc]init];
-    [dict setObject:@"test post by amruth" forKey:@"text"];
-    [dict setObject:@"" forKey:@"agendaId"];
-    [dict setObject:data forKey:@"imageData"];
-    [USTServiceProvider uploadImage:data WithCompletionHandler:^(USTRequest * request) {
-        NSString* imageName = [NSString stringWithFormat:@"%@",[request.responseDict objectForKey:@"image_name"]];
-        NSMutableDictionary * dict = [[NSMutableDictionary alloc]init];
-        [dict setObject:@"test post by amruth" forKey:@"text"];
-        [dict setObject:@"" forKey:@"agendaId"];
-        if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"success"]) {
-            [USTServiceProvider addPostWithData:dict andImageName:imageName WithCompletionHandler:^(USTRequest * request) {
+    //to post activity
+//    UIImage * image=[UIImage imageNamed:@"images.jpeg"];
+//    NSData *data= [[NSData alloc]init];//
+//    data=UIImagePNGRepresentation(image);
+//    NSMutableDictionary * dict = [[NSMutableDictionary alloc]init];
+//    [dict setObject:@"test post by amruth" forKey:@"text"];
+//    [dict setObject:@"" forKey:@"agendaId"];
+//    [dict setObject:data forKey:@"imageData"];
+//    [USTServiceProvider uploadImage:data WithCompletionHandler:^(USTRequest * request) {
+//        NSString* imageName = [NSString stringWithFormat:@"%@",[request.responseDict objectForKey:@"image_name"]];
+//        NSMutableDictionary * dict = [[NSMutableDictionary alloc]init];
+//        [dict setObject:@"test post by amruth" forKey:@"text"];
+//        [dict setObject:@"" forKey:@"agendaId"];
+//        if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"success"]) {
+//            [USTServiceProvider addPostWithData:dict andImageName:imageName WithCompletionHandler:^(USTRequest * request) {
 //                [USTServiceProvider getActivityFeed:[NSNumber numberWithInt:20] andPage:[NSNumber numberWithInt:0] withCompletionHandler:^(USTRequest * request) {
 //                    
 //                    if (request.responseDict) {
@@ -71,12 +71,19 @@
 //                    }
 //                    
 //                }];
-            }];
-        }
-
-    }];
+//            }];
+//        }
+//
+//    }];
     
-    
+    [USTServiceProvider getActivityFeed:[NSNumber numberWithInt:20] andPage:[NSNumber numberWithInt:0] withCompletionHandler:^(USTRequest * request) {
+        
+                            if (request.responseDict) {
+                                self.dataArray = [NSMutableArray arrayWithArray:[request.responseDict objectForKey:@"post"]];
+                                [_tableView reloadData];
+                            }
+        
+                        }];
     
     
 }
