@@ -46,6 +46,7 @@
 		F07A196B1B1CD85C00A67D85 /* SideBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F07A196A1B1CD85C00A67D85 /* SideBarViewController.m */; };
 		F0819A441B4C598300714609 /* USTDataCache.m in Sources */ = {isa = PBXBuildFile; fileRef = F0819A431B4C598300714609 /* USTDataCache.m */; };
 		F0819A471B4C5A5500714609 /* USTDataCacheHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F0819A461B4C5A5500714609 /* USTDataCacheHandler.m */; };
+		F0C67A761B597D35009BA3C1 /* images.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = F0C67A751B597D35009BA3C1 /* images.jpeg */; };
 		F0DBEC221B4EEE3D007CF992 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DBEC211B4EEE3D007CF992 /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0DBEC261B4EF701007CF992 /* USTServiceProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DBEC251B4EF701007CF992 /* USTServiceProvider.m */; };
 /* End PBXBuildFile section */
@@ -131,6 +132,7 @@
 		F0819A431B4C598300714609 /* USTDataCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USTDataCache.m; sourceTree = "<group>"; };
 		F0819A451B4C5A5500714609 /* USTDataCacheHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USTDataCacheHandler.h; sourceTree = "<group>"; };
 		F0819A461B4C5A5500714609 /* USTDataCacheHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USTDataCacheHandler.m; sourceTree = "<group>"; };
+		F0C67A751B597D35009BA3C1 /* images.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = images.jpeg; sourceTree = "<group>"; };
 		F0DBEC201B4EEE3D007CF992 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		F0DBEC211B4EEE3D007CF992 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
 		F0DBEC231B4EF338007CF992 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 		F07A193B1B1CCF2800A67D85 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F0C67A751B597D35009BA3C1 /* images.jpeg */,
 				F05EC3EB1B55A4D100894E95 /* ActivityPage.png */,
 				F07A193C1B1CCF2800A67D85 /* Info.plist */,
 				F07A193D1B1CCF2800A67D85 /* main.m */,
@@ -462,6 +465,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8FA7DEC1B4ED5E50066F5A3 /* Agenda.storyboard in Resources */,
+				F0C67A761B597D35009BA3C1 /* images.jpeg in Resources */,
 				F07A194A1B1CCF2800A67D85 /* Main.storyboard in Resources */,
 				F07A194F1B1CCF2800A67D85 /* LaunchScreen.xib in Resources */,
 				F033B17C1B1DC29B0018B8CC /* ActivityFeedCell.xib in Resources */,

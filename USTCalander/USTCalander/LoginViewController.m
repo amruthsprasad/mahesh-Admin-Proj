@@ -80,7 +80,7 @@
         NSString * status = [NSString stringWithFormat:@"%@",[request.responseDict objectForKey:@"status"]];
         if ([status isEqualToString:success] ) {
             NSDictionary * userData=[request.responseDict objectForKey:@"user"];
-            sharedUser.userData = [request.responseDict objectForKey:@"user"];
+            sharedUser.userData = request.responseData;//[request.responseDict objectForKey:@"user"];
             sharedUser.userID = [userData objectForKey:@"id"];
             sharedUser.userSessionID = [userData objectForKey:@"deviceid"];
             sharedUser.userFirstName = [userData objectForKey:@"firstname"];

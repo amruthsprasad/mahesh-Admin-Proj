@@ -23,7 +23,7 @@
 @property(nonatomic,strong) NSString * userLocation;
 @property(nonatomic,strong) NSString * userImage;
 @property(nonatomic,strong) NSString * userImageStatus;
-@property(nonatomic,strong) NSString * userData;
+@property(nonatomic,strong) NSData * userData;
 
 + (id)sharedInstance;
 -(void)setCredentialsToKeychain;

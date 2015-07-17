@@ -29,7 +29,7 @@ NSString * const kSecIdentifier = @"USTUserCredentials";
     KeychainItemWrapper *keyChainWrapper = [[KeychainItemWrapper alloc]initWithIdentifier:kSecIdentifier accessGroup:nil];
     [keyChainWrapper setObject:self.userID forKey:(__bridge id)kSecAttrAccount];
     [keyChainWrapper setObject:self.userPassword forKey:(__bridge id)kSecValueData];
-    NSData *sessonData = [self.userSessionID dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *sessonData = self.userData;//[self.userData dataUsingEncoding:NSUTF8StringEncoding];
     if (sessonData) {
         [USTDataCacheHandler cacheData:sessonData forServiceId:k_AppSessionID andPageID:@""];
     }

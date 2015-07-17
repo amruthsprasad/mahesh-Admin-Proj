@@ -67,6 +67,8 @@ typedef void(^requestCompletion)(USTRequest *);
 
 +(void)addPost:(NSDictionary *)parameters WithCompletionHandler:(requestCompletion)completionBlock;
 
++(void)addPostWithData:(NSDictionary *)parameters andImageName:(NSString *)image_Name WithCompletionHandler:(requestCompletion)completionBlock;
+
 //********************************
 //*Like Post service
 //********************************
