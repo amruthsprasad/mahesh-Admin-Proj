@@ -36,3 +36,4 @@
 #define k_AttendeesListServiceID @"attendeeslist"
 #define k_LikersListServiceID @"likerslist"
 #define k_CommentersListServiceID @"commenterslist"
+#define k_ImageDownloadServiceID @"imagedownload"

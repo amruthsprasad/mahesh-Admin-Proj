@@ -84,4 +84,12 @@ typedef void(^requestCompletion)(USTRequest *);
 +(void)commentPostWithPostId:(NSString *)postID andComment:(NSString *)comment WithCompletionHandler:(requestCompletion)completionBlock;
 +(void)getCommentListForPostWithID:(NSString *)postID WithCompletionHandler:(requestCompletion)completionBlock;
 
+
+//********************************
+//* Image Download service
+//********************************
++(NSData *)getImageWithName:(NSString *)imageName;
+
+
+
 @end

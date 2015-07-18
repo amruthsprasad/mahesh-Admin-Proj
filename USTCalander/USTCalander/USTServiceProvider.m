@@ -444,4 +444,26 @@
     }];
 
 }
+
+
++(NSData *)getImageWithName:(NSString *)imageName{
+    
+    NSData * imageData = [NSMutableData dataWithData:[USTDataCacheHandler getDataforServiceId:k_ImageDownloadServiceID andPageID:[NSString stringWithFormat:@"%@",imageName]]];
+    if (imageData.length) {
+        return imageData;
+    }
+    else{
+         imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseImageUrlCroped,imageName]]];
+        if (imageData.length) {
+            [USTDataCacheHandler cacheData:imageData forServiceId:k_ImageDownloadServiceID andPageID:imageName];
+        }
+        return imageData;
+        
+    }
+    
+
+    return nil;
+}
+
+
 @end

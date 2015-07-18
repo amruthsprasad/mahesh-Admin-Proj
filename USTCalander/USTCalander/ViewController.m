@@ -128,7 +128,7 @@
     if (postImageName.length) {
         
     dispatch_async(kBgQueue, ^{
-        NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseImageUrlCroped,postImageName]]];
+        NSData *imgData = [USTServiceProvider getImageWithName:postImageName];//[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseImageUrlCroped,postImageName]]];
         if (imgData) {
             UIImage *image = [UIImage imageWithData:imgData];
             if (image) {
