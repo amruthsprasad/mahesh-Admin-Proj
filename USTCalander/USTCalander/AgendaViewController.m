@@ -7,6 +7,7 @@
 //
 
 #import "AgendaViewController.h"
+#import "AgendaDetailView.h"
 #import "USTServiceProvider.h"
 
 @interface AgendaViewController ()
@@ -26,13 +27,17 @@
     RootContainerView * rootContObj = (RootContainerView *)[contBridgObj getRootContainerObj];
     rootContObj.titleLabel.text = @"Agenda";
     _dataArray = [[NSMutableArray alloc]init];
+    [self executeNetworkService];
+
+}
+
+-(void)executeNetworkService{
     [USTServiceProvider getAgendaListwithCompletionHandler:^(USTRequest * request) {
         if (request.responseDict) {
             self.dataArray = [NSMutableArray arrayWithArray:[request.responseDict objectForKey:@"agenda"]];
             [_tableView reloadData];
         }
     }];
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -75,7 +80,10 @@
     cell.title.text = [agendaDict objectForKey:@"agenda_name"];
     cell.time.text  = [NSString stringWithFormat:@"%@ - %@,%@",[agendaDict objectForKey:@"agenda_from"],[agendaDict objectForKey:@"agenda_to"],[agendaDict objectForKey:@"agenda_date"]];
     cell.description.text = [agendaDict objectForKey:@"agenda_place"];
-    if ([agendaDict objectForKey:@"user_attending"]) {
+    cell.actionButton.tag=indexPath.row;
+    cell.cellButton.tag=indexPath.row;
+    int  userattending = [[agendaDict objectForKey:@"user_attending"] intValue];
+    if (userattending) {
         cell.actionImg.image = [UIImage imageNamed:@"activate_icon"];
     }
     else
@@ -139,12 +147,26 @@
 
 #pragma mark - Agenda Feed Cell Delegate Methods
 
-- (void) cellButtonAction:(id)sender{
-    NSLog(@"Sender...%@",sender);
+- (void) cellButtonAction:(AgendaFeedCell*)sender{
+    NSDictionary * agendaDict = [_dataArray objectAtIndex:sender.actionButton.tag];
+    NSString * agendaID = [agendaDict objectForKey:@"agenda_id"];
+
 }
 
-- (void) activateButtonAction:(id)sender{
-     NSLog(@"Sender...%@",sender);
+- (void) activateButtonAction:(AgendaFeedCell*)sender{
+    NSDictionary * agendaDict = [_dataArray objectAtIndex:sender.actionButton.tag];
+    int  userattending = [[agendaDict objectForKey:@"user_attending"] intValue];
+
+    if (userattending) {
+        sender.actionImg.image = [UIImage imageNamed:@"deactivate_icon"];
+    }
+    else
+    {
+        sender.actionImg.image = [UIImage imageNamed:@"activate_icon"];
+    }
+    [USTServiceProvider attendingAgendaWithAgendaID:[agendaDict objectForKey:@"agenda_id"] withCompletionHandler:^(USTRequest * request) {
+        [self executeNetworkService];
+    }];
 }
 
 
