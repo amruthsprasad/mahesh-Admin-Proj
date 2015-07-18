@@ -48,18 +48,18 @@
 -(void)executeNetworkService{
     
     
-    //to post activity
+//    //to post activity
 //    UIImage * image=[UIImage imageNamed:@"images.jpeg"];
 //    NSData *data= [[NSData alloc]init];//
 //    data=UIImagePNGRepresentation(image);
 //    NSMutableDictionary * dict = [[NSMutableDictionary alloc]init];
-//    [dict setObject:@"test post by amruth" forKey:@"text"];
+//    [dict setObject:@"test post by amruth test post by amruth test post by amruth test post by amruth test post by amruth test post by amruth test post by amruth test post by amruth test post by amruth test post by amruth test post by amruth test post by amruth test post by amruth test post by amruth test post by amruth test post by amruth" forKey:@"text"];
 //    [dict setObject:@"" forKey:@"agendaId"];
 //    [dict setObject:data forKey:@"imageData"];
 //    [USTServiceProvider uploadImage:data WithCompletionHandler:^(USTRequest * request) {
 //        NSString* imageName = [NSString stringWithFormat:@"%@",[request.responseDict objectForKey:@"image_name"]];
 //        NSMutableDictionary * dict = [[NSMutableDictionary alloc]init];
-//        [dict setObject:@"test post by amruth" forKey:@"text"];
+//        [dict setObject:@"test post by amruth test post by amruth test post by amruth test post by amruth test post by amruth test post by amruth test post by amruth test post by amruth test post by amruth test post by amruth test post by amruth test post by amruth test post by amruth test post by amruth test post by amruth test post by amruth test post by amruth" forKey:@"text"];
 //        [dict setObject:@"" forKey:@"agendaId"];
 //        if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"success"]) {
 //            [USTServiceProvider addPostWithData:dict andImageName:imageName WithCompletionHandler:^(USTRequest * request) {
@@ -75,7 +75,7 @@
 //        }
 //
 //    }];
-    
+//    
     [USTServiceProvider getActivityFeed:[NSNumber numberWithInt:20] andPage:[NSNumber numberWithInt:0] withCompletionHandler:^(USTRequest * request) {
         
                             if (request.responseDict) {
@@ -106,7 +106,7 @@
 }
 
 
-/*- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ActivityFeedCell *cell ;
     NSString *CellIdentifier;
@@ -126,10 +126,11 @@
     
     cell.post_textLabel.text=[post objectForKey:@"post_text"];
     cell.post_dateLabel.text=[post objectForKey:@"post_date"];
+    cell.authorNameLabel.text=[NSString stringWithFormat:@"%@ %@",[post objectForKey:@"firstname"],[post objectForKey:@"lastname"]];
     if (postImageName.length) {
         
     dispatch_async(kBgQueue, ^{
-        NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseImageUrlFull,postImageName]]];
+        NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseImageUrlCroped,postImageName]]];
         if (imgData) {
             UIImage *image = [UIImage imageWithData:imgData];
             if (image) {
@@ -137,18 +138,31 @@
                    ActivityFeedCell * cell = (id)[tableView cellForRowAtIndexPath:indexPath];
                     if (cell)
                         cell.activityImageView.image = image;
-                    cell.activityImageView.frame = CGRectMake(cell.activityImageView.frame.origin.x, cell.activityImageView.frame.origin.y,309, 180);
+                    //cell.activityImageView.frame = CGRectMake(cell.activityImageView.frame.origin.x, cell.activityImageView.frame.origin.y,309, 180);
 
                 });
             }
         }
     });
+        dispatch_async(kBgQueue, ^{
+            NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseImageUrlCroped,[post objectForKey:@"user_image"]]]];
+            if (imgData) {
+                UIImage *image = [UIImage imageWithData:imgData];
+                if (image) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        ActivityFeedCell * cell = (id)[tableView cellForRowAtIndexPath:indexPath];
+                        if (cell)
+                            cell.profileImageView.image = image;
+                    });
+                }
+            }
+        });
     }
     
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+/*- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     float height;
     if(indexPath.row%2==0){
         height= 190;
@@ -158,7 +172,7 @@
     }
     return height;
 }
-*/
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -178,7 +192,7 @@
     cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     [self configureCell:cell cellDict:post atIndexPath:indexPath];
     return cell;
-}
+}*/
 
 - (void)configureCell:(ActivityFeedCell *)cell cellDict:(NSDictionary *)post atIndexPath:(NSIndexPath *)indexPath {
     
@@ -187,21 +201,21 @@
     NSString * postImageName = [post objectForKey:@"post_image"];
     if (postImageName.length) {
         
-        dispatch_async(kBgQueue, ^{
-           // NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseImageUrlFull,postImageName]]];
-            NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.ustglobaleventapp.com/php/uploads/image_full/(null)_1437157044.jpg"]]];
-            NSLog(@"Image URL...%@%@..",BaseImageUrlFull,postImageName);
-            if (imgData) {
-                UIImage *image = [UIImage imageWithData:imgData];
-                if (image) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        //ActivityFeedCell * cell = (id)[self.tableView cellForRowAtIndexPath:indexPath];
-                        //if (cell)
-                            cell.activityImageView.image = image;
-                    });
-                }
-            }
-        });
+//        dispatch_async(kBgQueue, ^{
+//           // NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseImageUrlFull,postImageName]]];
+//            NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.ustglobaleventapp.com/php/uploads/image_full/(null)_1437157044.jpg"]]];
+//            NSLog(@"Image URL...%@%@..",BaseImageUrlFull,postImageName);
+//            if (imgData) {
+//                UIImage *image = [UIImage imageWithData:imgData];
+//                if (image) {
+//                    dispatch_async(dispatch_get_main_queue(), ^{
+//                        //ActivityFeedCell * cell = (id)[self.tableView cellForRowAtIndexPath:indexPath];
+//                        //if (cell)
+//                            cell.activityImageView.image = image;
+//                    });
+//                }
+//            }
+//        });
     }
     
 }
