@@ -7,6 +7,7 @@
 //
 
 #import "AgendaDetailView.h"
+#import "AgendaActivity.h"
 
 @interface AgendaDetailView ()
 
@@ -34,7 +35,6 @@
     
     self.currentView=@"agendaActivity";
     [self setAgendaActivityActive];
-    // [self performSegueWithIdentifier:@"AgendaContainerSegue" sender:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -70,6 +70,11 @@
     [self.view addSubview:destView];
     [navCtrl didMoveToParentViewController:self];*/
     
+    /*if([segue.identifier isEqualToString:@"AgendaDetailSegue"]){
+        UINavigationController * navCtrl = segue.destinationViewController;
+        AgendaActivity * vc = [navCtrl.viewControllers objectAtIndex:0];
+        vc.test=@"Passed Value";
+    }*/
     
 }
 

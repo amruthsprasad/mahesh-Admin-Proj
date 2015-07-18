@@ -37,6 +37,7 @@
     _agendaID = agendaDetailObj.agendaID;
     [self executeNetworkService];
     
+
 }
 
 
@@ -214,8 +215,14 @@
 #pragma - mark Agenda Detail View Controller Delegate Methods
 
 - (void) agendaAboutButtonAction{
-    AgendaAbout * agendaObj = [self.storyboard instantiateViewControllerWithIdentifier:@"AgendaAboutView"];
-    [self.navigationController pushViewController:agendaObj animated:NO];
+    if(self.navigationController.viewControllers.count>=2){
+        AgendaAbout *  agendaObj = [self.navigationController.viewControllers objectAtIndex:1];
+        [self.navigationController popToViewController:agendaObj animated:NO];
+    }
+    else{
+        AgendaAbout * agendaObj = [self.storyboard instantiateViewControllerWithIdentifier:@"AgendaAboutView"];
+        [self.navigationController pushViewController:agendaObj animated:NO];
+    }
 }
 
 

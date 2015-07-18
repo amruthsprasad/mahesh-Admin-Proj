@@ -453,7 +453,7 @@
         return imageData;
     }
     else{
-         imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseImageUrlCroped,imageName]]];
+         imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseImageUrlFull,imageName]]];
         if (imageData.length) {
             [USTDataCacheHandler cacheData:imageData forServiceId:k_ImageDownloadServiceID andPageID:imageName];
         }
