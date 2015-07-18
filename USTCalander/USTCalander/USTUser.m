@@ -46,7 +46,28 @@ NSString * const kSecIdentifier = @"USTUserCredentials";
     self.userPassword = [keyChainWrapper objectForKey:(__bridge id)kSecValueData];
     NSData *sessionData = [USTDataCacheHandler getDataforServiceId:k_AppSessionID andPageID:@""];
     if (sessionData) {
-        self.userSessionID=[[NSString alloc]initWithData:sessionData encoding:NSUTF8StringEncoding];
+        NSError *errorInJSON = nil;
+        NSDictionary* json = [NSJSONSerialization JSONObjectWithData:sessionData
+                                                             options:kNilOptions
+                                                               error:&errorInJSON];
+        NSString * status = [NSString stringWithFormat:@"%@",[json objectForKey:@"status"]];
+        if ([status isEqualToString:@"success"] ) {
+            NSDictionary * userData=[json objectForKey:@"user"];
+            self.userData = sessionData;//[request.responseDict objectForKey:@"user"];
+            self.userID = [userData objectForKey:@"id"];
+            self.userSessionID = [userData objectForKey:@"deviceid"];
+            self.userFirstName = [userData objectForKey:@"firstname"];
+            self.userLastName = [userData objectForKey:@"lastname"];
+            self.userDesignation = [userData objectForKey:@"designation"];
+            self.userGroup = [NSString stringWithFormat:@"%@",[userData objectForKey:@"user_group"]];
+            self.userEventID = [userData objectForKey:@"event_active"];
+            self.userEventWelcomeMessage = [userData objectForKey:@"event_welcome"];
+            self.userLocation = [userData objectForKey:@"location"];
+            self.userImage = [userData objectForKey:@"user_image"];
+            self.userImageStatus = [userData objectForKey:@"user_image_stat"];
+        }
+
+        
     }
     else
     {

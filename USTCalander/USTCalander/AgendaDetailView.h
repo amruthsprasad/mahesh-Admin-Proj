@@ -22,6 +22,8 @@
 @interface AgendaDetailView : UIViewController
 
 @property (nonatomic,assign) id delegate;
+@property (nonatomic,strong) NSString * agendaID;
+
 @property(nonatomic,strong) NSString * currentView;
 @property (weak, nonatomic) IBOutlet UIView *ActivitySelectLine;
 @property (weak, nonatomic) IBOutlet UIView *AboutSelectLine;

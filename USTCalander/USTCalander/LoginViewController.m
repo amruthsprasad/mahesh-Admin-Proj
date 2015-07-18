@@ -101,7 +101,7 @@
         }
         else{
             if ([self performOfflineLogin]) {
-                
+                [self goToHomeScreen];
             }
             else
             {
@@ -116,7 +116,12 @@
 }
 
 -(BOOL)performOfflineLogin{
-    return YES;
+    USTUser * sharedUser = [USTUser sharedInstance];
+     [sharedUser loadCredentialsFromKeychain];
+    if ([_userNameTextField.text isEqualToString:sharedUser.username] && [_passwordTextField.text isEqualToString:sharedUser.userPassword]) {
+        return YES;
+    }
+    return NO;
     
 }
 -(void)goToHomeScreen{

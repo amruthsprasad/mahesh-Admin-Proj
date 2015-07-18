@@ -148,9 +148,13 @@
 #pragma mark - Agenda Feed Cell Delegate Methods
 
 - (void) cellButtonAction:(AgendaFeedCell*)sender{
+    
     NSDictionary * agendaDict = [_dataArray objectAtIndex:sender.actionButton.tag];
     NSString * agendaID = [agendaDict objectForKey:@"agenda_id"];
-
+    AgendaDetailView* agendaDetail = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"AgendaDetailView"];
+    agendaDetail.agendaID = agendaID;
+    [self.navigationController pushViewController:agendaDetail animated:YES];
+    
 }
 
 - (void) activateButtonAction:(AgendaFeedCell*)sender{

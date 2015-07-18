@@ -49,8 +49,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     
-    /*UINavigationController * navCtrl = segue.destinationViewController;
-    
+  //  UINavigationController * navCtrl = segue.destinationViewController;
+   /*
     UIViewController * vcObj;
     if([self.currentView isEqualToString:@"agendaAbout"]){
         AgendaAbout * agendaAboutObj = [[AgendaAbout alloc]init];
