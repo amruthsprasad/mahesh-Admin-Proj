@@ -188,8 +188,8 @@
     if (postImageName.length) {
         
         dispatch_async(kBgQueue, ^{
-           // NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseImageUrlFull,postImageName]]];
-            NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.ustglobaleventapp.com/php/uploads/image_full/(null)_1437157044.jpg"]]];
+            NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseImageUrlFull,postImageName]]];
+           // NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.ustglobaleventapp.com/php/uploads/image_full/(null)_1437157044.jpg"]]];
             NSLog(@"Image URL...%@%@..",BaseImageUrlFull,postImageName);
             if (imgData) {
                 UIImage *image = [UIImage imageWithData:imgData];

@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "ActivityFeedCell.h"
+#import "AgendaDetailView.h"
+#import "AgendaAbout.h"
 
-@interface AgendaActivity : UIViewController
+@interface AgendaActivity : UIViewController<AgendaDetailViewDelegate>
 
 @end
