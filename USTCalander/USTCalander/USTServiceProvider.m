@@ -46,6 +46,18 @@
           request.responseData = [NSMutableData dataWithData:[USTDataCacheHandler getDataforServiceId:k_ActivityListServiceID andPageID:[NSString stringWithFormat:@"%@",page]]];
             
         }
+        else if (!request.responseDict)
+        {
+            request.responseData = [NSMutableData dataWithData:[USTDataCacheHandler getDataforServiceId:k_ActivityListServiceID andPageID:[NSString stringWithFormat:@"%@",page]]];
+            
+            NSError *errorInJSON = nil;
+            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:request.responseData
+                                                                 options:kNilOptions
+                                                                   error:&errorInJSON];
+            if (!errorInJSON) {
+                request.responseDict = json;
+            }
+        }
         dispatch_async(dispatch_get_main_queue(), ^{
             completionBlock(request);
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;

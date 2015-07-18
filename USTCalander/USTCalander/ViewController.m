@@ -15,7 +15,6 @@
 #import "Constants.h"
 
 
-#define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 
 
 @interface ViewController ()<UITableViewDataSource,UITableViewDelegate>

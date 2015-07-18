@@ -27,6 +27,10 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    AgendaDetailView * agendaDetailObj = (AgendaDetailView *)self.parentViewController.parentViewController;
+    agendaDetailObj.delegate = self;
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -86,6 +90,12 @@
     return height;
 }
 
+#pragma - mark Agenda Detail View Controller Delegate Methods
+
+- (void) agendaAboutButtonAction{
+    AgendaAbout * agendaObj = [self.storyboard instantiateViewControllerWithIdentifier:@"AgendaAboutView"];
+    [self.navigationController pushViewController:agendaObj animated:NO];
+}
 
 
 @end

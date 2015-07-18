@@ -32,7 +32,9 @@
     RootContainerView * rootContObj = (RootContainerView *)[contBridgObj getRootContainerObj];
     rootContObj.titleLabel.text = @"Single Agenda";
     
-    [self ActivityBtnAction:nil];
+    self.currentView=@"agendaActivity";
+    [self setAgendaActivityActive];
+    // [self performSegueWithIdentifier:@"AgendaContainerSegue" sender:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,28 +43,62 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
+    /*UINavigationController * navCtrl = segue.destinationViewController;
+    
+    UIViewController * vcObj;
+    if([self.currentView isEqualToString:@"agendaAbout"]){
+        AgendaAbout * agendaAboutObj = [[AgendaAbout alloc]init];
+        vcObj = agendaAboutObj;
+    }
+    else{
+        AgendaActivity * agendaActivityObj = [[AgendaActivity alloc]init];
+        vcObj= agendaActivityObj;
+    }
+    //[navCtrl pushViewController:vcObj animated:YES];
+    navCtrl = [navCtrl initWithRootViewController:vcObj];
+    
+    [self addChildViewController:navCtrl];
+    UIView* destView = ((UINavigationController *)segue.destinationViewController).view;
+    destView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    destView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    [self.view addSubview:destView];
+    [navCtrl didMoveToParentViewController:self];*/
+    
+    
 }
-*/
 
-- (IBAction)ActivityBtnAction:(id)sender {
+-(void)setAgendaActivityActive{
     self.ActivitySelectLine.frame = CGRectMake( self.ActivitySelectLine.frame.origin.x, 34, self.ActivitySelectLine.frame.size.width, 10);
     self.ActivityOpacityView.alpha=0;
     self.AboutSelectLine.frame = CGRectMake( self.AboutSelectLine.frame.origin.x, 40, self.AboutSelectLine.frame.size.width, 4);
     self.AboutOpacityView.alpha=0.5;
 }
 
-- (IBAction)AboutBtnAction:(id)sender {
+-(void)setAgendaAboutActive{
     self.ActivitySelectLine.frame = CGRectMake( self.ActivitySelectLine.frame.origin.x, 40, self.ActivitySelectLine.frame.size.width, 4);
     self.ActivityOpacityView.alpha=0.5;
     self.AboutSelectLine.frame = CGRectMake( self.AboutSelectLine.frame.origin.x, 34, self.AboutSelectLine.frame.size.width, 10);
     self.AboutOpacityView.alpha=0;
+}
+
+
+- (IBAction)ActivityBtnAction:(id)sender {
+    self.currentView=@"agendaActivity";
+    [self setAgendaActivityActive];
+    //[self performSegueWithIdentifier:@"AgendaContainerSegue" sender:nil];
+    [self.delegate agendaActivityButtonAction];
+}
+
+- (IBAction)AboutBtnAction:(id)sender {
+    self.currentView=@"agendaAbout";
+    [self setAgendaAboutActive];
+    //[self performSegueWithIdentifier:@"AgendaContainerSegue" sender:nil];//AgendaContainerSegue
+    [self.delegate agendaAboutButtonAction];
 }
 @end

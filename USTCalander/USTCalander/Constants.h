@@ -16,6 +16,8 @@
 #define BaseImageUrlCroped @"http://www.ustglobaleventapp.com/php/uploads/"
 
 
+#define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+
 
 #define k_AppSessionID @"UserSessionID"
 

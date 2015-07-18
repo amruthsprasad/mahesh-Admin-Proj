@@ -7,10 +7,13 @@
 //
 
 #import "AgendaViewController.h"
+#import "USTServiceProvider.h"
 
 @interface AgendaViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong)NSMutableArray * dataArray;
+
 
 @end
 
@@ -22,6 +25,13 @@
     ContainerBridgeView * contBridgObj = [ContainerBridgeView sharedInstance];
     RootContainerView * rootContObj = (RootContainerView *)[contBridgObj getRootContainerObj];
     rootContObj.titleLabel.text = @"Agenda";
+    _dataArray = [[NSMutableArray alloc]init];
+    [USTServiceProvider getAgendaListwithCompletionHandler:^(USTRequest * request) {
+        if (request.responseDict) {
+            self.dataArray = [NSMutableArray arrayWithArray:[request.responseDict objectForKey:@"agenda"]];
+            [_tableView reloadData];
+        }
+    }];
 
 }
 
@@ -49,7 +59,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 5;
+    return [_dataArray count];
 }
 
 
@@ -59,21 +69,36 @@
     AgendaFeedCell * cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     cell.delegate=self;
     [self configureCell:cell atIndexPath:indexPath];
+    
+    NSDictionary * agendaDict = [_dataArray objectAtIndex:indexPath.row];
+    
+    cell.title.text = [agendaDict objectForKey:@"agenda_name"];
+    cell.time.text  = [NSString stringWithFormat:@"%@ - %@,%@",[agendaDict objectForKey:@"agenda_from"],[agendaDict objectForKey:@"agenda_to"],[agendaDict objectForKey:@"agenda_date"]];
+    cell.description.text = [agendaDict objectForKey:@"agenda_place"];
+    if ([agendaDict objectForKey:@"user_attending"]) {
+        cell.actionImg.image = [UIImage imageNamed:@"activate_icon"];
+    }
+    else
+    {
+        cell.actionImg.image = [UIImage imageNamed:@"deactivate_icon"];
+    }
+    
     return cell;
 }
 
 - (void)configureCell:(AgendaFeedCell *)cell atIndexPath:(NSIndexPath *)indexPath {
         
-    if(indexPath.row%2==0){
-        cell.title.text = @"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ";
-        cell.time.text  = @"Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem";
-        cell.description.text = @"standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 ";
+    
+    NSDictionary * agendaDict = [_dataArray objectAtIndex:indexPath.row];
+    
+    cell.title.text = [agendaDict objectForKey:@"agenda_name"];
+    cell.time.text  = [NSString stringWithFormat:@"%@ - %@,%@",[agendaDict objectForKey:@"agenda_from"],[agendaDict objectForKey:@"agenda_to"],[agendaDict objectForKey:@"agenda_date"]];
+    cell.description.text = [agendaDict objectForKey:@"agenda_place"];
+    if ([agendaDict objectForKey:@"user_attending"]) {
         cell.actionImg.image = [UIImage imageNamed:@"activate_icon"];
     }
-    else{
-        cell.title.text = @"It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.";
-        cell.time.text  = @"Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).";
-        cell.description.text = @" If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.";
+    else
+    {
         cell.actionImg.image = [UIImage imageNamed:@"deactivate_icon"];
     }
     

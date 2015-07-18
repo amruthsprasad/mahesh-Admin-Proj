@@ -8,9 +8,21 @@
 
 #import <UIKit/UIKit.h>
 #import "ContainerBridgeView.h"
+//#import "AgendaAbout.h"
+//#import "AgendaActivity.h"
+
+
+// Protocol definition starts here
+@protocol AgendaDetailViewDelegate <NSObject>
+@optional
+- (void) agendaActivityButtonAction;
+- (void) agendaAboutButtonAction;
+@end
 
 @interface AgendaDetailView : UIViewController
 
+@property (nonatomic,assign) id delegate;
+@property(nonatomic,strong) NSString * currentView;
 @property (weak, nonatomic) IBOutlet UIView *ActivitySelectLine;
 @property (weak, nonatomic) IBOutlet UIView *AboutSelectLine;
 @property (weak, nonatomic) IBOutlet UIView *ActivityOpacityView;
