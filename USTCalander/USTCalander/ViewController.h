@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseViewController.h"
+#import "ActivityFeedCell.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController<ActivityFeedCellDelegate>
 
 @end
 

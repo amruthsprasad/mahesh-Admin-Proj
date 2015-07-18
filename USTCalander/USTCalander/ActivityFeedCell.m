@@ -24,6 +24,12 @@
 
 }
 
+- (IBAction)likeBtnAction:(id)sender{
+    [self.delegate likeBtnAction:sender];
+}
 
+- (IBAction)commentBtnAction:(id)sender{
+    [self.delegate commentBtnAction:sender];
+}
 
 @end

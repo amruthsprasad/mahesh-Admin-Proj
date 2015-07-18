@@ -8,7 +8,6 @@
 
 #import "ViewController.h"
 #import "SWRevealViewController.h"
-#import "ActivityFeedCell.h"
 #import "RootContainerView.h"
 #import "ContainerBridgeView.h"
 #import "USTServiceProvider.h"
@@ -189,6 +188,7 @@
         CellIdentifier =@"Activity";
     }
     cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    cell.delegate=self;
     [self configureCell:cell cellDict:post atIndexPath:indexPath];
     return cell;
 }*/
@@ -275,7 +275,15 @@
 
 }
 
+#pragma mark - Activate Feed Cell Delegate Methods
 
+- (void) likeBtnAction:(id)sender{
+    NSLog(@"Sender...%@",sender);
+}
+
+- (void) commentBtnAction:(id)sender{
+    NSLog(@"Sender...%@",sender);
+}
 
 
 @end
