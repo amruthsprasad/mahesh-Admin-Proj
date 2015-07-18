@@ -47,9 +47,9 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-     menuItems = @[@"TITLE", @"Home",@"Activity feed", @"Agenda", @"Speakers", @"Attendees", @"Leaderboard", @"Polls", @"Log out"];
+     menuItems = @[@"TITLE", @"Activity Feed", @"Agenda", @"Speakers", @"Leaderboard", @"Attendees", @"Ask Csk", @"Log out"];
     
-    imageArray = @[@"MenuIconHome", @"MenuIconHome",@"MenuIconActivityFeed", @"MenuIconAgenda", @"MenuIconSpeakers", @"MenuIconAttendees", @"MenuIconLeaderboard", @"MenuIconPolls", @"MenuIconLogout"];
+    imageArray = @[@"MenuIconHome", @"MenuIconHome", @"MenuIconAgenda", @"MenuIconSpeakers", @"MenuIconLeaderboard", @"MenuIconAttendees", @"MenuIconPolls", @"MenuIconLogout"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -111,13 +111,17 @@
             [contBrdgObj swapViewControllers:SegueIdentifierActivity];
             break;
         }
-        case 3:
+        case 2:
         {
             [contBrdgObj swapViewControllers:SegueIdentifierAgenda];
             break;
         }
-        case 4:{
+        case 3:{
             [contBrdgObj swapViewControllers:SegueIdentifierSpeakers];
+            break;
+        }
+        case 4:{
+            [contBrdgObj swapViewControllers:SegueIdentifierLeaderboard];
             break;
         }
         case 5:{
@@ -125,14 +129,10 @@
             break;
         }
         case 6:{
-            [contBrdgObj swapViewControllers:SegueIdentifierLeaderboard];
-            break;
-        }
-        case 7:{
             [contBrdgObj swapViewControllers:SegueIdentifierPolls];
             break;
         }
-        case 8:
+        case 7:
         {
             AppDelegate *appDelegateTemp = [[UIApplication sharedApplication]delegate];
             

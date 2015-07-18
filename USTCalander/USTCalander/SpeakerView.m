@@ -51,6 +51,8 @@
 }
 */
 
+#pragma mark Collection view Delegate Methods
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return 20;
 }
@@ -65,10 +67,57 @@
     return cell;
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    //You may want to create a divider to scale the size by the way..
-    return CGSizeMake(148, 158);
+// Layout: Set cell size
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+   /* NSLog(@"SETTING SIZE FOR ITEM AT INDEX %d", indexPath.row);
+    CGSize mElementSize = CGSizeMake(104, 104);
+    return mElementSize;*/
+    int screenWidth = self.speakerCollection.frame.size.width;
+    int cellSpacing = 6;
+    int cellWidth = 151;
+    int cellHeight = 158;
+    int cellCount;
+    int remainder;
+    if(screenWidth>308)
+    {
+        cellCount = screenWidth / (cellWidth+cellSpacing);
+        remainder = screenWidth % (cellWidth+cellSpacing);
+        if(remainder>=cellWidth){
+            cellCount = cellCount + 1;
+            int increWidth = remainder - cellWidth;
+            if(increWidth>0)
+                increWidth = increWidth/cellCount;
+            cellWidth = cellWidth + increWidth;
+            cellHeight = cellHeight + increWidth;
+            return CGSizeMake(cellWidth,cellHeight);
+            
+        }
+        else{
+            int increWidth = remainder / cellCount;
+            cellWidth = cellWidth + increWidth;
+            cellHeight = cellHeight + increWidth;
+            return CGSizeMake(cellWidth,cellHeight);
+        }
+    }
+    
+    return CGSizeMake(151, 158);
+
 }
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    return 6.0;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return 6.0;
+}
+
+// Layout: Set Edges
+- (UIEdgeInsets)collectionView:
+(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    // return UIEdgeInsetsMake(0,8,0,8);  // top, left, bottom, right
+    return UIEdgeInsetsMake(0,0,0,0);  // top, left, bottom, right
+}
+
 
 @end

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AgendaDetailView.h"
 #import "AgendaActivity.h"
+#import "SpeakerCollectionCell.h"
 
 @interface AgendaAbout : UIViewController<AgendaDetailViewDelegate>
 
@@ -18,5 +19,6 @@
 @property (nonatomic,weak) IBOutlet UILabel * tilteLabel;
 @property (nonatomic,weak) IBOutlet UILabel * timeLabel;
 @property (nonatomic,weak) IBOutlet UILabel * descripLabel;
+@property (nonatomic,weak) IBOutlet UICollectionView * speakerCollection;
 
 @end
