@@ -16,11 +16,11 @@
 }
 
 - (IBAction)cellButtonAction:(id)sender{
-    [self.delegate cellButtonAction:sender];
+    [self.delegate cellButtonAction:self];
 }
 
 - (IBAction)activateButtonAction:(id)sender{
-    [self.delegate activateButtonAction:sender];
+    [self.delegate activateButtonAction:self];
 }
 
 

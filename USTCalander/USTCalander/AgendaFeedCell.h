@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class AgendaFeedCell;
 // Protocol definition starts here
 @protocol AgendaFeedCellDelegate <NSObject>
+
 @required
-- (void) cellButtonAction:(id)sender;
-- (void) activateButtonAction:(id)sender;
+- (void) cellButtonAction:(AgendaFeedCell*)sender;
+- (void) activateButtonAction:(AgendaFeedCell*)sender;
 @end
 
 @interface AgendaFeedCell : UITableViewCell
