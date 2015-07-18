@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+// Protocol definition starts here
+@protocol ActivityFeedCellDelegate <NSObject>
+@required
+- (void) likeBtnAction:(id)sender;
+- (void) commentBtnAction:(id)sender;
+@end
+
 @interface ActivityFeedCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIView *seperator1;
@@ -18,5 +25,10 @@
 @property (weak, nonatomic) IBOutlet UILabel * authorNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel * post_dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel * post_textLabel;
+
+@property (nonatomic,assign) id delegate;
+
+- (IBAction)likeBtnAction:(id)sender;
+- (IBAction)commentBtnAction:(id)sender;
 
 @end
