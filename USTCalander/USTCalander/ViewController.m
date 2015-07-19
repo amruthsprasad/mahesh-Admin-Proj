@@ -129,7 +129,15 @@
     cell.authorNameLabel.text=[NSString stringWithFormat:@"%@ %@",[post objectForKey:@"firstname"],[post objectForKey:@"lastname"]];
     cell.likeCountLabel.text=[NSString stringWithFormat:@"%@ Likes",[post objectForKey:@"like_count"]];
     cell.cmntCountLabel.text=[NSString stringWithFormat:@"%@ comments",[post objectForKey:@"cmnt_count"]];
-
+    NSNumber * LikeStatus=[post objectForKey:@"user_like_stat"];
+    if (LikeStatus.boolValue) {
+        [cell.likeButton setImage:[UIImage imageNamed:@"likeIcon"] forState:UIControlStateNormal];
+    }
+    else{
+        [cell.likeButton setImage:[UIImage imageNamed:@"likeIcon"] forState:UIControlStateNormal];
+    }
+    
+    cell.tag=indexPath.row;
     if (postImageName.length) {
         
     dispatch_async(kBgQueue, ^{
@@ -300,27 +308,37 @@
 
 #pragma mark - Activate Feed Cell Delegate Methods
 
-- (void) likeBtnAction:(id)sender{
+- (void) likeBtnAction:(ActivityFeedCell *)sender{
+    NSDictionary * post = [self.dataArray objectAtIndex:sender.tag];
+
+    [USTServiceProvider likePostWithPostId:[post objectForKey:@"post_id"] WithCompletionHandler:^(USTRequest * request) {
+        NSNumber * LikeStatus=[post objectForKey:@"user_like_stat"];
+        if (LikeStatus.boolValue) {
+            [sender.likeButton setImage:[UIImage imageNamed:@"likeIcon"] forState:UIControlStateNormal];
+        }
+        else{
+            [sender.likeButton setImage:[UIImage imageNamed:@"likeIcon"] forState:UIControlStateNormal];
+        }
+    }];
+}
+
+- (void) commentBtnAction:(ActivityFeedCell *)sender{
     NSLog(@"Sender...%@",sender);
 }
 
-- (void) commentBtnAction:(id)sender{
+- (void) twitterBtnAction:(ActivityFeedCell *)sender{
     NSLog(@"Sender...%@",sender);
 }
 
-- (void) twitterBtnAction:(id)sender{
+- (void) facebookBtnAction:(ActivityFeedCell *)sender{
     NSLog(@"Sender...%@",sender);
 }
 
-- (void) facebookBtnAction:(id)sender{
+- (void) viewAllLikeBtnAction:(ActivityFeedCell *)sender{
     NSLog(@"Sender...%@",sender);
 }
 
-- (void) viewAllLikeBtnAction:(id)sender{
-    NSLog(@"Sender...%@",sender);
-}
-
-- (void) viewAllCommentBtnAction:(id)sender{
+- (void) viewAllCommentBtnAction:(ActivityFeedCell *)sender{
     NSLog(@"Sender...%@",sender);
 }
 
