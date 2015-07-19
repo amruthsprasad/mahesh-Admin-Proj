@@ -9,14 +9,15 @@
 #import <UIKit/UIKit.h>
 
 // Protocol definition starts here
+@class ActivityFeedCell;
 @protocol ActivityFeedCellDelegate <NSObject>
 @required
-- (void) likeBtnAction:(id)sender;
-- (void) commentBtnAction:(id)sender;
-- (void) twitterBtnAction:(id)sender;
-- (void) facebookBtnAction:(id)sender;
-- (void) viewAllLikeBtnAction:(id)sender;
-- (void) viewAllCommentBtnAction:(id)sender;
+- (void) likeBtnAction:(ActivityFeedCell *)sender;
+- (void) commentBtnAction:(ActivityFeedCell *)sender;
+- (void) twitterBtnAction:(ActivityFeedCell *)sender;
+- (void) facebookBtnAction:(ActivityFeedCell *)sender;
+- (void) viewAllLikeBtnAction:(ActivityFeedCell *)sender;
+- (void) viewAllCommentBtnAction:(ActivityFeedCell *)sender;
 @end
 
 @interface ActivityFeedCell : UITableViewCell
@@ -32,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet UILabel * post_AgendaName;
 @property (weak, nonatomic) IBOutlet UILabel * likeCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel * cmntCountLabel;
+@property (weak, nonatomic) IBOutlet UIButton * likeButton;
 
 @property (nonatomic,assign) id delegate;
 

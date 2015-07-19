@@ -27,27 +27,27 @@
 
 
 - (IBAction)viewAllLikeAction:(id)sender{
-     [self.delegate viewAllLikeAction:sender];
+     [self.delegate viewAllLikeAction:self];
 }
 
 - (IBAction)viewAllCommentAction:(id)sender{
-     [self.delegate viewAllCommentBtnAction:sender];
+     [self.delegate viewAllCommentBtnAction:self];
 }
 
 - (IBAction)likeBtnAction:(id)sender{
-    [self.delegate likeBtnAction:sender];
+    [self.delegate likeBtnAction:self];
 }
 
 - (IBAction)commentBtnAction:(id)sender{
-    [self.delegate commentBtnAction:sender];
+    [self.delegate commentBtnAction:self];
 }
 
 - (IBAction)twitterBtnAction:(id)sender{
-    [self.delegate twitterBtnAction:sender];
+    [self.delegate twitterBtnAction:self];
 }
 
 - (IBAction)facebookBtnAction:(id)sender{
-    [self.delegate facebookBtnAction:sender];
+    [self.delegate facebookBtnAction:self];
 }
 
 @end
