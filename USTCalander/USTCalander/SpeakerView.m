@@ -48,7 +48,7 @@
     [USTServiceProvider getSpeakerListwithCompletionHandler:^(USTRequest * request) {
         if (request.responseDict) {
             self.dataArray = [NSMutableArray arrayWithArray:[request.responseDict objectForKey:@"speaker"]];
-            [_collectionView reloadData];
+            [_speakerCollection reloadData];
         }
     }];
 
@@ -92,7 +92,7 @@
             UIImage *image = [UIImage imageWithData:imgData];
             if (image) {
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    SpeakerCollectionCell * cell = (id)[_collectionView cellForItemAtIndexPath:indexPath];
+                    SpeakerCollectionCell * cell = (id)[_speakerCollection cellForItemAtIndexPath:indexPath];
                     if (cell)
                         cell.profileImg.image = image;
                     //cell.activityImageView.frame = CGRectMake(cell.activityImageView.frame.origin.x, cell.activityImageView.frame.origin.y,309, 180);
