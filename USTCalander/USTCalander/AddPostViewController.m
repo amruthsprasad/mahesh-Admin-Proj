@@ -24,9 +24,36 @@
     RootContainerView * rootContObj = (RootContainerView *)[contBridgObj getRootContainerObj];
     rootContObj.titleLabel.text = @"Add Post";
     [self addNotificationObserver];
-
+//    self.statusText.delegate=self;
+    self.statusText.text = @"";
+    _selectedAgenda=@"";
+   // self.statusText.textColor = [UIColor lightGrayColor];
 }
 
+- (BOOL) textViewShouldBeginEditing:(UITextView *)textView
+{
+    //self.statusText.text = @"";
+   // self.statusText.textColor = [UIColor blackColor];
+    return YES;
+}
+
+-(void) textViewDidChange:(UITextView *)textView
+{
+    if(self.statusText.text.length == 0){
+       // self.statusText.textColor = [UIColor lightGrayColor];
+        //self.statusText.text = @"Status";
+    }
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    
+    if([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    
+    return YES;
+}
 -(void)addNotificationObserver
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agendaSelected:) name:@"AgendaSelectedNotification" object:nil];
@@ -79,12 +106,12 @@
 - (IBAction)postActivity:(id)sender{
     //    //to post activity
         NSData *data= [[NSData alloc]init];//
-        data=UIImagePNGRepresentation(self.imageView.image);
+        data=UIImagePNGRepresentation(self.postImage.image);
     if (data.length) {
         [USTServiceProvider uploadImage:data WithCompletionHandler:^(USTRequest * request) {
             NSString* imageName = [NSString stringWithFormat:@"%@",[request.responseDict objectForKey:@"image_name"]];
             NSMutableDictionary * dict = [[NSMutableDictionary alloc]init];
-            [dict setObject:_postText.text forKey:@"text"];
+            [dict setObject:_statusText.text forKey:@"text"];
             [dict setObject:_selectedAgenda forKey:@"agendaId"];
 //            [dict setObject:data forKey:@"imageData"];
             
@@ -116,7 +143,7 @@
     }
     else{
         NSMutableDictionary * dict = [[NSMutableDictionary alloc]init];
-        [dict setObject:_postText.text forKey:@"text"];
+        [dict setObject:_statusText.text forKey:@"text"];
         [dict setObject:_selectedAgenda forKey:@"agendaId"];
         
         [USTServiceProvider addPostWithData:dict andImageName:@"" WithCompletionHandler:^(USTRequest * request) {
@@ -145,7 +172,7 @@
          didFinishPickingImage:(UIImage *)image
                    editingInfo:(NSDictionary *)editingInfo
 {
-    self.imageView.image = image;
+    self.postImage.image = image;
     //pngData = UIImagePNGRepresentation(image);
     [self dismissModalViewControllerAnimated:YES];
 }
@@ -189,12 +216,6 @@
                                     usingDelegate: self];
 }
 
-#pragma mark textfield delegate
 
--(BOOL) textFieldShouldReturn:(UITextField *)textField{
-    
-    [textField resignFirstResponder];
-    return YES;
-}
 
 @end
