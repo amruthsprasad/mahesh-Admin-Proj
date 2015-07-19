@@ -1893,6 +1893,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Hoa-yf-IfZ"/>
+                    <connections>
+                        <outlet property="tableView" destination="SLL-CP-Na7" id="Uc7-5f-D9C"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KNH-b7-jWn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2017,6 +2020,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zA0-2Y-tnV"/>
+                    <connections>
+                        <outlet property="tableView" destination="Nos-ji-X0y" id="VFL-K3-Vft"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nDw-W6-GZG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
