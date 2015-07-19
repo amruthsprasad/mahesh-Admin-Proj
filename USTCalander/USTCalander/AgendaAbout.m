@@ -50,7 +50,14 @@
             _timeLabel.text=[NSString stringWithFormat:@"%@-%@,%@, %@",[request.responseDict objectForKey:@"agenda_from"],[request.responseDict objectForKey:@"agenda_to"],[request.responseDict objectForKey:@"agenda_date"],[request.responseDict objectForKey:@"agenda_place"]];
             _descripLabel.text=[request.responseDict objectForKey:@"agenda_desc"];
 
+            NSNumber * isAttending =[request.responseDict objectForKey:@"user_attending"];
+            if ([isAttending boolValue]) {
+                [_uncheckButton setTitle:@"Uncheck Here" forState:UIControlStateNormal];
+            }
+            else{
+                [_uncheckButton setTitle:@"Check Here" forState:UIControlStateNormal];
 
+            }
         }
     }];
 }
@@ -179,4 +186,9 @@
     [self.navigationController popToRootViewControllerAnimated:NO];
 }
 
+-(IBAction)uncheckHereAction:(id)sender{
+    [USTServiceProvider attendingAgendaWithAgendaID:_agendaID withCompletionHandler:^(USTRequest *request) {
+        
+    }];
+}
 @end
