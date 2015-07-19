@@ -134,9 +134,17 @@
         if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"success"]) {
             [USTDataCacheHandler cacheData:request.responseData forServiceId:k_AgendaDetailServiceID andPageID:@""];
         }
-        else if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
+        else //if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
         {
             request.responseData = [NSMutableData dataWithData:[USTDataCacheHandler getDataforServiceId:k_AgendaDetailServiceID andPageID:@""]];
+            NSError *errorInJSON = nil;
+            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:request.responseData
+                                                                 options:kNilOptions
+                                                                   error:&errorInJSON];
+            if (!errorInJSON) {
+                request.responseDict = json;
+            }
+
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             completionBlock(request);
@@ -159,9 +167,17 @@
         if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"success"]) {
             [USTDataCacheHandler cacheData:request.responseData forServiceId:k_AgendaActivityListlServiceID andPageID:[NSString stringWithFormat:@"%@",page]];
         }
-        else if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
+        else// if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
         {
             request.responseData = [NSMutableData dataWithData:[USTDataCacheHandler getDataforServiceId:k_AgendaActivityListlServiceID andPageID:[NSString stringWithFormat:@"%@",page]]];
+            NSError *errorInJSON = nil;
+            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:request.responseData
+                                                                 options:kNilOptions
+                                                                   error:&errorInJSON];
+            if (!errorInJSON) {
+                request.responseDict = json;
+            }
+
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             completionBlock(request);
@@ -183,9 +199,17 @@
         if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"success"]) {
             [USTDataCacheHandler cacheData:request.responseData forServiceId:k_SpeakerListServiceID andPageID:[NSString stringWithFormat:@"%@",@""]];
         }
-        else if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
+        else //if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
         {
             request.responseData = [NSMutableData dataWithData:[USTDataCacheHandler getDataforServiceId:k_SpeakerListServiceID andPageID:[NSString stringWithFormat:@"%@",@""]]];
+            NSError *errorInJSON = nil;
+            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:request.responseData
+                                                                 options:kNilOptions
+                                                                   error:&errorInJSON];
+            if (!errorInJSON) {
+                request.responseDict = json;
+            }
+
             
         }
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -207,9 +231,17 @@
         if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"success"]) {
             [USTDataCacheHandler cacheData:request.responseData forServiceId:k_SpeakerDetailsServiceID andPageID:speakerID];
         }
-        else if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
+        else //if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
         {
             request.responseData = [NSMutableData dataWithData:[USTDataCacheHandler getDataforServiceId:k_SpeakerDetailsServiceID andPageID:speakerID]];
+            NSError *errorInJSON = nil;
+            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:request.responseData
+                                                                 options:kNilOptions
+                                                                   error:&errorInJSON];
+            if (!errorInJSON) {
+                request.responseDict = json;
+            }
+
             
         }
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -231,9 +263,17 @@
         if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"success"]) {
             [USTDataCacheHandler cacheData:request.responseData forServiceId:k_LeaderBoardServiceID andPageID:@""];
         }
-        else if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
+        else //if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
         {
             request.responseData = [NSMutableData dataWithData:[USTDataCacheHandler getDataforServiceId:k_LeaderBoardServiceID andPageID:@""]];
+            NSError *errorInJSON = nil;
+            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:request.responseData
+                                                                 options:kNilOptions
+                                                                   error:&errorInJSON];
+            if (!errorInJSON) {
+                request.responseDict = json;
+            }
+
             
         }
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -255,9 +295,17 @@
         if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"success"]) {
             [USTDataCacheHandler cacheData:request.responseData forServiceId:k_AttendeesListServiceID andPageID:@""];
         }
-        else if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
+        else //if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
         {
             request.responseData = [NSMutableData dataWithData:[USTDataCacheHandler getDataforServiceId:k_AttendeesListServiceID andPageID:@""]];
+            NSError *errorInJSON = nil;
+            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:request.responseData
+                                                                 options:kNilOptions
+                                                                   error:&errorInJSON];
+            if (!errorInJSON) {
+                request.responseDict = json;
+            }
+
             
         }
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -392,9 +440,17 @@
         if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"success"]) {
              [USTDataCacheHandler cacheData:request.responseData forServiceId:k_LikersListServiceID andPageID:postID];
         }
-        else if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
+        else //if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
         {
             [USTDataCacheHandler getDataforServiceId:k_LikersListServiceID andPageID:postID];
+            NSError *errorInJSON = nil;
+            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:request.responseData
+                                                                 options:kNilOptions
+                                                                   error:&errorInJSON];
+            if (!errorInJSON) {
+                request.responseDict = json;
+            }
+
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             completionBlock(request);
@@ -440,9 +496,17 @@
         if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"success"]) {
             [USTDataCacheHandler cacheData:request.responseData forServiceId:k_CommentersListServiceID andPageID:postID];
         }
-        else if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
+        else //if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
         {
             [USTDataCacheHandler getDataforServiceId:k_CommentersListServiceID andPageID:postID];
+            NSError *errorInJSON = nil;
+            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:request.responseData
+                                                                 options:kNilOptions
+                                                                   error:&errorInJSON];
+            if (!errorInJSON) {
+                request.responseDict = json;
+            }
+
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             completionBlock(request);
