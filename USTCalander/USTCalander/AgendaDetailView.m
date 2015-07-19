@@ -79,4 +79,10 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"AgendaDetailNotification" object:nil userInfo:nil];
 }
 
+-(void) agendaDetailNotoficationAction:(NSNotification *)actionDict{
+    NSLog(@"Hi... Activity");
+    AgendaAbout * agendaObj = [self.storyboard instantiateViewControllerWithIdentifier:@"AgendaAboutView"];
+    [self.navigationController pushViewController:agendaObj animated:NO];
+}
+
 @end
