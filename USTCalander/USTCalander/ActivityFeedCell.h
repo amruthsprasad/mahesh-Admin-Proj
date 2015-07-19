@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel * authorNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel * post_dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel * post_textLabel;
+@property (weak, nonatomic) IBOutlet UILabel * post_AgendaName;
 
 @property (nonatomic,assign) id delegate;
 

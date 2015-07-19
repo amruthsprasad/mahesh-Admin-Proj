@@ -78,9 +78,17 @@
         if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"success"]) {
             [USTDataCacheHandler cacheData:request.responseData forServiceId:k_AgendaListServiceID andPageID:@""];
         }
-        else if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
+        else // ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
         {
             request.responseData = [NSMutableData dataWithData:[USTDataCacheHandler getDataforServiceId:k_AgendaListServiceID andPageID:@""]];
+            NSError *errorInJSON = nil;
+            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:request.responseData
+                                                                 options:kNilOptions
+                                                                   error:&errorInJSON];
+            if (!errorInJSON) {
+                request.responseDict = json;
+            }
+
             
         }
         dispatch_async(dispatch_get_main_queue(), ^{

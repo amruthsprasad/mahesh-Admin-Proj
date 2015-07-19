@@ -51,7 +51,7 @@ NSString * const kSecIdentifier = @"USTUserCredentials";
                                                              options:kNilOptions
                                                                error:&errorInJSON];
         NSString * status = [NSString stringWithFormat:@"%@",[json objectForKey:@"status"]];
-        if ([status isEqualToString:@"success"] ) {
+        if (status) {
             NSDictionary * userData=[json objectForKey:@"user"];
             self.userData = sessionData;//[request.responseDict objectForKey:@"user"];
             self.userID = [userData objectForKey:@"id"];
