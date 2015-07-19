@@ -11,7 +11,7 @@
 #import "AgendaActivity.h"
 #import "SpeakerCollectionCell.h"
 
-@interface AgendaAbout : UIViewController<AgendaDetailViewDelegate>
+@interface AgendaAbout : UIViewController
 
 @property (nonatomic,weak) IBOutlet UILabel * dayLabel;
 @property (nonatomic,weak) IBOutlet UILabel * monthLabel;

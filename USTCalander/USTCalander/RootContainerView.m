@@ -29,6 +29,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.rightFirstBarButton.hidden=YES;
+    self.rightSecondBarButton.hidden=YES;
+    
     SWRevealViewController *revealViewController = self.revealViewController;
     if ( revealViewController )
     {
@@ -76,4 +79,14 @@
 - (IBAction)slideMenuAction:(id)sender {
     
 }
+
+- (IBAction)rightFirstBarButtonAction:(id)sender{
+    [self.delegate rightFirstBarButtonAction:sender];
+}
+
+- (IBAction)rightSecondBarButtonAction:(id)sender{
+    [self.delegate rightSecondBarButtonAction:sender];
+}
+
+
 @end
