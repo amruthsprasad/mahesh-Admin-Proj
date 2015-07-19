@@ -139,8 +139,10 @@
             if (image) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                    ActivityFeedCell * cell = (id)[tableView cellForRowAtIndexPath:indexPath];
-                    if (cell)
+                    if (cell){
+                        cell.activityImageView.contentMode= UIViewContentModeScaleAspectFit;
                         cell.activityImageView.image = image;
+                    }
                     //cell.activityImageView.frame = CGRectMake(cell.activityImageView.frame.origin.x, cell.activityImageView.frame.origin.y,309, 180);
 
                 });
@@ -228,24 +230,37 @@
 }
 
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [self heightForCellAtIndexPath:indexPath];
-}
-
-
-- (CGFloat)heightForCellAtIndexPath:(NSIndexPath *)indexPath {
-    
-    NSString * CellIdentifier;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     NSDictionary * post = [self.dataArray objectAtIndex:indexPath.row];
     NSString * postImageName = [post objectForKey:@"post_image"];
     if (postImageName.length)
     {
-        CellIdentifier = @"ActivityWithImage";
+         return [self heightForImageCellAtIndexPath:indexPath];
     }
-    else
-    {
-        CellIdentifier = @"Activity";
+    else{
+         return [self heightForCellAtIndexPath:indexPath];
     }
+
+}
+
+- (CGFloat)heightForImageCellAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSDictionary * post = [self.dataArray objectAtIndex:indexPath.row];
+    NSString * CellIdentifier = @"ActivityWithImage";
+    static ActivityFeedCell * sizingCell = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sizingCell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    });
+    [self configureCell:sizingCell cellDict:post atIndexPath:indexPath];
+    return [self calculateHeightForConfiguredSizingCell:sizingCell];
+}
+
+- (CGFloat)heightForCellAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSDictionary * post = [self.dataArray objectAtIndex:indexPath.row];
+    NSString *  CellIdentifier = @"Activity";
 
     static ActivityFeedCell * sizingCell = nil;
     static dispatch_once_t onceToken;

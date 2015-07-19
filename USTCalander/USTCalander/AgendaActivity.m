@@ -181,24 +181,37 @@
 }
 
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [self heightForCellAtIndexPath:indexPath];
-}
-
-
-- (CGFloat)heightForCellAtIndexPath:(NSIndexPath *)indexPath {
-    
-    NSString * CellIdentifier;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     NSDictionary * post = [self.dataArray objectAtIndex:indexPath.row];
     NSString * postImageName = [post objectForKey:@"post_image"];
     if (postImageName.length)
     {
-        CellIdentifier = @"ActivityWithImage";
+        return [self heightForImageCellAtIndexPath:indexPath];
     }
-    else
-    {
-        CellIdentifier = @"Activity";
+    else{
+        return [self heightForCellAtIndexPath:indexPath];
     }
+    
+}
+
+- (CGFloat)heightForImageCellAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSDictionary * post = [self.dataArray objectAtIndex:indexPath.row];
+    NSString * CellIdentifier = @"ActivityWithImage";
+    static ActivityFeedCell * sizingCell = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sizingCell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    });
+    [self configureCell:sizingCell cellDict:post atIndexPath:indexPath];
+    return [self calculateHeightForConfiguredSizingCell:sizingCell];
+}
+
+- (CGFloat)heightForCellAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSDictionary * post = [self.dataArray objectAtIndex:indexPath.row];
+    NSString *  CellIdentifier = @"Activity";
     
     static ActivityFeedCell * sizingCell = nil;
     static dispatch_once_t onceToken;
@@ -219,6 +232,21 @@
     
     CGSize size = [sizingCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     return size.height + 1.0f; // Add 1.0f for the cell separator height
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    float height;
+    NSDictionary * post = [self.dataArray objectAtIndex:indexPath.row];
+    NSString * postImageName = [post objectForKey:@"post_image"];
+    if (postImageName.length){
+        height= 380;
+    }
+    else{
+        height= 190;
+    }
+    return height;
+    
 }
 
 -(void) agendaDetailNotoficationAction:(NSNotification *)actionDict{
