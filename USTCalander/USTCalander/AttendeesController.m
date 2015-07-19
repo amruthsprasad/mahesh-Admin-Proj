@@ -88,9 +88,6 @@
     cell= [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     cell.profileImg.layer.masksToBounds=YES;
     cell.profileImg.layer.cornerRadius = cell.profileImg.frame.size.height/2;
-    cell= [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    cell.profileImg.layer.masksToBounds=YES;
-    cell.profileImg.layer.cornerRadius = cell.profileImg.frame.size.height/2;
     NSDictionary * attendee = [_dataArray objectAtIndex:indexPath.row];
     
     cell.title.text=[NSString stringWithFormat:@"%@ %@",[attendee objectForKey:@"firstname"],[attendee objectForKey:@"lastname"]];
