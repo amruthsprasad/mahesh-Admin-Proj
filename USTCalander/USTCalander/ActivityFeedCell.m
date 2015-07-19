@@ -24,12 +24,30 @@
 
 }
 
+
+
+- (IBAction)viewAllLikeAction:(id)sender{
+     [self.delegate viewAllLikeAction:sender];
+}
+
+- (IBAction)viewAllCommentAction:(id)sender{
+     [self.delegate viewAllCommentBtnAction:sender];
+}
+
 - (IBAction)likeBtnAction:(id)sender{
     [self.delegate likeBtnAction:sender];
 }
 
 - (IBAction)commentBtnAction:(id)sender{
     [self.delegate commentBtnAction:sender];
+}
+
+- (IBAction)twitterBtnAction:(id)sender{
+    [self.delegate twitterBtnAction:sender];
+}
+
+- (IBAction)facebookBtnAction:(id)sender{
+    [self.delegate facebookBtnAction:sender];
 }
 
 @end
