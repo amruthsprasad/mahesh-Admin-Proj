@@ -13,15 +13,15 @@
 
 
 // Protocol definition starts here
-@protocol AgendaDetailViewDelegate <NSObject>
+/*@protocol AgendaDetailViewDelegate <NSObject>
 @optional
 - (void) agendaActivityButtonAction;
 - (void) agendaAboutButtonAction;
-@end
+@end*/
 
 @interface AgendaDetailView : UIViewController
 
-@property (nonatomic,assign) id delegate;
+//@property (nonatomic,assign) id delegate;
 @property (nonatomic,strong) NSString * agendaID;
 
 @property(nonatomic,strong) NSString * currentView;

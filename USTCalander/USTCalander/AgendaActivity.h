@@ -11,6 +11,6 @@
 #import "AgendaDetailView.h"
 #import "AgendaAbout.h"
 
-@interface AgendaActivity : UIViewController<AgendaDetailViewDelegate>
+@interface AgendaActivity : UIViewController
 
 @end

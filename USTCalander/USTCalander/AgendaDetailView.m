@@ -35,6 +35,7 @@
     
     self.currentView=@"agendaActivity";
     [self setAgendaActivityActive];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,37 +47,10 @@
 
 #pragma mark - Navigation
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+/*- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     
-  //  UINavigationController * navCtrl = segue.destinationViewController;
-   /*
-    UIViewController * vcObj;
-    if([self.currentView isEqualToString:@"agendaAbout"]){
-        AgendaAbout * agendaAboutObj = [[AgendaAbout alloc]init];
-        vcObj = agendaAboutObj;
-    }
-    else{
-        AgendaActivity * agendaActivityObj = [[AgendaActivity alloc]init];
-        vcObj= agendaActivityObj;
-    }
-    //[navCtrl pushViewController:vcObj animated:YES];
-    navCtrl = [navCtrl initWithRootViewController:vcObj];
-    
-    [self addChildViewController:navCtrl];
-    UIView* destView = ((UINavigationController *)segue.destinationViewController).view;
-    destView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    destView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-    [self.view addSubview:destView];
-    [navCtrl didMoveToParentViewController:self];*/
-    
-    /*if([segue.identifier isEqualToString:@"AgendaDetailSegue"]){
-        UINavigationController * navCtrl = segue.destinationViewController;
-        AgendaActivity * vc = [navCtrl.viewControllers objectAtIndex:0];
-        vc.test=@"Passed Value";
-    }*/
-    
-}
+}*/
 
 -(void)setAgendaActivityActive{
     self.ActivitySelectLine.frame = CGRectMake( self.ActivitySelectLine.frame.origin.x, 34, self.ActivitySelectLine.frame.size.width, 10);
@@ -96,14 +70,13 @@
 - (IBAction)ActivityBtnAction:(id)sender {
     self.currentView=@"agendaActivity";
     [self setAgendaActivityActive];
-    //[self performSegueWithIdentifier:@"AgendaContainerSegue" sender:nil];
-    [self.delegate agendaActivityButtonAction];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"AgendaDetailNotification" object:nil userInfo:nil];
 }
 
 - (IBAction)AboutBtnAction:(id)sender {
     self.currentView=@"agendaAbout";
     [self setAgendaAboutActive];
-    //[self performSegueWithIdentifier:@"AgendaContainerSegue" sender:nil];//AgendaContainerSegue
-    [self.delegate agendaAboutButtonAction];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"AgendaDetailNotification" object:nil userInfo:nil];
 }
+
 @end

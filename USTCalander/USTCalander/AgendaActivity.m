@@ -33,11 +33,17 @@
     // Do any additional setup after loading the view.
     
     AgendaDetailView * agendaDetailObj = (AgendaDetailView *)self.parentViewController.parentViewController;
-    agendaDetailObj.delegate = self;
+    //agendaDetailObj.delegate = self;
     _agendaID = agendaDetailObj.agendaID;
     [self executeNetworkService];
-    
+}
 
+-(void)viewWillAppear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agendaDetailNotoficationAction:) name:@"AgendaDetailNotification" object:nil];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
@@ -221,18 +227,10 @@
     return size.height + 1.0f; // Add 1.0f for the cell separator height
 }
 
-#pragma - mark Agenda Detail View Controller Delegate Methods
-
-- (void) agendaAboutButtonAction{
-    if(self.navigationController.viewControllers.count>=2){
-        AgendaAbout *  agendaObj = [self.navigationController.viewControllers objectAtIndex:1];
-        [self.navigationController popToViewController:agendaObj animated:NO];
-    }
-    else{
-        AgendaAbout * agendaObj = [self.storyboard instantiateViewControllerWithIdentifier:@"AgendaAboutView"];
-        [self.navigationController pushViewController:agendaObj animated:NO];
-    }
+-(void) agendaDetailNotoficationAction:(NSNotification *)actionDict{
+    NSLog(@"Hi... Activity");
+    AgendaAbout * agendaObj = [self.storyboard instantiateViewControllerWithIdentifier:@"AgendaAboutView"];
+    [self.navigationController pushViewController:agendaObj animated:NO];
 }
-
 
 @end
