@@ -50,10 +50,17 @@
 -(void)executeNetworkService{
     [USTServiceProvider getAgendaDetail:_agendaID withCompletionHandler:^(USTRequest * request) {
         if (request.responseDict) {
-            self.dataArray = [NSMutableArray arrayWithArray:[request.responseDict objectForKey:@"agenda"]];
-            [_tableView reloadData];
+           
         }
     }];
+    
+    
+    [USTServiceProvider getSingleAgendaActivityList:_agendaID andPage:[NSNumber numberWithInt:0] withCompletionHandler:^(USTRequest *request) {
+        NSArray * array = [request.responseDict objectForKey:@"activity"];
+        self.dataArray = [NSMutableArray arrayWithArray:array];
+        [_tableView reloadData];
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -89,19 +96,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ActivityFeedCell *cell ;
-    if(indexPath.row%2==0){
-        NSString *CellIdentifier =@"Activity";
-        cell= [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    }
-    else{
-        NSString *CellIdentifier =@"ActivityWithImage";
-        cell= [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-
-    }
-    
     NSString *CellIdentifier;
     NSDictionary * post = [self.dataArray objectAtIndex:indexPath.row];
-    // NSNumber * imageStatus = [post objectForKey:@"user_image_stat"];
+    
+     NSNumber * imageStatus = [post objectForKey:@"user_image_stat"];
     NSString * postImageName = [post objectForKey:@"post_image"];
     if (postImageName.length)
     {
@@ -113,14 +111,17 @@
     }
     
     cell= [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
+    cell.post_AgendaName.text=[post objectForKey:@"agenda_name"];
     cell.post_textLabel.text=[post objectForKey:@"post_text"];
     cell.post_dateLabel.text=[post objectForKey:@"post_date"];
     cell.authorNameLabel.text=[NSString stringWithFormat:@"%@ %@",[post objectForKey:@"firstname"],[post objectForKey:@"lastname"]];
+    cell.likeCountLabel.text=[NSString stringWithFormat:@"%@ Likes",[post objectForKey:@"like_count"]];
+    cell.cmntCountLabel.text=[NSString stringWithFormat:@"%@ comments",[post objectForKey:@"cmnt_count"]];
+
     if (postImageName.length) {
         
         dispatch_async(kBgQueue, ^{
-            NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseImageUrlCroped,postImageName]]];
+            NSData *imgData = [USTServiceProvider getImageWithName:postImageName];//[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseImageUrlCroped,postImageName]]];
             if (imgData) {
                 UIImage *image = [UIImage imageWithData:imgData];
                 if (image) {
@@ -134,27 +135,35 @@
                 }
             }
         });
-        dispatch_async(kBgQueue, ^{
-            NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseImageUrlCroped,[post objectForKey:@"user_image"]]]];
-            if (imgData) {
-                UIImage *image = [UIImage imageWithData:imgData];
-                if (image) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        ActivityFeedCell * cell = (id)[tableView cellForRowAtIndexPath:indexPath];
-                        if (cell)
-                            cell.profileImageView.image = image;
-                    });
+        if (imageStatus) {
+            
+        
+            dispatch_async(kBgQueue, ^{
+                NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseImageUrlCroped,[post objectForKey:@"user_image"]]]];
+                if (imgData) {
+                    UIImage *image = [UIImage imageWithData:imgData];
+                    if (image) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            ActivityFeedCell * cell = (id)[tableView cellForRowAtIndexPath:indexPath];
+                            if (cell)
+                                cell.profileImageView.image = image;
+                        });
+                    }
                 }
-            }
-        });
+            });
+        }
     }
     
     return cell;}
 
 - (void)configureCell:(ActivityFeedCell *)cell cellDict:(NSDictionary *)post atIndexPath:(NSIndexPath *)indexPath {
     
+    cell.post_AgendaName.text=[post objectForKey:@"agenda_name"];
     cell.post_textLabel.text=[post objectForKey:@"post_text"];
     cell.post_dateLabel.text=[post objectForKey:@"post_date"];
+    cell.likeCountLabel.text=[NSString stringWithFormat:@"%@ Likes",[post objectForKey:@"like_count"]];
+    cell.cmntCountLabel.text=[NSString stringWithFormat:@"%@ comments",[post objectForKey:@"cmnt_count"]];
+
     NSString * postImageName = [post objectForKey:@"post_image"];
     if (postImageName.length) {
         
