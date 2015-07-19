@@ -125,6 +125,9 @@
     cell.post_textLabel.text=[post objectForKey:@"post_text"];
     cell.post_dateLabel.text=[post objectForKey:@"post_date"];
     cell.authorNameLabel.text=[NSString stringWithFormat:@"%@ %@",[post objectForKey:@"firstname"],[post objectForKey:@"lastname"]];
+    cell.likeCountLabel.text=[NSString stringWithFormat:@"%@ Likes",[post objectForKey:@"like_count"]];
+    cell.cmntCountLabel.text=[NSString stringWithFormat:@"%@ comments",[post objectForKey:@"cmnt_count"]];
+
     if (postImageName.length) {
         
     dispatch_async(kBgQueue, ^{
@@ -198,6 +201,9 @@
     cell.post_textLabel.text=[post objectForKey:@"post_text"];
     cell.post_dateLabel.text=[post objectForKey:@"post_date"];
     NSString * postImageName = [post objectForKey:@"post_image"];
+    cell.likeCountLabel.text=[NSString stringWithFormat:@"%@ Likes",[post objectForKey:@"like_count"]];
+    cell.cmntCountLabel.text=[NSString stringWithFormat:@"%@ comments",[post objectForKey:@"cmnt_count"]];
+
     if (postImageName.length) {
         
 //        dispatch_async(kBgQueue, ^{
