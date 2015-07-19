@@ -48,12 +48,6 @@
 
 
 -(void)executeNetworkService{
-    [USTServiceProvider getAgendaDetail:_agendaID withCompletionHandler:^(USTRequest * request) {
-        if (request.responseDict) {
-           
-        }
-    }];
-    
     
     [USTServiceProvider getSingleAgendaActivityList:_agendaID andPage:[NSNumber numberWithInt:0] withCompletionHandler:^(USTRequest *request) {
         NSArray * array = [request.responseDict objectForKey:@"activity"];

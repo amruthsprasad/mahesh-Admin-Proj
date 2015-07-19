@@ -20,5 +20,7 @@
 @property (nonatomic,weak) IBOutlet UILabel * timeLabel;
 @property (nonatomic,weak) IBOutlet UILabel * descripLabel;
 @property (nonatomic,weak) IBOutlet UICollectionView * speakerCollection;
+@property (nonatomic, strong)NSString * agendaID;
+
 
 @end

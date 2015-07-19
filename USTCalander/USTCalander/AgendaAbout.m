@@ -7,8 +7,11 @@
 //
 
 #import "AgendaAbout.h"
+#import "Constants.h"
+#import "USTServiceProvider.h"
 
 @interface AgendaAbout ()
+@property (nonatomic, strong)NSMutableArray * dataArray;
 
 @end
 
@@ -29,7 +32,27 @@
     // Do any additional setup after loading the view.
     AgendaDetailView * agendaDetailObj = (AgendaDetailView *)self.parentViewController.parentViewController;
     //agendaDetailObj.delegate = self;
-    self.descripLabel.text  = @"Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem";
+    _agendaID=agendaDetailObj.agendaID;
+    _dataArray=[[NSMutableArray alloc]init];
+    [self executeNetworkService];
+//    self.descripLabel.text  = @"Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem";
+}
+
+-(void)executeNetworkService{
+    [USTServiceProvider getAgendaDetail:_agendaID withCompletionHandler:^(USTRequest * request) {
+        if (request.responseDict) {
+            _dataArray=[NSMutableArray arrayWithArray:[request.responseDict objectForKey:@"speaker"]];
+            [_speakerCollection reloadData];
+            _dayLabel.text=[request.responseDict objectForKey:@"agenda_day"];
+            _monthLabel.text=[request.responseDict objectForKey:@"agenda_mnthyr"];
+            _yearLabel.text=[request.responseDict objectForKey:@""];
+            _tilteLabel.text=[request.responseDict objectForKey:@"agenda_name"];
+            _timeLabel.text=[NSString stringWithFormat:@"%@-%@,%@, %@",[request.responseDict objectForKey:@"agenda_from"],[request.responseDict objectForKey:@"agenda_to"],[request.responseDict objectForKey:@"agenda_date"],[request.responseDict objectForKey:@"agenda_place"]];
+            _descripLabel.text=[request.responseDict objectForKey:@"agenda_desc"];
+
+
+        }
+    }];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -60,7 +83,7 @@
 #pragma mark Collection view Delegate Methods
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 20;
+    return [_dataArray count];
 }
 
 
@@ -70,6 +93,24 @@
     
     SpeakerCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     
+    NSDictionary * speaker = [self.dataArray objectAtIndex:indexPath.row];
+    cell.titleLabel.text=[NSString stringWithFormat:@"%@ %@",[speaker objectForKey:@"speaker_fname"],[speaker objectForKey:@"speaker_lname"]];
+    NSString * imageName = [speaker objectForKey:@"speaker_img"];
+    dispatch_async(kBgQueue, ^{
+        NSData *imgData = [USTServiceProvider getImageWithName:imageName];//[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseImageUrlCroped,postImageName]]];
+        if (imgData) {
+            UIImage *image = [UIImage imageWithData:imgData];
+            if (image) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    SpeakerCollectionCell * cell = (id)[_speakerCollection cellForItemAtIndexPath:indexPath];
+                    if (cell)
+                        cell.profileImg.image = image;
+                    //cell.activityImageView.frame = CGRectMake(cell.activityImageView.frame.origin.x, cell.activityImageView.frame.origin.y,309, 180);
+                    
+                });
+            }
+        }
+    });
     return cell;
 }
 
