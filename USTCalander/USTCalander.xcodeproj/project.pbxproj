@@ -14,6 +14,7 @@
 		E894B6471B56F8DF000F44B4 /* AttendeesController.m in Sources */ = {isa = PBXBuildFile; fileRef = E894B6461B56F8DF000F44B4 /* AttendeesController.m */; };
 		E894B64A1B56FBB6000F44B4 /* AttendeesFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E894B6491B56FBB6000F44B4 /* AttendeesFeedCell.m */; };
 		E8C91CA71B5C09C200FD96B6 /* SpeakerDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C91CA61B5C09C200FD96B6 /* SpeakerDetailView.m */; };
+		E8C91CAA1B5C365500FD96B6 /* SpeakerAboutView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C91CA91B5C365500FD96B6 /* SpeakerAboutView.m */; };
 		E8CB6F3F1B556C7800FDA950 /* AgendaDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CB6F3E1B556C7800FDA950 /* AgendaDetailView.m */; };
 		E8E5500C1B58174B00731ADB /* LeaderBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E5500B1B58174B00731ADB /* LeaderBoardView.m */; };
 		E8E5500F1B581C7200731ADB /* LeaderBoardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E5500E1B581C7200731ADB /* LeaderBoardCell.m */; };
@@ -80,6 +81,8 @@
 		E894B6491B56FBB6000F44B4 /* AttendeesFeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttendeesFeedCell.m; sourceTree = "<group>"; };
 		E8C91CA51B5C09C200FD96B6 /* SpeakerDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakerDetailView.h; sourceTree = "<group>"; };
 		E8C91CA61B5C09C200FD96B6 /* SpeakerDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakerDetailView.m; sourceTree = "<group>"; };
+		E8C91CA81B5C365500FD96B6 /* SpeakerAboutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakerAboutView.h; sourceTree = "<group>"; };
+		E8C91CA91B5C365500FD96B6 /* SpeakerAboutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakerAboutView.m; sourceTree = "<group>"; };
 		E8CB6F3D1B556C7800FDA950 /* AgendaDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgendaDetailView.h; sourceTree = "<group>"; };
 		E8CB6F3E1B556C7800FDA950 /* AgendaDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgendaDetailView.m; sourceTree = "<group>"; };
 		E8E5500A1B58174B00731ADB /* LeaderBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaderBoardView.h; sourceTree = "<group>"; };
@@ -209,6 +212,8 @@
 				E8E550111B581DCA00731ADB /* SpeakerView.m */,
 				E8C91CA51B5C09C200FD96B6 /* SpeakerDetailView.h */,
 				E8C91CA61B5C09C200FD96B6 /* SpeakerDetailView.m */,
+				E8C91CA81B5C365500FD96B6 /* SpeakerAboutView.h */,
+				E8C91CA91B5C365500FD96B6 /* SpeakerAboutView.m */,
 				E8E550141B58220B00731ADB /* SpeakerCollectionCell.h */,
 				E8E550151B58220B00731ADB /* SpeakerCollectionCell.m */,
 			);
@@ -539,6 +544,7 @@
 				F0819A471B4C5A5500714609 /* USTDataCacheHandler.m in Sources */,
 				F0655ECA1B4B2A3C00D064B6 /* AgendaViewController.m in Sources */,
 				E82062121B51529C0020BC11 /* RootContainerView.m in Sources */,
+				E8C91CAA1B5C365500FD96B6 /* SpeakerAboutView.m in Sources */,
 				E8E550161B58220B00731ADB /* SpeakerCollectionCell.m in Sources */,
 				E8E5500F1B581C7200731ADB /* LeaderBoardCell.m in Sources */,
 				E8C91CA71B5C09C200FD96B6 /* SpeakerDetailView.m in Sources */,

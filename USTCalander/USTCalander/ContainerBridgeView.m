@@ -108,6 +108,8 @@ static ContainerBridgeView * sharedContBridObj;
     [self transitionFromViewController:fromViewController toViewController:toViewController duration:0.1 options:UIViewAnimationOptionTransitionCrossDissolve animations:nil completion:^(BOOL finished) {
         [fromViewController removeFromParentViewController];
         [toViewController didMoveToParentViewController:self];
+        UINavigationController * navCtrl = (UINavigationController *)toViewController;
+        [navCtrl popToRootViewControllerAnimated:NO];
         self.transitionInProgress = NO;
         SWRevealViewController * revealViewController = self.revealViewController;
         [revealViewController revealToggleAnimated:YES];
@@ -124,6 +126,8 @@ static ContainerBridgeView * sharedContBridObj;
     }
     
     if([self.currentSegueIdentifier isEqualToString:segueIdentifier]){
+        UINavigationController * navCtrl = [self.viewContrlDict objectForKey:self.currentSegueIdentifier];
+        [navCtrl popToRootViewControllerAnimated:NO];
         [self.revealViewController revealToggleAnimated:YES];
         return;
     }

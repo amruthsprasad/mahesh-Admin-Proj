@@ -31,6 +31,25 @@
 
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    if([self.agendaType isEqualToString:@"selectAgenda"]){
+        UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(dismissModalView)];
+        self.navigationController.navigationBar.tintColor =[UIColor whiteColor];
+        self.navigationItem.rightBarButtonItem.tintColor=[UIColor whiteColor];
+        self.navigationItem.rightBarButtonItem = rightButton;
+    }
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(speakerDetailNotoficationAction:) name:@"SpeakerDetailNotification" object:nil];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(void)dismissModalView{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 -(void)executeNetworkService{
     [USTServiceProvider getAgendaListwithCompletionHandler:^(USTRequest * request) {
         if (request.responseDict) {
@@ -158,6 +177,11 @@
             
         }];
     }
+    else if([_agendaType isEqualToString:@"fromSpeakerView"]){
+        AgendaDetailView* agendaDetail = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"AgendaDetailView"];
+        agendaDetail.agendaID = agendaID;
+        [self.parentViewController.navigationController pushViewController:agendaDetail animated:YES];
+    }
     else{
     AgendaDetailView* agendaDetail = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"AgendaDetailView"];
     agendaDetail.agendaID = agendaID;
@@ -182,5 +206,8 @@
     }];
 }
 
+-(void) speakerDetailNotoficationAction:(NSNotification *)actionDict{
+    [self.navigationController popToRootViewControllerAnimated:NO];
+}
 
 @end

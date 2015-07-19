@@ -20,9 +20,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    ContainerBridgeView * contBridgObj = [ContainerBridgeView sharedInstance];
+    /*ContainerBridgeView * contBridgObj = [ContainerBridgeView sharedInstance];
     RootContainerView * rootContObj = (RootContainerView *)[contBridgObj getRootContainerObj];
-    rootContObj.titleLabel.text = @"Add Post";
+    rootContObj.titleLabel.text = @"Add Post";*/
+    
     [self addNotificationObserver];
 //    self.statusText.delegate=self;
     self.statusText.text = @"";
@@ -98,11 +99,18 @@
 - (IBAction)tagAgenda:(id)sender{
     AgendaViewController * agendaList = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"AgendaVC"];
         agendaList.agendaType=@"selectAgenda";
-    [self presentViewController:agendaList animated:YES completion:^{
+    UINavigationController * navCtrl = [[UINavigationController alloc]initWithRootViewController:agendaList];
+    [navCtrl.navigationBar setBarTintColor: [UIColor colorWithRed:2/255.0 green:128/255.0 blue:231/255.0 alpha:1.0]];
+    navCtrl.navigationBar.topItem.title = @"Select Agenda";
+    NSDictionary *size = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont boldSystemFontOfSize:21],NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, nil];
+    navCtrl.navigationBar.titleTextAttributes = size;
+      /*[self presentViewController:agendaList animated:YES completion:^{
         
-    }];
-    
+    }];*/
+    [self presentViewController:navCtrl animated:YES completion:nil];
 }
+
+
 - (IBAction)postActivity:(id)sender{
     //    //to post activity
         NSData *data= [[NSData alloc]init];//

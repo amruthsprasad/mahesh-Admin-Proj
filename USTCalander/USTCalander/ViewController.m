@@ -36,12 +36,12 @@
     rootContObj.headerView.hidden = NO;
     rootContObj.titleLabel.text = @"Activity Feed";
     rootContObj.rightFirstBarButton.hidden=false;
-
+    
     _dataArray=[[NSMutableArray alloc]init];
     [self executeNetworkService];
-    
-    
-    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
 }
 
 
