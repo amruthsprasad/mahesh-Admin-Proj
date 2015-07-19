@@ -7,8 +7,13 @@
 //
 
 #import "SpeakerView.h"
+#import "Constants.h"
+#import "USTServiceProvider.h"
 
 @interface SpeakerView ()
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, strong)NSMutableArray * dataArray;
+
 
 @end
 
@@ -31,6 +36,21 @@
     ContainerBridgeView * contBridgObj = [ContainerBridgeView sharedInstance];
     RootContainerView * rootContObj = (RootContainerView *)[contBridgObj getRootContainerObj];
     rootContObj.titleLabel.text = @"Speakers";
+    
+    _dataArray=[[NSMutableArray alloc]init];
+    [self executeNetworkService];
+    
+
+    
+}
+
+-(void)executeNetworkService{
+    [USTServiceProvider getSpeakerListwithCompletionHandler:^(USTRequest * request) {
+        if (request.responseDict) {
+            self.dataArray = [NSMutableArray arrayWithArray:[request.responseDict objectForKey:@"speaker"]];
+            [_collectionView reloadData];
+        }
+    }];
 
 }
 
@@ -54,7 +74,7 @@
 #pragma mark Collection view Delegate Methods
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 20;
+    return [_dataArray count];
 }
 
 
@@ -63,7 +83,26 @@
     static NSString *identifier = @"SpeakerCell";
     
     SpeakerCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    NSDictionary * speaker = [self.dataArray objectAtIndex:indexPath.row];
+    cell.titleLabel.text=[NSString stringWithFormat:@"%@ %@",[speaker objectForKey:@"speaker_fname"],[speaker objectForKey:@"speaker_lname"]];
+    NSString * imageName = [speaker objectForKey:@"speaker_img"];
+    dispatch_async(kBgQueue, ^{
+        NSData *imgData = [USTServiceProvider getImageWithName:imageName];//[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseImageUrlCroped,postImageName]]];
+        if (imgData) {
+            UIImage *image = [UIImage imageWithData:imgData];
+            if (image) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    SpeakerCollectionCell * cell = (id)[_collectionView cellForItemAtIndexPath:indexPath];
+                    if (cell)
+                        cell.profileImg.image = image;
+                    //cell.activityImageView.frame = CGRectMake(cell.activityImageView.frame.origin.x, cell.activityImageView.frame.origin.y,309, 180);
+                    
+                });
+            }
+        }
+    });
     
+
     return cell;
 }
 
