@@ -51,6 +51,7 @@
 		F09552E71B5C3EA200D054C6 /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F09552E51B5C3EA200D054C6 /* CommentViewController.m */; };
 		F09552E81B5C3EA200D054C6 /* CommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F09552E61B5C3EA200D054C6 /* CommentViewController.xib */; };
 		F09552EA1B5C417600D054C6 /* Agenda.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F09552E91B5C417600D054C6 /* Agenda.storyboard */; };
+		F09552ED1B5C47CD00D054C6 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F09552EC1B5C47CD00D054C6 /* CommentCell.m */; };
 		F0C67A761B597D35009BA3C1 /* images.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = F0C67A751B597D35009BA3C1 /* images.jpeg */; };
 		F0DBEC221B4EEE3D007CF992 /* KeychainItemWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DBEC211B4EEE3D007CF992 /* KeychainItemWrapper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F0DBEC261B4EF701007CF992 /* USTServiceProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = F0DBEC251B4EF701007CF992 /* USTServiceProvider.m */; };
@@ -146,6 +147,8 @@
 		F09552E51B5C3EA200D054C6 /* CommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentViewController.m; sourceTree = "<group>"; };
 		F09552E61B5C3EA200D054C6 /* CommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentViewController.xib; sourceTree = "<group>"; };
 		F09552E91B5C417600D054C6 /* Agenda.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Agenda.storyboard; sourceTree = "<group>"; };
+		F09552EB1B5C47CD00D054C6 /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
+		F09552EC1B5C47CD00D054C6 /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
 		F0C67A751B597D35009BA3C1 /* images.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = images.jpeg; sourceTree = "<group>"; };
 		F0DBEC201B4EEE3D007CF992 /* KeychainItemWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainItemWrapper.h; sourceTree = "<group>"; };
 		F0DBEC211B4EEE3D007CF992 /* KeychainItemWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainItemWrapper.m; sourceTree = "<group>"; };
@@ -402,6 +405,8 @@
 				F09552E41B5C3EA200D054C6 /* CommentViewController.h */,
 				F09552E51B5C3EA200D054C6 /* CommentViewController.m */,
 				F09552E61B5C3EA200D054C6 /* CommentViewController.xib */,
+				F09552EB1B5C47CD00D054C6 /* CommentCell.h */,
+				F09552EC1B5C47CD00D054C6 /* CommentCell.m */,
 			);
 			name = comment;
 			sourceTree = "<group>";
@@ -542,6 +547,7 @@
 				F0DBEC221B4EEE3D007CF992 /* KeychainItemWrapper.m in Sources */,
 				F07A19671B1CD61F00A67D85 /* SWRevealViewController.m in Sources */,
 				F0819A471B4C5A5500714609 /* USTDataCacheHandler.m in Sources */,
+				F09552ED1B5C47CD00D054C6 /* CommentCell.m in Sources */,
 				F0655ECA1B4B2A3C00D064B6 /* AgendaViewController.m in Sources */,
 				E82062121B51529C0020BC11 /* RootContainerView.m in Sources */,
 				E8C91CAA1B5C365500FD96B6 /* SpeakerAboutView.m in Sources */,

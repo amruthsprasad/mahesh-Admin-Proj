@@ -305,7 +305,7 @@
                                     <constraint firstItem="OcF-bg-hfU" firstAttribute="top" secondItem="Skd-NZ-Elm" secondAttribute="top" constant="32" id="oLq-by-1zn"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="hlm-t2-dLM">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="74" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="hlm-t2-dLM">
                                 <rect key="frame" x="0.0" y="65" width="320" height="358"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -314,14 +314,46 @@
                                     <constraint firstAttribute="width" secondItem="hlm-t2-dLM" secondAttribute="height" multiplier="160:179" id="jbg-Bz-bv9"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="80" id="o6i-hx-uf9">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="commentCell" rowHeight="74" id="o6i-hx-uf9" customClass="CommentCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o6i-hx-uf9" id="sgJ-B1-h30">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0CX-RB-erH">
+                                                    <rect key="frame" x="8" y="2" width="304" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.13725490200000001" green="0.43921568630000002" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="LabelLabelLabelLabelLabelLabel Label Label Label LabelLabelLabelLabelLabelLabel Label Label Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gc6-F4-mB6">
+                                                    <rect key="frame" x="8" y="28" width="304" height="26"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Gc6-F4-mB6" firstAttribute="trailing" secondItem="sgJ-B1-h30" secondAttribute="trailingMargin" id="86z-eZ-ZCW"/>
+                                                <constraint firstItem="Gc6-F4-mB6" firstAttribute="top" secondItem="0CX-RB-erH" secondAttribute="bottom" constant="5" id="IKG-Xn-FOC"/>
+                                                <constraint firstItem="0CX-RB-erH" firstAttribute="trailing" secondItem="sgJ-B1-h30" secondAttribute="trailingMargin" id="dT1-F0-cPq"/>
+                                                <constraint firstItem="Gc6-F4-mB6" firstAttribute="top" secondItem="0CX-RB-erH" secondAttribute="bottom" constant="5" id="fkh-Rn-PAb"/>
+                                                <constraint firstItem="Gc6-F4-mB6" firstAttribute="leading" secondItem="sgJ-B1-h30" secondAttribute="leadingMargin" id="mvI-aB-lH5"/>
+                                                <constraint firstItem="0CX-RB-erH" firstAttribute="leading" secondItem="sgJ-B1-h30" secondAttribute="leadingMargin" id="vI2-qg-phh"/>
+                                                <constraint firstItem="0CX-RB-erH" firstAttribute="top" secondItem="sgJ-B1-h30" secondAttribute="topMargin" constant="-6" id="vKu-iv-BkV"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Gc6-F4-mB6" secondAttribute="bottom" constant="11" id="xHz-7d-95B"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="commentLabel" destination="Gc6-F4-mB6" id="Yqn-tK-Fki"/>
+                                            <outlet property="commenterNameLabel" destination="0CX-RB-erH" id="Q2m-aQ-OfD"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Eha-zK-zgi" id="x46-Ij-1HK"/>
+                                    <outlet property="delegate" destination="Eha-zK-zgi" id="9K5-zB-004"/>
+                                </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jlX-im-vnG">
                                 <rect key="frame" x="0.0" y="426" width="320" height="142"/>
