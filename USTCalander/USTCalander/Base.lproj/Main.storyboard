@@ -2009,14 +2009,14 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                     <constraints>
+                                                        <constraint firstItem="C7T-hh-vkj" firstAttribute="leading" secondItem="29R-Hu-XNK" secondAttribute="trailing" constant="18" id="8jt-7d-6hg"/>
                                                         <constraint firstAttribute="trailing" secondItem="BP5-T7-wMd" secondAttribute="trailing" constant="16" id="CBs-24-jDM"/>
                                                         <constraint firstItem="29R-Hu-XNK" firstAttribute="leading" secondItem="Tsr-Oa-vUa" secondAttribute="leading" constant="6" id="EOK-ad-8d7"/>
                                                         <constraint firstItem="C7T-hh-vkj" firstAttribute="top" secondItem="Tsr-Oa-vUa" secondAttribute="top" constant="18" id="FBA-FW-eBX"/>
+                                                        <constraint firstItem="BP5-T7-wMd" firstAttribute="leading" secondItem="29R-Hu-XNK" secondAttribute="trailing" constant="18" id="FS8-GX-8wc"/>
                                                         <constraint firstAttribute="bottom" secondItem="29R-Hu-XNK" secondAttribute="bottom" constant="8" id="Mep-IU-ATL"/>
                                                         <constraint firstAttribute="trailing" secondItem="C7T-hh-vkj" secondAttribute="trailing" constant="16" id="OAB-h5-FeA"/>
-                                                        <constraint firstItem="C7T-hh-vkj" firstAttribute="leading" secondItem="29R-Hu-XNK" secondAttribute="trailing" constant="18" id="UJB-dF-ihr"/>
                                                         <constraint firstItem="29R-Hu-XNK" firstAttribute="top" secondItem="Tsr-Oa-vUa" secondAttribute="top" constant="8" id="Wmv-kK-ZY4"/>
-                                                        <constraint firstItem="BP5-T7-wMd" firstAttribute="leading" secondItem="29R-Hu-XNK" secondAttribute="trailing" constant="18" id="fOU-Go-8P7"/>
                                                         <constraint firstItem="BP5-T7-wMd" firstAttribute="top" secondItem="C7T-hh-vkj" secondAttribute="bottom" constant="4" id="yfM-9N-guc"/>
                                                     </constraints>
                                                 </view>
@@ -2030,9 +2030,9 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <outlet property="descrip" destination="BP5-T7-wMd" id="Y2T-WN-Zrf"/>
-                                            <outlet property="profileImg" destination="29R-Hu-XNK" id="HUK-22-Y0D"/>
-                                            <outlet property="title" destination="C7T-hh-vkj" id="YTM-Q7-uXk"/>
+                                            <outlet property="descrip" destination="BP5-T7-wMd" id="S6B-3M-Ce9"/>
+                                            <outlet property="profileImg" destination="29R-Hu-XNK" id="mS6-YW-azn"/>
+                                            <outlet property="title" destination="C7T-hh-vkj" id="1lC-RM-irf"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
