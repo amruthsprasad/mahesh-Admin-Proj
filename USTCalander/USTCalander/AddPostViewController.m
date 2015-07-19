@@ -7,8 +7,11 @@
 //
 
 #import "AddPostViewController.h"
+#import "AgendaViewController.h"
+#import "USTServiceProvider.h"
 
 @interface AddPostViewController ()
+@property(nonatomic, strong)NSString * selectedAgenda;
 
 @end
 
@@ -20,26 +23,47 @@
     ContainerBridgeView * contBridgObj = [ContainerBridgeView sharedInstance];
     RootContainerView * rootContObj = (RootContainerView *)[contBridgObj getRootContainerObj];
     rootContObj.titleLabel.text = @"Add Post";
-    
-    self.statusText.text = @"Status";
-    self.statusText.textColor = [UIColor lightGrayColor];
+    [self addNotificationObserver];
+//    self.statusText.delegate=self;
+    self.statusText.text = @"";
+    _selectedAgenda=@"";
+   // self.statusText.textColor = [UIColor lightGrayColor];
 }
 
 - (BOOL) textViewShouldBeginEditing:(UITextView *)textView
 {
-    self.statusText.text = @"";
-    self.statusText.textColor = [UIColor blackColor];
+    //self.statusText.text = @"";
+   // self.statusText.textColor = [UIColor blackColor];
     return YES;
 }
 
 -(void) textViewDidChange:(UITextView *)textView
 {
     if(self.statusText.text.length == 0){
-        self.statusText.textColor = [UIColor lightGrayColor];
-        self.statusText.text = @"Status";
+       // self.statusText.textColor = [UIColor lightGrayColor];
+        //self.statusText.text = @"Status";
     }
 }
 
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    
+    if([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    
+    return YES;
+}
+-(void)addNotificationObserver
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(agendaSelected:) name:@"AgendaSelectedNotification" object:nil];
+
+}
+
+-(void)agendaSelected:(NSNotification*)notification{
+    _selectedAgenda=(NSString*)notification.object;
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -61,17 +85,137 @@
     }];
 }
 -(IBAction)openCamera:(id)sender{
-    
+    [self showCameraUI];
 }
 
 -(IBAction)openGallery:(id)sender{
     
+    UIImagePickerController *pickerController = [[UIImagePickerController alloc] init];
+    pickerController.delegate = self;
+    [self presentViewController:pickerController animated:YES completion:nil];
 }
 
 - (IBAction)tagAgenda:(id)sender{
+    AgendaViewController * agendaList = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"AgendaVC"];
+        agendaList.agendaType=@"selectAgenda";
+    [self presentViewController:agendaList animated:YES completion:^{
+        
+    }];
     
 }
 - (IBAction)postActivity:(id)sender{
+    //    //to post activity
+        NSData *data= [[NSData alloc]init];//
+        data=UIImagePNGRepresentation(self.postImage.image);
+    if (data.length) {
+        [USTServiceProvider uploadImage:data WithCompletionHandler:^(USTRequest * request) {
+            NSString* imageName = [NSString stringWithFormat:@"%@",[request.responseDict objectForKey:@"image_name"]];
+            NSMutableDictionary * dict = [[NSMutableDictionary alloc]init];
+            [dict setObject:_statusText.text forKey:@"text"];
+            [dict setObject:_selectedAgenda forKey:@"agendaId"];
+//            [dict setObject:data forKey:@"imageData"];
+            
+            if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"success"]) {
+                [USTServiceProvider addPostWithData:dict andImageName:imageName WithCompletionHandler:^(USTRequest * request) {
+                    if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"success"]) {
+                        [self dismissViewControllerAnimated:YES completion:^{
+
+                            UIAlertView * alert=[[UIAlertView alloc]initWithTitle:@"UST" message:@"Post added.." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                            [alert show];
+                        }];
+                    }
+                    else{
+                        UIAlertView * alert=[[UIAlertView alloc]initWithTitle:@"UST" message:@"Post failed try again.." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                        [alert show];
+                    }
+                    
+//                    [USTServiceProvider getActivityFeed:[NSNumber numberWithInt:20] andPage:[NSNumber numberWithInt:0] withCompletionHandler:^(USTRequest * request) {
+//                        
+//                        if (request.responseDict) {
+//                           // self.dataArray = [NSMutableArray arrayWithArray:[request.responseDict objectForKey:@"post"]];
+//                        }
+//                        
+//                    }];
+                }];
+            }
+            
+        }];
+    }
+    else{
+        NSMutableDictionary * dict = [[NSMutableDictionary alloc]init];
+        [dict setObject:_statusText.text forKey:@"text"];
+        [dict setObject:_selectedAgenda forKey:@"agendaId"];
+        
+        [USTServiceProvider addPostWithData:dict andImageName:@"" WithCompletionHandler:^(USTRequest * request) {
+            if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"success"]) {
+                [self dismissViewControllerAnimated:YES completion:^{
+                    
+                    UIAlertView * alert=[[UIAlertView alloc]initWithTitle:@"UST" message:@"Post added.." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                    [alert show];
+                }];
+            }
+            else{
+                UIAlertView * alert=[[UIAlertView alloc]initWithTitle:@"UST" message:@"Post failed try again.." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                [alert show];
+            }
+           
+        }];
+    }
     
 }
+
+
+#pragma mark -
+#pragma mark UIImagePickerControllerDelegate
+
+- (void) imagePickerController:(UIImagePickerController *)picker
+         didFinishPickingImage:(UIImage *)image
+                   editingInfo:(NSDictionary *)editingInfo
+{
+    self.postImage.image = image;
+    //pngData = UIImagePNGRepresentation(image);
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+
+- (BOOL) startCameraControllerFromViewController: (UIViewController*) controller
+                                   usingDelegate: (id <UIImagePickerControllerDelegate,
+                                                   UINavigationControllerDelegate>) delegate {
+    
+    if (([UIImagePickerController isSourceTypeAvailable:
+          UIImagePickerControllerSourceTypeCamera] == NO)
+        || (delegate == nil)
+        || (controller == nil)){
+        return NO;
+    }
+    
+    
+    UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init];
+    cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera;
+    
+    // Displays a control that allows the user to choose picture or
+    // movie capture, if both are available:
+    cameraUI.mediaTypes =
+    [UIImagePickerController availableMediaTypesForSourceType:
+     UIImagePickerControllerSourceTypeCamera];
+    
+    // Hides the controls for moving & scaling pictures, or for
+    // trimming movies. To instead show the controls, use YES.
+    cameraUI.allowsEditing = NO;
+    
+    cameraUI.delegate = delegate;
+    
+    [controller presentViewController:cameraUI animated:YES completion:^{
+        
+    }];//cameraUI animated: YES];
+    return YES;
+}
+
+- (void)showCameraUI {
+    [self startCameraControllerFromViewController: self
+                                    usingDelegate: self];
+}
+
+
+
 @end

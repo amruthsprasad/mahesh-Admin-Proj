@@ -312,7 +312,7 @@
 
 #pragma mark - RootContainer Delegate Methods
 -(void)rightFirstBarButtonAction:(id)sender{
-    AddPostViewController * addPost = [[UIStoryboard storyboardWithName:@"Agenda" bundle:nil] instantiateViewControllerWithIdentifier:@"AddPostViewController"];
+    AddPostViewController * addPost = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AddPostViewController"];
      [self.navigationController presentViewController:addPost animated:YES completion:^{
          
      }];

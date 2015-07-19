@@ -12,5 +12,6 @@
 
 @interface AgendaViewController : UIViewController<AgendaFeedCellDelegate>{
 }
+@property(nonatomic , strong)NSString * agendaType;
 
 @end

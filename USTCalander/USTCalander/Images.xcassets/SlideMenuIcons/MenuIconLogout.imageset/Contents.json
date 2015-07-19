@@ -2,12 +2,13 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "ic_menu_logout.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "log_out.png"
+      "filename" : "ic_menu_logout-1.png"
     },
     {
       "idiom" : "universal",

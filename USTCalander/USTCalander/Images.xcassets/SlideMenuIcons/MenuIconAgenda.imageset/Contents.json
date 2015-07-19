@@ -3,11 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "agenda.png"
+      "filename" : "ic_menu_agenda-1.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "ic_menu_agenda.png"
     },
     {
       "idiom" : "universal",

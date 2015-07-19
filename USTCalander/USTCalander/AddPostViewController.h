@@ -9,8 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ContainerBridgeView.h"
 
-@interface AddPostViewController : UIViewController
-
+@interface AddPostViewController : UIViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 @property(nonatomic,weak) IBOutlet UIImageView * postImage;
 @property(nonatomic,weak) IBOutlet UITextView * statusText;
 
