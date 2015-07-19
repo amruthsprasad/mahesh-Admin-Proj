@@ -43,4 +43,18 @@
         
     }];
 }
+-(IBAction)openCamera:(id)sender{
+    
+}
+
+-(IBAction)openGallery:(id)sender{
+    
+}
+
+- (IBAction)tagAgenda:(id)sender{
+    
+}
+- (IBAction)postActivity:(id)sender{
+    
+}
 @end
