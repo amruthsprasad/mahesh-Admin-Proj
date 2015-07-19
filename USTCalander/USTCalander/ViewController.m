@@ -291,5 +291,20 @@
     NSLog(@"Sender...%@",sender);
 }
 
+- (void) twitterBtnAction:(id)sender{
+    NSLog(@"Sender...%@",sender);
+}
+
+- (void) facebookBtnAction:(id)sender{
+    NSLog(@"Sender...%@",sender);
+}
+
+- (void) viewAllLikeBtnAction:(id)sender{
+    NSLog(@"Sender...%@",sender);
+}
+
+- (void) viewAllCommentBtnAction:(id)sender{
+    NSLog(@"Sender...%@",sender);
+}
 
 @end

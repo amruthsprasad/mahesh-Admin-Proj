@@ -13,6 +13,10 @@
 @required
 - (void) likeBtnAction:(id)sender;
 - (void) commentBtnAction:(id)sender;
+- (void) twitterBtnAction:(id)sender;
+- (void) facebookBtnAction:(id)sender;
+- (void) viewAllLikeBtnAction:(id)sender;
+- (void) viewAllCommentBtnAction:(id)sender;
 @end
 
 @interface ActivityFeedCell : UITableViewCell
@@ -31,7 +35,12 @@
 
 @property (nonatomic,assign) id delegate;
 
+- (IBAction)viewAllLikeAction:(id)sender;
+- (IBAction)viewAllCommentAction:(id)sender;
+
 - (IBAction)likeBtnAction:(id)sender;
 - (IBAction)commentBtnAction:(id)sender;
+- (IBAction)twitterBtnAction:(id)sender;
+- (IBAction)facebookBtnAction:(id)sender;
 
 @end
