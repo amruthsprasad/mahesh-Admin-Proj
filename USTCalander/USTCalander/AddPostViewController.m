@@ -20,7 +20,24 @@
     ContainerBridgeView * contBridgObj = [ContainerBridgeView sharedInstance];
     RootContainerView * rootContObj = (RootContainerView *)[contBridgObj getRootContainerObj];
     rootContObj.titleLabel.text = @"Add Post";
+    
+    self.statusText.text = @"Status";
+    self.statusText.textColor = [UIColor lightGrayColor];
+}
 
+- (BOOL) textViewShouldBeginEditing:(UITextView *)textView
+{
+    self.statusText.text = @"";
+    self.statusText.textColor = [UIColor blackColor];
+    return YES;
+}
+
+-(void) textViewDidChange:(UITextView *)textView
+{
+    if(self.statusText.text.length == 0){
+        self.statusText.textColor = [UIColor lightGrayColor];
+        self.statusText.text = @"Status";
+    }
 }
 
 - (void)didReceiveMemoryWarning {

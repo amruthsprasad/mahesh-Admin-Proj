@@ -18,7 +18,6 @@
 		E8E5500F1B581C7200731ADB /* LeaderBoardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E5500E1B581C7200731ADB /* LeaderBoardCell.m */; };
 		E8E550121B581DCA00731ADB /* SpeakerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E550111B581DCA00731ADB /* SpeakerView.m */; };
 		E8E550161B58220B00731ADB /* SpeakerCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E550151B58220B00731ADB /* SpeakerCollectionCell.m */; };
-		E8FA7DEC1B4ED5E50066F5A3 /* Agenda.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8FA7DEB1B4ED5E50066F5A3 /* Agenda.storyboard */; };
 		E8FA7DF11B4EDD310066F5A3 /* AgendaFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FA7DEF1B4EDD310066F5A3 /* AgendaFeedCell.m */; };
 		F033B17B1B1DC29B0018B8CC /* ActivityFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F033B1791B1DC29B0018B8CC /* ActivityFeedCell.m */; };
 		F033B17C1B1DC29B0018B8CC /* ActivityFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F033B17A1B1DC29B0018B8CC /* ActivityFeedCell.xib */; };
@@ -85,7 +84,6 @@
 		E8E550111B581DCA00731ADB /* SpeakerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakerView.m; sourceTree = "<group>"; };
 		E8E550141B58220B00731ADB /* SpeakerCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakerCollectionCell.h; sourceTree = "<group>"; };
 		E8E550151B58220B00731ADB /* SpeakerCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakerCollectionCell.m; sourceTree = "<group>"; };
-		E8FA7DEB1B4ED5E50066F5A3 /* Agenda.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Agenda.storyboard; sourceTree = "<group>"; };
 		E8FA7DEE1B4EDD310066F5A3 /* AgendaFeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgendaFeedCell.h; sourceTree = "<group>"; };
 		E8FA7DEF1B4EDD310066F5A3 /* AgendaFeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgendaFeedCell.m; sourceTree = "<group>"; };
 		F033B1781B1DC29B0018B8CC /* ActivityFeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityFeedCell.h; sourceTree = "<group>"; };
@@ -319,7 +317,6 @@
 				F07A19461B1CCF2800A67D85 /* ViewController.m */,
 				E82062131B516BF50020BC11 /* CustomRootView */,
 				F07A19481B1CCF2800A67D85 /* Main.storyboard */,
-				E8FA7DEB1B4ED5E50066F5A3 /* Agenda.storyboard */,
 				F07A194B1B1CCF2800A67D85 /* Images.xcassets */,
 				F07A194D1B1CCF2800A67D85 /* LaunchScreen.xib */,
 				F07A19421B1CCF2800A67D85 /* USTCalander.xcdatamodeld */,
@@ -469,7 +466,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8FA7DEC1B4ED5E50066F5A3 /* Agenda.storyboard in Resources */,
 				F0C67A761B597D35009BA3C1 /* images.jpeg in Resources */,
 				F07A194A1B1CCF2800A67D85 /* Main.storyboard in Resources */,
 				F07A194F1B1CCF2800A67D85 /* LaunchScreen.xib in Resources */,

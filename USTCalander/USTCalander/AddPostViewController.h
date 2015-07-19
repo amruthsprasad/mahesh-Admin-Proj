@@ -11,6 +11,9 @@
 
 @interface AddPostViewController : UIViewController
 
+@property(nonatomic,weak) IBOutlet UIImageView * postImage;
+@property(nonatomic,weak) IBOutlet UITextView * statusText;
+
 - (IBAction)closeView:(id)sender;
 - (IBAction)openCamera:(id)sender;
 - (IBAction)openGallery:(id)sender;
