@@ -12,11 +12,11 @@
 #import "ContainerBridgeView.h"
 #import "USTServiceProvider.h"
 #import "Constants.h"
+#import "AddPostViewController.h"
 
 
 
-
-@interface ViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface ViewController ()<UITableViewDataSource,UITableViewDelegate,RootContainerViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong)NSMutableArray * dataArray;
@@ -32,8 +32,10 @@
     
     ContainerBridgeView * contBridgObj = [ContainerBridgeView sharedInstance];
     RootContainerView * rootContObj = (RootContainerView *)[contBridgObj getRootContainerObj];
+    rootContObj.delegate=self;
     rootContObj.headerView.hidden = NO;
     rootContObj.titleLabel.text = @"Activity Feed";
+    rootContObj.rightFirstBarButton.hidden=false;
 
     _dataArray=[[NSMutableArray alloc]init];
     [self executeNetworkService];
@@ -305,6 +307,15 @@
 
 - (void) viewAllCommentBtnAction:(id)sender{
     NSLog(@"Sender...%@",sender);
+}
+
+
+#pragma mark - RootContainer Delegate Methods
+-(void)rightFirstBarButtonAction:(id)sender{
+    AddPostViewController * addPost = [[UIStoryboard storyboardWithName:@"Agenda" bundle:nil] instantiateViewControllerWithIdentifier:@"AddPostViewController"];
+     [self.navigationController presentViewController:addPost animated:YES completion:^{
+         
+     }];
 }
 
 @end

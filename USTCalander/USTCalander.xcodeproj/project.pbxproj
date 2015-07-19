@@ -34,6 +34,7 @@
 		F0655ECA1B4B2A3C00D064B6 /* AgendaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0655EC91B4B2A3C00D064B6 /* AgendaViewController.m */; };
 		F0655ECE1B4B2B7700D064B6 /* USTUser.m in Sources */ = {isa = PBXBuildFile; fileRef = F0655ECD1B4B2B7700D064B6 /* USTUser.m */; };
 		F0655ED21B4B2BE300D064B6 /* USTRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F0655ED11B4B2BE300D064B6 /* USTRequest.m */; };
+		F06961811B5BD129008A4F67 /* AddPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F06961801B5BD129008A4F67 /* AddPostViewController.m */; };
 		F07A193E1B1CCF2800A67D85 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F07A193D1B1CCF2800A67D85 /* main.m */; };
 		F07A19411B1CCF2800A67D85 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F07A19401B1CCF2800A67D85 /* AppDelegate.m */; };
 		F07A19441B1CCF2800A67D85 /* USTCalander.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F07A19421B1CCF2800A67D85 /* USTCalander.xcdatamodeld */; };
@@ -110,6 +111,8 @@
 		F0655ECD1B4B2B7700D064B6 /* USTUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USTUser.m; sourceTree = "<group>"; };
 		F0655ED01B4B2BE300D064B6 /* USTRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USTRequest.h; sourceTree = "<group>"; };
 		F0655ED11B4B2BE300D064B6 /* USTRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USTRequest.m; sourceTree = "<group>"; };
+		F069617F1B5BD129008A4F67 /* AddPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPostViewController.h; sourceTree = "<group>"; };
+		F06961801B5BD129008A4F67 /* AddPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPostViewController.m; sourceTree = "<group>"; };
 		F07A19381B1CCF2800A67D85 /* USTCalander.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = USTCalander.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F07A193C1B1CCF2800A67D85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F07A193D1B1CCF2800A67D85 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -208,6 +211,8 @@
 				F033B1781B1DC29B0018B8CC /* ActivityFeedCell.h */,
 				F033B1791B1DC29B0018B8CC /* ActivityFeedCell.m */,
 				F033B17A1B1DC29B0018B8CC /* ActivityFeedCell.xib */,
+				F069617F1B5BD129008A4F67 /* AddPostViewController.h */,
+				F06961801B5BD129008A4F67 /* AddPostViewController.m */,
 			);
 			name = ActivityFeedCell;
 			sourceTree = "<group>";
@@ -491,6 +496,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F06961811B5BD129008A4F67 /* AddPostViewController.m in Sources */,
 				F0655EC41B4B22AC00D064B6 /* BaseView.m in Sources */,
 				F033B17B1B1DC29B0018B8CC /* ActivityFeedCell.m in Sources */,
 				E8CB6F3F1B556C7800FDA950 /* AgendaDetailView.m in Sources */,
