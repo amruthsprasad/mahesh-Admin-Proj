@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "ContainerBridgeView.h"
 
-@interface AddPostViewController : UIViewController
+@interface AddPostViewController : UIViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+
+@property(nonatomic, weak)IBOutlet UIImageView* imageView;
+@property(nonatomic, weak)IBOutlet UITextView* postText;
+
 
 - (IBAction)closeView:(id)sender;
 - (IBAction)openCamera:(id)sender;

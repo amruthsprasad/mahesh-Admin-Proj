@@ -204,7 +204,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="postActivity:" destination="Min-ML-26C" eventType="touchDragInside" id="Sre-aN-gdP"/>
+                                            <action selector="postActivity:" destination="Min-ML-26C" eventType="touchUpInside" id="mXP-Xl-As0"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -216,12 +216,15 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="xBR-vc-ukV"/>
                                 </constraints>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Min-ML-26C" id="zIO-xh-wuh"/>
+                                </connections>
                             </textView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ViB-xl-UdH">
-                                <rect key="frame" x="3" y="247" width="315" height="242"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ViB-xl-UdH">
+                                <rect key="frame" x="3" y="229" width="315" height="242"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="242" id="4hV-Sq-YZd"/>
                                 </constraints>
@@ -230,22 +233,23 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="kS5-xW-bZO" firstAttribute="top" secondItem="acJ-R3-q2x" secondAttribute="bottom" constant="29" id="6Eu-om-RQV"/>
-                            <constraint firstItem="ViB-xl-UdH" firstAttribute="top" secondItem="kS5-xW-bZO" secondAttribute="bottom" constant="26" id="8nS-7R-Jfu"/>
-                            <constraint firstItem="kS5-xW-bZO" firstAttribute="centerX" secondItem="ViB-xl-UdH" secondAttribute="centerX" id="GE6-3h-lhS"/>
                             <constraint firstItem="kS5-xW-bZO" firstAttribute="centerX" secondItem="acJ-R3-q2x" secondAttribute="centerX" id="L0m-LS-uDs"/>
                             <constraint firstItem="wuM-Dn-SQf" firstAttribute="leading" secondItem="iz6-PN-uP6" secondAttribute="leading" id="SvI-UU-erJ"/>
                             <constraint firstItem="kS5-xW-bZO" firstAttribute="leading" secondItem="iz6-PN-uP6" secondAttribute="leadingMargin" constant="-10" id="VLc-js-TN7"/>
-                            <constraint firstItem="wuM-Dn-SQf" firstAttribute="bottom" secondItem="Y87-Lu-qcC" secondAttribute="top" id="Wnv-aX-Bb8"/>
+                            <constraint firstItem="wuM-Dn-SQf" firstAttribute="bottom" secondItem="Y87-Lu-qcC" secondAttribute="top" priority="250" constant="1" id="Wnv-aX-Bb8"/>
                             <constraint firstItem="kS5-xW-bZO" firstAttribute="top" secondItem="iz6-PN-uP6" secondAttribute="top" constant="93" id="YzB-kw-tek"/>
                             <constraint firstItem="wuM-Dn-SQf" firstAttribute="trailing" secondItem="acJ-R3-q2x" secondAttribute="trailing" id="fPe-nK-a1M"/>
-                            <constraint firstItem="wuM-Dn-SQf" firstAttribute="top" secondItem="iz6-PN-uP6" secondAttribute="top" constant="740" id="p9f-3y-rRN"/>
+                            <constraint firstItem="wuM-Dn-SQf" firstAttribute="top" secondItem="ViB-xl-UdH" secondAttribute="bottom" constant="36" id="iRP-Ph-rb8"/>
                             <constraint firstItem="kS5-xW-bZO" firstAttribute="centerX" secondItem="iz6-PN-uP6" secondAttribute="centerX" id="sN3-4M-NDi"/>
                             <constraint firstItem="ViB-xl-UdH" firstAttribute="leading" secondItem="iz6-PN-uP6" secondAttribute="leadingMargin" constant="-13" id="uGR-ym-GnI"/>
                             <constraint firstItem="wuM-Dn-SQf" firstAttribute="leading" secondItem="acJ-R3-q2x" secondAttribute="leading" id="uGd-Ez-WyA"/>
                             <constraint firstItem="acJ-R3-q2x" firstAttribute="top" secondItem="iz6-PN-uP6" secondAttribute="topMargin" id="x0n-Oi-Z7e"/>
-                            <constraint firstItem="ViB-xl-UdH" firstAttribute="centerX" secondItem="acJ-R3-q2x" secondAttribute="centerX" id="xBN-Xx-rRb"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="ViB-xl-UdH" id="B1W-PA-tWE"/>
+                        <outlet property="postText" destination="kS5-xW-bZO" id="Spv-6c-cYg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wtm-Rv-9sk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

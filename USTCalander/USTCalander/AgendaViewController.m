@@ -151,9 +151,18 @@
     
     NSDictionary * agendaDict = [_dataArray objectAtIndex:sender.actionButton.tag];
     NSString * agendaID = [agendaDict objectForKey:@"agenda_id"];
+    
+    if ([_agendaType isEqualToString:@"selectAgenda"]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"AgendaSelectedNotification" object:agendaID userInfo:nil];
+        [self dismissViewControllerAnimated:YES completion:^{
+            
+        }];
+    }
+    else{
     AgendaDetailView* agendaDetail = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"AgendaDetailView"];
     agendaDetail.agendaID = agendaID;
-    [self.navigationController pushViewController:agendaDetail animated:YES];
+        [self.navigationController pushViewController:agendaDetail animated:YES];
+    }
     
 }
 
