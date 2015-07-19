@@ -737,6 +737,8 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="authorNameLabel" destination="aH7-VW-0Nq" id="bOE-bx-CVi"/>
+                                            <outlet property="cmntCountLabel" destination="6vI-Xg-8dm" id="Sd8-0F-5YI"/>
+                                            <outlet property="likeCountLabel" destination="ImG-Pv-ML6" id="fdp-ge-sXe"/>
                                             <outlet property="post_dateLabel" destination="WEm-IX-gDe" id="JZX-fd-pto"/>
                                             <outlet property="post_textLabel" destination="YgX-mK-Isb" id="z8j-Nf-AxE"/>
                                             <outlet property="profileImageView" destination="aVM-Oc-asH" id="sWX-6w-cKY"/>
@@ -965,6 +967,8 @@
                                         <connections>
                                             <outlet property="activityImageView" destination="inZ-HZ-oHS" id="840-2D-Ea2"/>
                                             <outlet property="authorNameLabel" destination="WhW-yj-O1J" id="MaC-Bo-xxu"/>
+                                            <outlet property="cmntCountLabel" destination="izh-Oc-LMV" id="uq2-iD-ntE"/>
+                                            <outlet property="likeCountLabel" destination="UCb-pT-Kao" id="LEQ-fT-WyO"/>
                                             <outlet property="post_dateLabel" destination="XWp-YT-SbY" id="5wK-rR-tPO"/>
                                             <outlet property="post_textLabel" destination="j5o-Ge-xrh" id="YLE-1B-B0Z"/>
                                             <outlet property="profileImageView" destination="Hxn-wO-AFp" id="tQb-fa-kgM"/>
@@ -1434,6 +1438,10 @@
                                             <constraint firstAttribute="trailing" secondItem="xmY-Ar-XpY" secondAttribute="trailing" constant="6" id="VFp-ML-2OZ"/>
                                         </constraints>
                                         <size key="customSize" width="148" height="158"/>
+                                        <connections>
+                                            <outlet property="profileImg" destination="xmY-Ar-XpY" id="IWw-Ra-MDQ"/>
+                                            <outlet property="titleLabel" destination="pzR-Yw-7Bt" id="Wcq-h7-UuY"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
