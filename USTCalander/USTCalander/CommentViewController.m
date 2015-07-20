@@ -8,6 +8,7 @@
 
 #import "CommentViewController.h"
 #import "CommentCell.h"
+#import "USTServiceProvider.h"
 
 @interface CommentViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -19,19 +20,40 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    _dataArray=[[NSMutableArray alloc]init];
+    [self executeNetworkService];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
-        UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(dismissModalView)];
-        self.navigationController.navigationBar.tintColor =[UIColor whiteColor];
-        self.navigationItem.rightBarButtonItem.tintColor=[UIColor whiteColor];
-        self.navigationItem.rightBarButtonItem = rightButton;
+//        UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(dismissModalView)];
+//        self.navigationController.navigationBar.tintColor =[UIColor whiteColor];
+//        self.navigationItem.rightBarButtonItem.tintColor=[UIColor whiteColor];
+//        self.navigationItem.rightBarButtonItem = rightButton;
+//    
+}
+
+-(void)executeNetworkService{
+    [USTServiceProvider getCommentListForPostWithID:_postID WithCompletionHandler:^(USTRequest * request) {
+        _dataArray = [NSMutableArray arrayWithArray:[request.responseDict objectForKey:@"comment"]];
+        [_tableView reloadData];
+    }];
     
 }
 
 -(void)dismissModalView{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    
+    if([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    
+    return YES;
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -57,7 +79,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 20;//[_dataArray count];
+    return [_dataArray count];
 }
 
 
@@ -67,10 +89,10 @@
     NSString *CellIdentifier =@"commentCell";
     cell= [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
-//    NSDictionary * attendee = [_dataArray objectAtIndex:indexPath.row];
-//    
-//    cell.commenterNameLabel.text=[NSString stringWithFormat:@"%@ %@",[attendee objectForKey:@"firstname"],[attendee objectForKey:@"lastname"]];
-//    cell.commentLabel.text = [attendee objectForKey:@"designation"];
+    NSDictionary * attendee = [_dataArray objectAtIndex:indexPath.row];
+    
+    cell.commenterNameLabel.text=[NSString stringWithFormat:@"%@ %@",[attendee objectForKey:@"firstname"],[attendee objectForKey:@"lastname"]];
+    cell.commentLabel.text = [attendee objectForKey:@"cmnt_text"];
     
 
     return cell;
@@ -79,9 +101,9 @@
 - (void)configureCell:(CommentCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     
     
-//    NSDictionary * attendee = [_dataArray objectAtIndex:indexPath.row];
-//    cell.commenterNameLabel.text=[NSString stringWithFormat:@"%@ %@",[attendee objectForKey:@"firstname"],[attendee objectForKey:@"lastname"]];
-//    cell.commentLabel.text = [attendee objectForKey:@"designation"];
+    NSDictionary * attendee = [_dataArray objectAtIndex:indexPath.row];
+    cell.commenterNameLabel.text=[NSString stringWithFormat:@"%@ %@",[attendee objectForKey:@"firstname"],[attendee objectForKey:@"lastname"]];
+    cell.commentLabel.text = [attendee objectForKey:@"designation"];
     
 }
 
@@ -120,4 +142,13 @@
 
 
 
+- (IBAction)closeView:(id)sender {
+    [self dismissModalView];
+}
+
+- (IBAction)commentAction:(id)sender {
+    [USTServiceProvider commentPostWithPostId:_postID andComment:_commentTextView.text WithCompletionHandler:^(USTRequest * request) {
+    
+    }];
+}
 @end

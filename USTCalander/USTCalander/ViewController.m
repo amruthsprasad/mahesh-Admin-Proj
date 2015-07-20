@@ -330,16 +330,17 @@
     NSDictionary * post = [self.dataArray objectAtIndex:sender.tag];
 
     CommentViewController *vc=[[UIStoryboard storyboardWithName:@"Agenda" bundle:nil]instantiateViewControllerWithIdentifier:@"CommentViewController"];
+    vc.postID=[post objectForKey:@"post_id"];
     
-    UINavigationController * navCtrl = [[UINavigationController alloc]initWithRootViewController:vc];
-    [navCtrl.navigationBar setBarTintColor: [UIColor colorWithRed:2/255.0 green:128/255.0 blue:231/255.0 alpha:1.0]];
-    navCtrl.navigationBar.topItem.title = @"Comment";
-    NSDictionary *size = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont boldSystemFontOfSize:21],NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, nil];
-    navCtrl.navigationBar.titleTextAttributes = size;
-    /*[self presentViewController:agendaList animated:YES completion:^{
+//    UINavigationController * navCtrl = [[UINavigationController alloc]initWithRootViewController:vc];
+//    [navCtrl.navigationBar setBarTintColor: [UIColor colorWithRed:2/255.0 green:128/255.0 blue:231/255.0 alpha:1.0]];
+//    navCtrl.navigationBar.topItem.title = @"Comment";
+//    NSDictionary *size = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont boldSystemFontOfSize:21],NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, nil];
+//    navCtrl.navigationBar.titleTextAttributes = size;
+    [self presentViewController:vc animated:YES completion:^{
      
-     }];*/
-    [self presentViewController:navCtrl animated:YES completion:nil];
+     }];
+    //[self presentViewController:navCtrl animated:YES completion:nil];
 }
 
 - (void) twitterBtnAction:(ActivityFeedCell *)sender{

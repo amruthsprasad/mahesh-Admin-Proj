@@ -10,4 +10,10 @@
 
 @interface CommentViewController : UIViewController
 
+@property(nonatomic,strong)NSString * postID;
+@property (weak, nonatomic) IBOutlet UITextView *commentTextView;
+
+- (IBAction)closeView:(id)sender;
+- (IBAction)commentAction:(id)sender;
+
 @end
