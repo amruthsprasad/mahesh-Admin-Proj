@@ -161,7 +161,9 @@
         }
     });
         dispatch_async(kBgQueue, ^{
-            NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseImageUrlCroped,[post objectForKey:@"user_image"]]]];
+            NSData *imgData = [USTServiceProvider getImageWithName:[post objectForKey:@"user_image"]];
+
+            //NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseImageUrlCroped,[post objectForKey:@"user_image"]]]];
             if (imgData) {
                 UIImage *image = [UIImage imageWithData:imgData];
                 if (image) {

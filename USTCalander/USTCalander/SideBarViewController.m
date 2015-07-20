@@ -15,6 +15,9 @@
 #import "AgendaViewController.h"
 #import "AppDelegate.h"
 #import "ContainerBridgeView.h"
+#import "USTUser.h"
+#import "Constants.h"
+#import "USTServiceProvider.h"
 
 #define SegueIdentifierActivity @"embedActivity"
 #define SegueIdentifierAgenda @"embedAgenda"
@@ -75,6 +78,27 @@
     NSString * CellIdentifier2 = @"Title";
     if (indexPath.row ==0) {
         SlideBarTitleTableViewCell *cell= [tableView dequeueReusableCellWithIdentifier:CellIdentifier2 forIndexPath:indexPath];
+        USTUser * sharedUser = [USTUser sharedInstance];
+        
+        cell.title_label.text=[NSString stringWithFormat:@"%@ %@",sharedUser.userFirstName,sharedUser.userLastName];
+        cell.locationInfo_label.text=sharedUser.userLocation;
+        
+        dispatch_async(kBgQueue, ^{
+            NSData *imgData = [USTServiceProvider getImageWithName:sharedUser.userImage];
+            
+            //NSData *imgData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseImageUrlCroped,[post objectForKey:@"user_image"]]]];
+            if (imgData) {
+                UIImage *image = [UIImage imageWithData:imgData];
+                if (image) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        SlideBarTitleTableViewCell * cell = (id)[tableView cellForRowAtIndexPath:indexPath];
+                        if (cell)
+                            cell.profilePic_imageview.image = image;
+                    });
+                }
+            }
+        });
+        
         return cell;
     }
     else
