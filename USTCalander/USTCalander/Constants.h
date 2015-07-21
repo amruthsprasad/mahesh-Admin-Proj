@@ -27,6 +27,9 @@
 ///*******************************************
 
 #define k_ActivityListServiceID @"activitylist"
+#define k_EventListServiceID @"eventlist"
+#define k_QuestionListServiceID @"questionlist"
+#define k_QuestionDetailServiceID @"questiondetail"
 #define k_AgendaListServiceID @"agendalist"
 #define k_AgendaDetailServiceID @"agendadetail"
 #define k_AgendaActivityListlServiceID @"agendaactivitylist"
@@ -34,6 +37,7 @@
 #define k_SpeakerDetailsServiceID @"speakerdetails"
 #define k_LeaderBoardServiceID @"Leaderboardlist"
 #define k_AttendeesListServiceID @"attendeeslist"
+#define k_TravelAndLogisticsServiceID @"travelandlogistics"
 #define k_LikersListServiceID @"likerslist"
 #define k_CommentersListServiceID @"commenterslist"
 #define k_ImageDownloadServiceID @"imagedownload"

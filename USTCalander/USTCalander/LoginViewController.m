@@ -51,8 +51,8 @@
 
 - (IBAction)loginAction:(id)sender {
 
-    //[self executeServiceRequest];
-    [self goToHomeScreen];
+    [self executeServiceRequest];
+    //[self goToHomeScreen];
 }
 
 - (IBAction)rememberMeAction:(id)sender {

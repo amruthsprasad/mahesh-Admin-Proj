@@ -30,6 +30,60 @@
     
 }
 
++(void)getEventListwithCompletionHandler:(requestCompletion)completionBlock{
+    USTUser * user=[USTUser sharedInstance];
+    NSString * url=[NSString stringWithFormat:@"%@post.php?action=eventlist&user_id==%@",BaseUrl,user.userID];
+    USTRequest * request =[[USTRequest alloc]initWithUrl:url];
+    
+    [request makeGETNetworkRequestWithCompletionHandler:^(USTRequest *request) {
+        
+        if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"success"]) {
+            [USTDataCacheHandler cacheData:request.responseData forServiceId:k_EventListServiceID andPageID:@""];
+        }
+        else // ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
+        {
+            request.responseData = [NSMutableData dataWithData:[USTDataCacheHandler getDataforServiceId:k_EventListServiceID andPageID:@""]];
+            NSError *errorInJSON = nil;
+            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:request.responseData
+                                                                 options:kNilOptions
+                                                                   error:&errorInJSON];
+            if (!errorInJSON) {
+                request.responseDict = json;
+            }
+            
+            
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completionBlock(request);
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            
+        });
+    }];
+}
+
++(void)updateUserEventwithCompletionHandler:(requestCompletion)completionBlock{
+    USTUser * user=[USTUser sharedInstance];
+    NSString * url=[NSString stringWithFormat:@"%@post.php?action=changeevent&user_id=%@&event_id=%@",BaseUrl,user.userID,user.userEventID];
+    USTRequest * request =[[USTRequest alloc]initWithUrl:url];
+    
+    [request makeGETNetworkRequestWithCompletionHandler:^(USTRequest *request) {
+        
+        if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"success"]) {
+        }
+        else // ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
+        {
+            
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completionBlock(request);
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            
+        });
+    }];
+}
+
+
+
 
 +(void)getActivityFeed:(NSNumber *)count andPage:(NSNumber *)page withCompletionHandler:(requestCompletion)completionBlock{
     USTUser * user=[USTUser sharedInstance];
@@ -189,6 +243,94 @@
     
 }
 
+
++(void)getQuestionListWithAgendaID:(NSString *)agendaID withCompletionHandler:(requestCompletion)completionBlock{
+    
+    USTUser * user=[USTUser sharedInstance];
+    NSString * url=[NSString stringWithFormat:@"%@post.php?action=questionlist&user_id=%@&agenda_id=%@",BaseUrl,user.userID,agendaID];
+    USTRequest * request =[[USTRequest alloc]initWithUrl:url];
+    
+    [request makeGETNetworkRequestWithCompletionHandler:^(USTRequest *request) {
+        
+        if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"success"]) {
+            [USTDataCacheHandler cacheData:request.responseData forServiceId:k_QuestionListServiceID andPageID:@""];
+        }
+        else // ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
+        {
+            request.responseData = [NSMutableData dataWithData:[USTDataCacheHandler getDataforServiceId:k_QuestionListServiceID andPageID:@""]];
+            NSError *errorInJSON = nil;
+            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:request.responseData
+                                                                 options:kNilOptions
+                                                                   error:&errorInJSON];
+            if (!errorInJSON) {
+                request.responseDict = json;
+            }
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completionBlock(request);
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            
+        });
+    }];
+    
+}
+
++(void)getQuestionDetailWithQuestionID:(NSString *)questionID withCompletionHandler:(requestCompletion)completionBlock{
+    
+    USTUser * user=[USTUser sharedInstance];
+    NSString * url=[NSString stringWithFormat:@"%@post.php?action=questionpoll&user_id=%@&qstn_id=%@",BaseUrl,user.userID,questionID];
+    USTRequest * request =[[USTRequest alloc]initWithUrl:url];
+    
+    [request makeGETNetworkRequestWithCompletionHandler:^(USTRequest *request) {
+        
+        if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"success"]) {
+            [USTDataCacheHandler cacheData:request.responseData forServiceId:k_QuestionDetailServiceID andPageID:@""];
+        }
+        else // ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
+        {
+            request.responseData = [NSMutableData dataWithData:[USTDataCacheHandler getDataforServiceId:k_QuestionDetailServiceID andPageID:@""]];
+            NSError *errorInJSON = nil;
+            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:request.responseData
+                                                                 options:kNilOptions
+                                                                   error:&errorInJSON];
+            if (!errorInJSON) {
+                request.responseDict = json;
+            }
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completionBlock(request);
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            
+        });
+    }];
+}
+
+
++(void)voteForPollWithID:(NSString *)pollID andQuestionID:(NSString *)questionID withCompletionHandler:(requestCompletion)completionBlock{
+    
+    USTUser * user=[USTUser sharedInstance];
+    NSString * url=[NSString stringWithFormat:@"%@post.php?action=dovoting&qstn_id=%@&user_id=%@&user_poll=%@",BaseUrl,questionID,user.userID,pollID];
+    USTRequest * request =[[USTRequest alloc]initWithUrl:url];
+    
+    [request makeGETNetworkRequestWithCompletionHandler:^(USTRequest *request) {
+        
+        if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"success"]) {
+        }
+        else // ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
+        {
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completionBlock(request);
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            
+        });
+    }];
+}
+
+
 +(void)getSpeakerListwithCompletionHandler:(requestCompletion)completionBlock{
     USTUser * user=[USTUser sharedInstance];
     NSString * url=[NSString stringWithFormat:@"%@post.php?action=speakerlist&event_id=%@",BaseUrl,user.userEventID];
@@ -306,6 +448,38 @@
                 request.responseDict = json;
             }
 
+            
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            completionBlock(request);
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            
+        });
+    }];
+}
+
+
++(void)getTralelAndLogisticsWithCompletionHandler:(requestCompletion)completionBlock{
+    USTUser * user=[USTUser sharedInstance];
+    NSString * url=[NSString stringWithFormat:@"%@post.php?action=travelinfo&event_id=%@",BaseUrl,user.userEventID];
+    USTRequest * request =[[USTRequest alloc]initWithUrl:url];
+    
+    [request makeGETNetworkRequestWithCompletionHandler:^(USTRequest *request) {
+        
+        if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"success"]) {
+            [USTDataCacheHandler cacheData:request.responseData forServiceId:k_TravelAndLogisticsServiceID andPageID:@""];
+        }
+        else //if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
+        {
+            request.responseData = [NSMutableData dataWithData:[USTDataCacheHandler getDataforServiceId:k_TravelAndLogisticsServiceID andPageID:@""]];
+            NSError *errorInJSON = nil;
+            NSDictionary* json = [NSJSONSerialization JSONObjectWithData:request.responseData
+                                                                 options:kNilOptions
+                                                                   error:&errorInJSON];
+            if (!errorInJSON) {
+                request.responseDict = json;
+            }
+            
             
         }
         dispatch_async(dispatch_get_main_queue(), ^{

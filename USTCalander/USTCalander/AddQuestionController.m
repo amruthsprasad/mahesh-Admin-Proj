@@ -76,6 +76,8 @@
         
     }];
 }
-
+- (IBAction)postQuestion:(id)sender{
+    
+}
 
 @end

@@ -14,7 +14,7 @@
 
 @property(nonatomic,weak) IBOutlet UILabel * voteRemainLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property(nonatomic , strong)NSString* agendaID;
 - (IBAction)postQuestionBtnAction:(id)sender;
 
 @end

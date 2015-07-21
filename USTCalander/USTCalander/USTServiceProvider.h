@@ -21,6 +21,13 @@ typedef void(^requestCompletion)(USTRequest *);
 + (void)loginWithUserId:(NSString *)userID andPassword:(NSString *)password withCompletionHandler:(requestCompletion)completionBlock;
 
 //********************************
+//*EventList service
+//********************************
+
++(void)getEventListwithCompletionHandler:(requestCompletion)completionBlock;
++(void)updateUserEventwithCompletionHandler:(requestCompletion)completionBlock;
+
+//********************************
 //*Activity service
 //********************************
 
@@ -34,6 +41,15 @@ typedef void(^requestCompletion)(USTRequest *);
 +(void)attendingAgendaWithAgendaID:(NSString *)agendaID withCompletionHandler:(requestCompletion)completionBlock;
 +(void)getAgendaDetail:(NSString *)agendaID withCompletionHandler:(requestCompletion)completionBlock;
 +(void)getSingleAgendaActivityList:(NSString *)agendaID andPage:(NSNumber *)page withCompletionHandler:(requestCompletion)completionBlock;
+
+
+//********************************
+//*Polls service
+//********************************
+
++(void)getQuestionListWithAgendaID:(NSString *)agendaID withCompletionHandler:(requestCompletion)completionBlock;
++(void)getQuestionDetailWithQuestionID:(NSString *)questionID withCompletionHandler:(requestCompletion)completionBlock;
++(void)voteForPollWithID:(NSString *)pollID andQuestionID:(NSString *)questionID withCompletionHandler:(requestCompletion)completionBlock;
 
 //********************************
 //*Speaker List service
@@ -89,6 +105,13 @@ typedef void(^requestCompletion)(USTRequest *);
 //* Image Download service
 //********************************
 +(NSData *)getImageWithName:(NSString *)imageName;
+
+//********************************
+//*Travel & Logistics service
+//********************************
+
++(void)getTralelAndLogisticsWithCompletionHandler:(requestCompletion)completionBlock;
+
 
 
 

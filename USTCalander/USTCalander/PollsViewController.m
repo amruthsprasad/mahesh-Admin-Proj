@@ -7,9 +7,10 @@
 //
 
 #import "PollsViewController.h"
+#import "USTServiceProvider.h"
 
 @interface PollsViewController ()
-
+@property (nonatomic, strong)NSMutableArray * dataArray;
 @end
 
 @implementation PollsViewController
@@ -30,8 +31,18 @@
     ContainerBridgeView * contBridgObj = [ContainerBridgeView sharedInstance];
     RootContainerView * rootContObj = (RootContainerView *)[contBridgObj getRootContainerObj];
     rootContObj.titleLabel.text = @"Ask Csk";
+    
+    _dataArray=[[NSMutableArray alloc]init];
+    [self executeNetworkService];
+
 }
 
+
+-(void)executeNetworkService{
+    [USTServiceProvider getQuestionListWithAgendaID:_agendaID withCompletionHandler:^(USTRequest * request) {
+        
+    }];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
