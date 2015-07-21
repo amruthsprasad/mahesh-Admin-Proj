@@ -9,6 +9,8 @@
 #import "CommentViewController.h"
 #import "CommentCell.h"
 #import "USTServiceProvider.h"
+#import "Constants.h"
+#import "USTUser.h"
 
 @interface CommentViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -20,21 +22,40 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.commentTextView.layer.borderWidth = 2.0f;
+    _commentTextView.layer.cornerRadius=5;
+    self.commentTextView.layer.borderColor = [[UIColor grayColor] CGColor];
+    
     _dataArray=[[NSMutableArray alloc]init];
     [self executeNetworkService];
 }
 
--(void)viewWillAppear:(BOOL)animated{
-//        UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(dismissModalView)];
-//        self.navigationController.navigationBar.tintColor =[UIColor whiteColor];
-//        self.navigationItem.rightBarButtonItem.tintColor=[UIColor whiteColor];
-//        self.navigationItem.rightBarButtonItem = rightButton;
-//    
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    // register for keyboard notifications
 }
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    // unregister for keyboard notifications while not visible.
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillShowNotification
+                                                  object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
+}
+
 
 -(void)executeNetworkService{
     [USTServiceProvider getCommentListForPostWithID:_postID WithCompletionHandler:^(USTRequest * request) {
-        _dataArray = [NSMutableArray arrayWithArray:[request.responseDict objectForKey:@"comment"]];
+        if (request.responseDict) {
+            _dataArray = [NSMutableArray arrayWithArray:[request.responseDict objectForKey:@"comment"]];
+
+        }
         [_tableView reloadData];
     }];
     
@@ -90,9 +111,32 @@
     cell= [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 
     NSDictionary * attendee = [_dataArray objectAtIndex:indexPath.row];
-    
+    cell.profileImage.layer.masksToBounds=YES;
+    cell.profileImage.layer.cornerRadius = cell.profileImage.frame.size.height/2;
     cell.commenterNameLabel.text=[NSString stringWithFormat:@"%@ %@",[attendee objectForKey:@"firstname"],[attendee objectForKey:@"lastname"]];
     cell.commentLabel.text = [attendee objectForKey:@"cmnt_text"];
+    
+    NSNumber * imageStatus = [attendee objectForKey:@"user_image_stat"];
+    NSString * imageName = [attendee objectForKey:@"user_image"];
+    
+    if (imageStatus) {
+        
+        
+        dispatch_async(kBgQueue, ^{
+            NSData *imgData = [USTServiceProvider getImageWithName:imageName];//[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseImageUrlCroped,postImageName]]];
+            if (imgData) {
+                UIImage *image = [UIImage imageWithData:imgData];
+                if (image) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        CommentCell * cell = (id)[tableView cellForRowAtIndexPath:indexPath];
+                        if (cell)
+                            cell.profileImage.image = image;
+                    });
+                }
+            }
+        });
+    }
+
     
 
     return cell;
@@ -109,7 +153,7 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [self heightForCellAtIndexPath:indexPath];
+    return 100;//[self heightForCellAtIndexPath:indexPath];
 }
 
 
@@ -148,7 +192,18 @@
 
 - (IBAction)commentAction:(id)sender {
     [USTServiceProvider commentPostWithPostId:_postID andComment:_commentTextView.text WithCompletionHandler:^(USTRequest * request) {
-    
+        USTUser * user =[USTUser sharedInstance];
+        NSMutableDictionary * dict= [[NSMutableDictionary alloc]init];
+        [dict setObject:_commentTextView.text forKey:@"cmnt_text"];
+        [dict setObject:user.userFirstName forKey:@"firstname"];
+        [dict setObject:user.userLastName forKey:@"lastname"];
+        [dict setObject:user.userImage forKey:@"user_image"];
+        [dict setObject:user.userImageStatus forKey:@"user_image_stat"];
+        
+        [_dataArray insertObject:[dict mutableCopy] atIndex:0];
+        [_tableView reloadData];
+        
+        _commentTextView.text=@"";
     }];
 }
 @end

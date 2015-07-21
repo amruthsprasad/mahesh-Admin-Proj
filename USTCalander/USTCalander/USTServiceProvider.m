@@ -442,7 +442,7 @@
         }
         else //if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
         {
-            [USTDataCacheHandler getDataforServiceId:k_LikersListServiceID andPageID:postID];
+            request.responseData=[NSMutableData dataWithData:[USTDataCacheHandler getDataforServiceId:k_LikersListServiceID andPageID:postID]];
             NSError *errorInJSON = nil;
             NSDictionary* json = [NSJSONSerialization JSONObjectWithData:request.responseData
                                                                  options:kNilOptions
@@ -498,7 +498,7 @@
         }
         else //if ([[request.responseDict objectForKey:@"status"] isEqualToString:@"fail"])
         {
-            [USTDataCacheHandler getDataforServiceId:k_CommentersListServiceID andPageID:postID];
+            request.responseData=[NSMutableData dataWithData:[USTDataCacheHandler getDataforServiceId:k_CommentersListServiceID andPageID:postID]];
             NSError *errorInJSON = nil;
             NSDictionary* json = [NSJSONSerialization JSONObjectWithData:request.responseData
                                                                  options:kNilOptions
@@ -520,14 +520,19 @@
 
 +(NSData *)getImageWithName:(NSString *)imageName{
     
-    NSData * imageData = [NSMutableData dataWithData:[USTDataCacheHandler getDataforServiceId:k_ImageDownloadServiceID andPageID:[NSString stringWithFormat:@"%@",imageName]]];
-    if (imageData.length) {
+    NSData * imageData ;
+    NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *imageSubdirectory = [documentsPath stringByAppendingPathComponent:@"Images"];
+    NSString *filePath = [imageSubdirectory stringByAppendingPathComponent:imageName];
+    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
+    if (fileExists) {
+        imageData = [NSData dataWithContentsOfFile:filePath];
         return imageData;
     }
     else{
          imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseImageUrlFull,imageName]]];
         if (imageData.length) {
-            [USTDataCacheHandler cacheData:imageData forServiceId:k_ImageDownloadServiceID andPageID:imageName];
+            [self createFileWithName:imageName andImageData:imageData];
         }
         return imageData;
         
@@ -537,5 +542,24 @@
     return nil;
 }
 
++ (void)createFileWithName:(NSString *)fileName andImageData:(NSData *)imageData
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *imageSubdirectory = [documentsDirectory stringByAppendingPathComponent:@"Images"];
+    
+    BOOL isDir = NO;
+    NSError *error;
+    if (! [[NSFileManager defaultManager] fileExistsAtPath:imageSubdirectory isDirectory:&isDir]) {
+        [[NSFileManager defaultManager]createDirectoryAtPath:imageSubdirectory withIntermediateDirectories:YES attributes:nil error:&error];
+        NSLog(@"Error after creating directory:\n%@",error);
+    } else {
+        // file exists - I don't expect to use the else block. This is for figuring out what's going on.
+    }
+    NSString *filePath = [imageSubdirectory stringByAppendingPathComponent:fileName];
+    NSFileManager *manager = [NSFileManager defaultManager];
+    [manager createFileAtPath:[filePath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] contents:imageData attributes:nil];
+    
+}
 
 @end

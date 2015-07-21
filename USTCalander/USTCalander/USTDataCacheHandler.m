@@ -85,18 +85,22 @@
 
 +(USTDataCache *)getDataModalForServiceId:(NSString *)serviceId andPageId:(NSString *)pageID
 {
-    @try {
-        NSArray *cacheArray = [self getAllCacheData];
-        for (USTDataCache * cache in cacheArray) {
+    
+    NSArray *cacheArray = [self getAllCacheData];
+    for (USTDataCache * cache in cacheArray) {
+        @try {
             if ([cache.serviceId isEqualToString:serviceId] && [cache.pageId isEqualToString:pageID]) {
                 return cache;
             }
         }
-        return nil;
+        @catch (NSException *exception) {
+            NSLog(@"exception ::: :::: ::: %@",exception);
+            return nil;
+        }
     }
-    @catch (NSException *exception) {
-        return nil;
-    }
+    return nil;
+   
+   
     
     
 }
