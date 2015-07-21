@@ -40,7 +40,8 @@
 
 -(void)executeNetworkService{
     [USTServiceProvider getQuestionListWithAgendaID:_agendaID withCompletionHandler:^(USTRequest * request) {
-        
+        _dataArray = [NSMutableArray arrayWithArray:[request.responseDict objectForKey:@"question"]];
+        [_tableView reloadData];
     }];
 }
 - (void)didReceiveMemoryWarning
@@ -64,12 +65,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 2;
+    return [_dataArray count];
 }
 
 -(UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -98,11 +99,12 @@
 }
 
 - (void)configureCell:(PollTableCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    NSDictionary* question = [_dataArray objectAtIndex:indexPath.row];
     
-    cell.titleLabel.text = @"App Admin Edited";
+    cell.titleLabel.text = [question objectForKey:@""];
     cell.timeLabel.text =@"Edited 20 Aprl 5:40 PM";
-    cell.descripLabel.text = @"Edited what's the team motto for success kjhkhkhkjhkhkjhkjhkhjkjhkjhkhkjhkjhkjhkjhkjhkjhkjhkhkhjkjkhkjhkjhkjhkjhkjhkjhkjhkjhkhkhjlkhkhjkhkhkjhkhkhkkhkhkhkk";
-    cell.voteLabel.text = @"40";
+    cell.descripLabel.text =[question objectForKey:@"qstn_qstn"] ;
+    cell.voteLabel.text = [question objectForKey:@"total_vote"];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
