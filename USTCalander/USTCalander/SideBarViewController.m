@@ -25,6 +25,7 @@
 #define SegueIdentifierLeaderboard @"embedLeaderboard"
 #define SegueIdentifierAttendees @"embedAttendees"
 #define SegueIdentifierPolls @"embedPolls"
+#define SegueIdentifierTravel @"embedTravel"
 
 @interface SideBarViewController ()
 {
@@ -50,9 +51,9 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-     menuItems = @[@"TITLE", @"Activity Feed", @"Agenda", @"Speakers", @"Leaderboard", @"Attendees", @"Ask Csk", @"Log out"];
+     menuItems = @[@"TITLE", @"Activity Feed", @"Agenda", @"Speakers", @"Leaderboard", @"Attendees", @"Ask Csk",@"Travel-Logistics", @"Log out"];
     
-    imageArray = @[@"MenuIconHome", @"MenuIconHome", @"MenuIconAgenda", @"MenuIconSpeakers", @"MenuIconLeaderboard", @"MenuIconAttendees", @"MenuIconPolls", @"MenuIconLogout"];
+    imageArray = @[@"MenuIconHome", @"MenuIconHome", @"MenuIconAgenda", @"MenuIconSpeakers", @"MenuIconLeaderboard", @"MenuIconAttendees", @"MenuIconPolls",@"MenuIconTravel", @"MenuIconLogout"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -156,7 +157,11 @@
             [contBrdgObj swapViewControllers:SegueIdentifierPolls];
             break;
         }
-        case 7:
+        case 7:{
+            [contBrdgObj swapViewControllers:SegueIdentifierTravel];
+            break;
+        }
+        case 8:
         {
             AppDelegate *appDelegateTemp = [[UIApplication sharedApplication]delegate];
             

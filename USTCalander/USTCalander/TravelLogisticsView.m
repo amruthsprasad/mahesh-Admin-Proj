@@ -1,21 +1,20 @@
 //
-//  LeaderBoardView.m
+//  TravelLogisticsView.m
 //  USTCalander
 //
-//  Created by Rony Antony on 16/07/15.
+//  Created by Rony Antony on 22/07/15.
 //  Copyright (c) 2015 Amruth. All rights reserved.
 //
 
-#import "LeaderBoardView.h"
-#import "Constants.h"
-#import "USTServiceProvider.h"
+#import "TravelLogisticsView.h"
 
-@interface LeaderBoardView ()
+@interface TravelLogisticsView ()
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong)NSMutableArray * dataArray;
+
 @end
 
-@implementation LeaderBoardView
+@implementation TravelLogisticsView
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,21 +32,9 @@
     
     ContainerBridgeView * contBridgObj = [ContainerBridgeView sharedInstance];
     RootContainerView * rootContObj = (RootContainerView *)[contBridgObj getRootContainerObj];
-    rootContObj.titleLabel.text = @"LeaderBoard";
-    
-    _dataArray=[[NSMutableArray alloc]init];
-    [self executeNetworkService];
-    
+    rootContObj.titleLabel.text = @"Travel-Logistics";
 }
--(void)executeNetworkService{
-    [USTServiceProvider getLeaderBoardwithCompletionHandler:^(USTRequest * request) {
-        if (request.responseDict) {
-            self.dataArray = [NSMutableArray arrayWithArray:[request.responseDict objectForKey:@"leaderboard"]];
-            [_tableView reloadData];
-        }
-    }];
-    
-}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -74,25 +61,24 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return [_dataArray count];
+    return 10;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    LeaderBoardCell *cell ;
-    NSString *CellIdentifier =@"LeaderBoardCell";
+    TravelLogisticsCell *cell ;
+    NSString *CellIdentifier = @"TravelLogisticsCellView";
     cell= [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     cell.profileImg.layer.masksToBounds=YES;
     cell.profileImg.layer.cornerRadius = cell.profileImg.frame.size.height/2;
-    NSDictionary * leaderboardDict = [_dataArray objectAtIndex:indexPath.row];
-
-    cell.titleLabel.text=[NSString stringWithFormat:@"%@ %@",[leaderboardDict objectForKey:@"firstname"],[leaderboardDict objectForKey:@"lastname"]];
-    cell.descrip.text = [leaderboardDict objectForKey:@"designation"];
-    cell.pointLabel.text=[leaderboardDict objectForKey:@"lbrd_user_pnt"];
-    NSNumber * imageStatus = [leaderboardDict objectForKey:@"user_image_stat"];
-    NSString * imageName = [leaderboardDict objectForKey:@"user_image"];
-
+   /* NSDictionary * attendee = [_dataArray objectAtIndex:indexPath.row];
+    
+    cell.title.text=[NSString stringWithFormat:@"%@ %@",[attendee objectForKey:@"firstname"],[attendee objectForKey:@"lastname"]];
+    cell.descrip.text = [attendee objectForKey:@"designation"];
+    NSNumber * imageStatus = [attendee objectForKey:@"user_image_stat"];
+    NSString * imageName = [attendee objectForKey:@"user_image"];
+    
     if (imageStatus) {
         
         
@@ -102,25 +88,23 @@
                 UIImage *image = [UIImage imageWithData:imgData];
                 if (image) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        LeaderBoardCell * cell = (id)[tableView cellForRowAtIndexPath:indexPath];
+                        AttendeesFeedCell * cell = (id)[tableView cellForRowAtIndexPath:indexPath];
                         if (cell)
                             cell.profileImg.image = image;
                     });
                 }
             }
         });
-    }
-
+    }*/
+    
     return cell;
 }
 
-- (void)configureCell:(LeaderBoardCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+- (void)configureCell:(TravelLogisticsCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     
-    
-    NSDictionary * leaderboardDict = [_dataArray objectAtIndex:indexPath.row];
-    cell.titleLabel.text=[NSString stringWithFormat:@"%@ %@",[leaderboardDict objectForKey:@"firstname"],[leaderboardDict objectForKey:@"lastname"]];
-    cell.descrip.text = [leaderboardDict objectForKey:@"designation"];
-    cell.pointLabel.text=[leaderboardDict objectForKey:@"lbrd_user_pnt"];
+   /* NSDictionary * attendee = [_dataArray objectAtIndex:indexPath.row];
+    cell.title.text=[NSString stringWithFormat:@"%@ %@",[attendee objectForKey:@"firstname"],[attendee objectForKey:@"lastname"]];
+    cell.descrip.text = [attendee objectForKey:@"designation"];*/
     
 }
 
@@ -132,10 +116,10 @@
 
 - (CGFloat)heightForCellAtIndexPath:(NSIndexPath *)indexPath {
     
-    static LeaderBoardCell * sizingCell = nil;
+    static TravelLogisticsCell * sizingCell = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sizingCell = [self.tableView dequeueReusableCellWithIdentifier:@"LeaderBoardCell"];
+        sizingCell = [self.tableView dequeueReusableCellWithIdentifier:@"TravelLogisticsCellView"];
     });
     
     [self configureCell:sizingCell atIndexPath:indexPath];
@@ -154,7 +138,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 90;
+    return 99;
 }
 
 

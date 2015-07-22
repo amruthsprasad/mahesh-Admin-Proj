@@ -90,7 +90,7 @@
     cell.profileImg.layer.cornerRadius = cell.profileImg.frame.size.height/2;
     NSDictionary * attendee = [_dataArray objectAtIndex:indexPath.row];
     
-    cell.title.text=[NSString stringWithFormat:@"%@ %@",[attendee objectForKey:@"firstname"],[attendee objectForKey:@"lastname"]];
+    cell.titleLabel.text=[NSString stringWithFormat:@"%@ %@",[attendee objectForKey:@"firstname"],[attendee objectForKey:@"lastname"]];
     cell.descrip.text = [attendee objectForKey:@"designation"];
     NSNumber * imageStatus = [attendee objectForKey:@"user_image_stat"];
     NSString * imageName = [attendee objectForKey:@"user_image"];
@@ -120,7 +120,7 @@
     
     
     NSDictionary * attendee = [_dataArray objectAtIndex:indexPath.row];
-    cell.title.text=[NSString stringWithFormat:@"%@ %@",[attendee objectForKey:@"firstname"],[attendee objectForKey:@"lastname"]];
+    cell.titleLabel.text=[NSString stringWithFormat:@"%@ %@",[attendee objectForKey:@"firstname"],[attendee objectForKey:@"lastname"]];
     cell.descrip.text = [attendee objectForKey:@"designation"];
     
 }
@@ -155,7 +155,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 200;
+    return 90;
 }
 
 

@@ -10,7 +10,7 @@
 
 @interface LeaderBoardCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel * title;
+@property (weak, nonatomic) IBOutlet UILabel * titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel * descrip;
 @property (weak, nonatomic) IBOutlet UILabel * pointLabel;
 @property (weak, nonatomic) IBOutlet UIImageView * profileImg;
