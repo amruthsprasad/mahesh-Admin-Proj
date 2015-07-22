@@ -4,3 +4,11 @@ USTCalander/USTCalander/BaseViewController.xib
 USTCalander/USTCalander/BaseViewController.xib
 
 USTCalander/USTCalander/BaseViewController.xib
+
+*.storyboard
+
+USTCalander/USTCalander/Agenda.storyboard
+
+USTCalander/USTCalander/Base.lproj/Main.storyboard
+
+USTCalander/USTCalander.xcodeproj/project.xcworkspace/xcuserdata/Rony.xcuserdatad/UserInterfaceState.xcuserstate
