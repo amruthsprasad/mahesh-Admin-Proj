@@ -47,7 +47,8 @@
     [USTServiceProvider getTralelAndLogisticsWithCompletionHandler:^(USTRequest * request) {
         if (request.responseDict) {
             _dataArray=[NSMutableArray arrayWithArray:[request.responseDict objectForKey:@""]];
-            [_tableView reloadData];
+           // UIWebView *webview =[UIWebView alloc]initWithFrame:self.
+            //[_tableView reloadData];
         }
     }];
      
