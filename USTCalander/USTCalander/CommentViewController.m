@@ -101,6 +101,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
     return [_dataArray count];
+    //return 1;
 }
 
 
@@ -137,8 +138,6 @@
         });
     }
 
-    
-
     return cell;
 }
 
@@ -153,7 +152,8 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 100;//[self heightForCellAtIndexPath:indexPath];
+   // return 100;
+    return [self heightForCellAtIndexPath:indexPath];
 }
 
 
