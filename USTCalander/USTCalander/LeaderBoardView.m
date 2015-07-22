@@ -116,12 +116,10 @@
 
 - (void)configureCell:(LeaderBoardCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     
-    
     NSDictionary * leaderboardDict = [_dataArray objectAtIndex:indexPath.row];
     cell.titleLabel.text=[NSString stringWithFormat:@"%@ %@",[leaderboardDict objectForKey:@"firstname"],[leaderboardDict objectForKey:@"lastname"]];
     cell.descrip.text = [leaderboardDict objectForKey:@"designation"];
     cell.pointLabel.text=[leaderboardDict objectForKey:@"lbrd_user_pnt"];
-    
 }
 
 

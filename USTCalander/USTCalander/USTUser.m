@@ -52,7 +52,7 @@ NSString * const kSecIdentifier = @"USTUserCredentials";
                                                                error:&errorInJSON];
         NSString * status = [NSString stringWithFormat:@"%@",[json objectForKey:@"status"]];
         if (status) {
-            NSDictionary * userData=[json objectForKey:@"user"];
+            NSDictionary * userData=[[json objectForKey:@"user"] objectAtIndex:0];
             self.userData = sessionData;//[request.responseDict objectForKey:@"user"];
             self.userID = [userData objectForKey:@"id"];
             self.userSessionID = [userData objectForKey:@"deviceid"];

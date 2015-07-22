@@ -79,7 +79,7 @@
         NSString * fail = [NSString stringWithFormat:@"%@",[NSNumber numberWithInt:0]];
         NSString * status = [NSString stringWithFormat:@"%@",[request.responseDict objectForKey:@"status"]];
         if ([status isEqualToString:success] ) {
-            NSDictionary * userData=[request.responseDict objectForKey:@"user"];
+            NSDictionary * userData=[[request.responseDict objectForKey:@"user"] objectAtIndex:0];
             sharedUser.userData = request.responseData;//[request.responseDict objectForKey:@"user"];
             sharedUser.userID = [userData objectForKey:@"id"];
             sharedUser.userSessionID = [userData objectForKey:@"deviceid"];

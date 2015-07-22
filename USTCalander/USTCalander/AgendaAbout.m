@@ -49,7 +49,7 @@
             _tilteLabel.text=[request.responseDict objectForKey:@"agenda_name"];
             _timeLabel.text=[NSString stringWithFormat:@"%@-%@,%@, %@",[request.responseDict objectForKey:@"agenda_from"],[request.responseDict objectForKey:@"agenda_to"],[request.responseDict objectForKey:@"agenda_date"],[request.responseDict objectForKey:@"agenda_place"]];
             _descripLabel.text=[request.responseDict objectForKey:@"agenda_desc"];
-
+            
             NSNumber * isAttending =[request.responseDict objectForKey:@"user_attending"];
             if ([isAttending boolValue]) {
                 [_uncheckButton setTitle:@"Uncheck Here" forState:UIControlStateNormal];
