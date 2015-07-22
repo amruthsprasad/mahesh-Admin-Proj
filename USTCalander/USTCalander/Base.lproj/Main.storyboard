@@ -930,7 +930,7 @@
                                                                 <constraint firstAttribute="height" constant="1" id="BmJ-pe-ZLW"/>
                                                             </constraints>
                                                         </view>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginBG" translatesAutoresizingMaskIntoConstraints="NO" id="inZ-HZ-oHS">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="inZ-HZ-oHS">
                                                             <rect key="frame" x="0.0" y="74" width="308" height="180"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="180" id="9VO-n3-0e0"/>
@@ -3066,7 +3066,7 @@
                                                                 <constraint firstAttribute="height" constant="1" id="FBR-pQ-2yr"/>
                                                             </constraints>
                                                         </view>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginBG" translatesAutoresizingMaskIntoConstraints="NO" id="oYi-82-7cP">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oYi-82-7cP">
                                                             <rect key="frame" x="0.0" y="74" width="308" height="180"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="308" id="Q0v-MI-Sj4"/>
