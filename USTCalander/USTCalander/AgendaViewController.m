@@ -10,8 +10,8 @@
 #import "AgendaDetailView.h"
 #import "USTServiceProvider.h"
 
-@interface AgendaViewController ()
 
+@interface AgendaViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong)NSMutableArray * dataArray;
 
@@ -24,7 +24,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     ContainerBridgeView * contBridgObj = [ContainerBridgeView sharedInstance];
-    RootContainerView * rootContObj = (RootContainerView *)[contBridgObj getRootContainerObj];
+    rootContObj = (RootContainerView *)[contBridgObj getRootContainerObj];
     rootContObj.titleLabel.text = @"Agenda";
     _dataArray = [[NSMutableArray alloc]init];
     [self executeNetworkService];

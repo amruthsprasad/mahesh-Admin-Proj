@@ -10,7 +10,9 @@
 #import "AgendaFeedCell.h"
 #import "ContainerBridgeView.h"
 
+
 @interface AgendaViewController : UIViewController<AgendaFeedCellDelegate>{
+    RootContainerView * rootContObj;
 }
 @property(nonatomic , strong)NSString * agendaType;
 
