@@ -11,4 +11,6 @@
 
 @interface SpeakerAboutView : UIViewController
 
+@property(nonatomic,weak)IBOutlet UITextView * aboutSpeakerTextView;
+
 @end

@@ -12,6 +12,12 @@
 @interface SpeakerDetailView : UIViewController
 
 @property(nonatomic,strong) NSString * currentView;
+
+@property(nonatomic,strong) NSString * speakerID;
+@property(nonatomic,strong) NSMutableArray * speakerSeassions;
+@property(nonatomic,strong) NSString * aboutSpeaker;
+
+
 @property(nonatomic,weak) IBOutlet UIImageView * profileImg;
 @property(nonatomic,weak) IBOutlet UILabel * titleLabel;
 @property(nonatomic,weak) IBOutlet UILabel * descripLabel;

@@ -18,9 +18,11 @@
 
 
 @interface ViewController ()<UITableViewDataSource,UITableViewDelegate,RootContainerViewDelegate,ActivityFeedCellDelegate>
+{
+    RootContainerView * rootContObj;
 
+}
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-RootContainerView * rootContObj;
 @property (nonatomic, strong)NSMutableArray * dataArray;
 @end
 

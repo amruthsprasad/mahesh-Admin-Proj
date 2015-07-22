@@ -9,6 +9,7 @@
 #import "SpeakerView.h"
 #import "Constants.h"
 #import "USTServiceProvider.h"
+#import "SpeakerDetailView.h"
 
 @interface SpeakerView ()
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -158,5 +159,17 @@
     return UIEdgeInsetsMake(0,0,0,0);  // top, left, bottom, right
 }
 
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary * speaker = [self.dataArray objectAtIndex:indexPath.row];
+    SpeakerDetailView* speakerDetail=[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"SpeakerDetailView"];
+    speakerDetail.speakerID=[speaker objectForKey:@"speaker_id"];
+    [self.navigationController pushViewController:speakerDetail animated:YES];
+    
+//    [USTServiceProvider getSpeakerDetailsWithId:[speaker objectForKey:@"id"] withCompletionHandler:^(USTRequest * request) {
+//        
+//    }];
+}
 
 @end

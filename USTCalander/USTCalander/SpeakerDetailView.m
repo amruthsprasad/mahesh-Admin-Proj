@@ -7,6 +7,8 @@
 //
 
 #import "SpeakerDetailView.h"
+#import "USTServiceProvider.h"
+#import "Constants.h"
 
 @interface SpeakerDetailView ()
 
@@ -31,12 +33,43 @@
     ContainerBridgeView * contBridgObj = [ContainerBridgeView sharedInstance];
     RootContainerView * rootContObj = (RootContainerView *)[contBridgObj getRootContainerObj];
     rootContObj.titleLabel.text = @"Single Agenda";
-    
+    _speakerSeassions=[[NSMutableArray alloc]init];
     self.currentView=@"speakerAbout";
     [self setSpeakerAboutActive];
+    [self executeNetworkService];
 
 }
 
+
+-(void)executeNetworkService{
+    [USTServiceProvider getSpeakerDetailsWithId:_speakerID withCompletionHandler:^(USTRequest *request) {
+        [self setViewWithSpeakerValues:request];
+    }];
+}
+
+-(void)setViewWithSpeakerValues:(USTRequest*)request
+{
+    _titleLabel.text=[NSString stringWithFormat:@"%@ %@",[request.responseDict objectForKey:@"speaker_fname"],[request.responseDict objectForKey:@"speaker_fname"]];
+    _descripLabel.text=[request.responseDict objectForKey:@"speaker_desg"];
+    _speakerSeassions = [request.responseDict objectForKey:@"agendas"];
+    _aboutSpeaker = [request.responseDict objectForKey:@"speaker_about"];
+    NSString * imageName = [request.responseDict objectForKey:@"speaker_img"];
+    dispatch_async(kBgQueue, ^{
+        NSData *imgData = [USTServiceProvider getImageWithName:imageName];//[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseImageUrlCroped,postImageName]]];
+        if (imgData) {
+            UIImage *image = [UIImage imageWithData:imgData];
+            if (image) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                        self.profileImg.image = image;
+                    //cell.activityImageView.frame = CGRectMake(cell.activityImageView.frame.origin.x, cell.activityImageView.frame.origin.y,309, 180);
+                    
+                });
+            }
+        }
+    });
+    [self SessionBtnActionpost];
+
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -68,6 +101,10 @@
     self.AboutOpacityView.alpha=0;
 }
 
+- (void)SessionBtnActionpost {
+    self.currentView=@"speakerSession";
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"speakerdetailsRecieved" object:nil userInfo:nil];
+}
 
 - (IBAction)SessionBtnAction:(id)sender {
     self.currentView=@"speakerSession";

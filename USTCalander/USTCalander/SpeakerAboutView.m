@@ -7,6 +7,7 @@
 //
 
 #import "SpeakerAboutView.h"
+#import "SpeakerDetailView.h"
 
 @interface SpeakerAboutView ()
 
@@ -31,6 +32,8 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(speakerDetailNotoficationAction:) name:@"SpeakerDetailNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(speakerDetailReceivedNotoficationAction:) name:@"speakerdetailsRecieved" object:nil];
+
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -61,4 +64,10 @@
     [self.navigationController pushViewController:agendaVc animated:NO];
 }
 
+
+-(void) speakerDetailReceivedNotoficationAction:(NSNotification *)actionDict{
+    SpeakerDetailView * speakerDetailViewObj = (SpeakerDetailView *)self.parentViewController.parentViewController;
+
+    _aboutSpeakerTextView.text=speakerDetailViewObj.aboutSpeaker;
+}
 @end
