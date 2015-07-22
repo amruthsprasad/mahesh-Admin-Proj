@@ -16,6 +16,8 @@
 		E88AC1551B56DC7800E8AAD2 /* AgendaAbout.m in Sources */ = {isa = PBXBuildFile; fileRef = E88AC1541B56DC7800E8AAD2 /* AgendaAbout.m */; };
 		E894B6471B56F8DF000F44B4 /* AttendeesController.m in Sources */ = {isa = PBXBuildFile; fileRef = E894B6461B56F8DF000F44B4 /* AttendeesController.m */; };
 		E894B64A1B56FBB6000F44B4 /* AttendeesFeedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E894B6491B56FBB6000F44B4 /* AttendeesFeedCell.m */; };
+		E8C831B21B6018E000FC3F84 /* CustomView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8C831B11B6018E000FC3F84 /* CustomView.storyboard */; };
+		E8C831B51B60195900FC3F84 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8C831B31B60195900FC3F84 /* Main.storyboard */; };
 		E8C91CA71B5C09C200FD96B6 /* SpeakerDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C91CA61B5C09C200FD96B6 /* SpeakerDetailView.m */; };
 		E8C91CAA1B5C365500FD96B6 /* SpeakerAboutView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8C91CA91B5C365500FD96B6 /* SpeakerAboutView.m */; };
 		E8CB6F3F1B556C7800FDA950 /* AgendaDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CB6F3E1B556C7800FDA950 /* AgendaDetailView.m */; };
@@ -46,7 +48,6 @@
 		F07A19411B1CCF2800A67D85 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F07A19401B1CCF2800A67D85 /* AppDelegate.m */; };
 		F07A19441B1CCF2800A67D85 /* USTCalander.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F07A19421B1CCF2800A67D85 /* USTCalander.xcdatamodeld */; };
 		F07A19471B1CCF2800A67D85 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F07A19461B1CCF2800A67D85 /* ViewController.m */; };
-		F07A194A1B1CCF2800A67D85 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F07A19481B1CCF2800A67D85 /* Main.storyboard */; };
 		F07A194C1B1CCF2800A67D85 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F07A194B1B1CCF2800A67D85 /* Images.xcassets */; };
 		F07A194F1B1CCF2800A67D85 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = F07A194D1B1CCF2800A67D85 /* LaunchScreen.xib */; };
 		F07A195B1B1CCF2800A67D85 /* USTCalanderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F07A195A1B1CCF2800A67D85 /* USTCalanderTests.m */; };
@@ -91,6 +92,8 @@
 		E894B6461B56F8DF000F44B4 /* AttendeesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttendeesController.m; sourceTree = "<group>"; };
 		E894B6481B56FBB6000F44B4 /* AttendeesFeedCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendeesFeedCell.h; sourceTree = "<group>"; };
 		E894B6491B56FBB6000F44B4 /* AttendeesFeedCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttendeesFeedCell.m; sourceTree = "<group>"; };
+		E8C831B11B6018E000FC3F84 /* CustomView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CustomView.storyboard; sourceTree = "<group>"; };
+		E8C831B41B60195900FC3F84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E8C91CA51B5C09C200FD96B6 /* SpeakerDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakerDetailView.h; sourceTree = "<group>"; };
 		E8C91CA61B5C09C200FD96B6 /* SpeakerDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeakerDetailView.m; sourceTree = "<group>"; };
 		E8C91CA81B5C365500FD96B6 /* SpeakerAboutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeakerAboutView.h; sourceTree = "<group>"; };
@@ -145,7 +148,6 @@
 		F07A19431B1CCF2800A67D85 /* USTCalander.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = USTCalander.xcdatamodel; sourceTree = "<group>"; };
 		F07A19451B1CCF2800A67D85 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		F07A19461B1CCF2800A67D85 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		F07A19491B1CCF2800A67D85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F07A194B1B1CCF2800A67D85 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F07A194E1B1CCF2800A67D85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		F07A19541B1CCF2800A67D85 /* USTCalanderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = USTCalanderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -378,7 +380,8 @@
 				F07A19451B1CCF2800A67D85 /* ViewController.h */,
 				F07A19461B1CCF2800A67D85 /* ViewController.m */,
 				E82062131B516BF50020BC11 /* CustomRootView */,
-				F07A19481B1CCF2800A67D85 /* Main.storyboard */,
+				E8C831B31B60195900FC3F84 /* Main.storyboard */,
+				E8C831B11B6018E000FC3F84 /* CustomView.storyboard */,
 				F07A194B1B1CCF2800A67D85 /* Images.xcassets */,
 				F07A194D1B1CCF2800A67D85 /* LaunchScreen.xib */,
 				F07A19421B1CCF2800A67D85 /* USTCalander.xcdatamodeld */,
@@ -542,15 +545,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0C67A761B597D35009BA3C1 /* images.jpeg in Resources */,
-				F07A194A1B1CCF2800A67D85 /* Main.storyboard in Resources */,
 				F09552E81B5C3EA200D054C6 /* CommentViewController.xib in Resources */,
 				F07A194F1B1CCF2800A67D85 /* LaunchScreen.xib in Resources */,
+				E8C831B51B60195900FC3F84 /* Main.storyboard in Resources */,
 				F033B17C1B1DC29B0018B8CC /* ActivityFeedCell.xib in Resources */,
 				F0614CC41B5EE11A00E80C5F /* sent.png in Resources */,
 				F05EC3EC1B55A4D100894E95 /* ActivityPage.png in Resources */,
 				F04FCB691B4711DE0046AD2B /* SlidebarTableViewCell.xib in Resources */,
 				F0655EC61B4B22DE00D064B6 /* BaseView.xib in Resources */,
 				F04FCB6E1B4713CC0046AD2B /* SlideBarTitleTableViewCell.xib in Resources */,
+				E8C831B21B6018E000FC3F84 /* CustomView.storyboard in Resources */,
 				F07A194C1B1CCF2800A67D85 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -632,10 +636,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		F07A19481B1CCF2800A67D85 /* Main.storyboard */ = {
+		E8C831B31B60195900FC3F84 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				F07A19491B1CCF2800A67D85 /* Base */,
+				E8C831B41B60195900FC3F84 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
