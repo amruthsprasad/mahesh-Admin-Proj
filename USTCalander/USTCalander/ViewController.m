@@ -20,6 +20,7 @@
 @interface ViewController ()<UITableViewDataSource,UITableViewDelegate,RootContainerViewDelegate,ActivityFeedCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+RootContainerView * rootContObj;
 @property (nonatomic, strong)NSMutableArray * dataArray;
 @end
 
@@ -31,19 +32,23 @@
     
      //  [self.tableView registerNib:[UINib nibWithNibName:@"ActivityFeedCell" bundle:nil] forCellReuseIdentifier:@"Activity"];
     
-    ContainerBridgeView * contBridgObj = [ContainerBridgeView sharedInstance];
-    RootContainerView * rootContObj = (RootContainerView *)[contBridgObj getRootContainerObj];
-    rootContObj.delegate=self;
-    rootContObj.headerView.hidden = NO;
-    rootContObj.titleLabel.text = @"Activity Feed";
-    rootContObj.rightFirstBarButton.hidden=false;
-    
     _dataArray=[[NSMutableArray alloc]init];
     [self executeNetworkService];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+    ContainerBridgeView * contBridgObj = [ContainerBridgeView sharedInstance];
+    rootContObj = (RootContainerView *)[contBridgObj getRootContainerObj];
+    rootContObj.delegate=self;
+    rootContObj.headerView.hidden = NO;
+    rootContObj.titleLabel.text = @"Activity Feed";
+    rootContObj.rightFirstBarButton.hidden=false;
 }
+
+-(void)viewWillDisappear:(BOOL)animated{
+    rootContObj.rightFirstBarButton.hidden=true;
+}
+
 
 
 -(void)executeNetworkService{
