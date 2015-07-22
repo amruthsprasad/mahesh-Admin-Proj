@@ -9,8 +9,10 @@
 #import "AgendaActivity.h"
 #import "USTServiceProvider.h"
 #import "Constants.h"
+#import "CommentViewController.h"
+#import "AddPostViewController.h"
 
-@interface AgendaActivity ()
+@interface AgendaActivity ()<UITableViewDataSource,UITableViewDelegate,ActivityFeedCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong)NSMutableArray * dataArray;
 @property (nonatomic, strong)NSString * agendaID;
@@ -35,6 +37,9 @@
     AgendaDetailView * agendaDetailObj = (AgendaDetailView *)self.parentViewController.parentViewController;
     //agendaDetailObj.delegate = self;
     _agendaID = agendaDetailObj.agendaID;
+    _tableView.delegate=self;
+    _tableView.dataSource=self;
+    
     [self executeNetworkService];
 }
 
@@ -103,8 +108,11 @@
     {
         CellIdentifier =@"Activity";
     }
-    
+
     cell= [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    cell.delegate=self;
+
     cell.post_AgendaName.text=[post objectForKey:@"agenda_name"];
     cell.post_textLabel.text=[post objectForKey:@"post_text"];
     cell.post_dateLabel.text=[post objectForKey:@"post_date"];
@@ -255,6 +263,67 @@
     NSLog(@"Hi... Activity");
     AgendaAbout * agendaObj = [self.storyboard instantiateViewControllerWithIdentifier:@"AgendaAboutView"];
     [self.navigationController pushViewController:agendaObj animated:NO];
+}
+
+
+
+#pragma mark - Activate Feed Cell Delegate Methods
+
+- (void) likeBtnAction:(ActivityFeedCell *)sender{
+    NSDictionary * post = [self.dataArray objectAtIndex:sender.tag];
+    
+    [USTServiceProvider likePostWithPostId:[post objectForKey:@"post_id"] WithCompletionHandler:^(USTRequest * request) {
+        NSNumber * LikeStatus=[post objectForKey:@"user_like_stat"];
+        if (LikeStatus.boolValue) {
+            [sender.likeButton setImage:[UIImage imageNamed:@"likeIcon"] forState:UIControlStateNormal];
+        }
+        else{
+            [sender.likeButton setImage:[UIImage imageNamed:@"likeIcon"] forState:UIControlStateNormal];
+        }
+    }];
+}
+
+- (void) commentBtnAction:(ActivityFeedCell *)sender{
+    
+    NSDictionary * post = [self.dataArray objectAtIndex:sender.tag];
+    
+    CommentViewController *vc=[[UIStoryboard storyboardWithName:@"Agenda" bundle:nil]instantiateViewControllerWithIdentifier:@"CommentViewController"];
+    vc.postID=[post objectForKey:@"post_id"];
+    
+    //    UINavigationController * navCtrl = [[UINavigationController alloc]initWithRootViewController:vc];
+    //    [navCtrl.navigationBar setBarTintColor: [UIColor colorWithRed:2/255.0 green:128/255.0 blue:231/255.0 alpha:1.0]];
+    //    navCtrl.navigationBar.topItem.title = @"Comment";
+    //    NSDictionary *size = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont boldSystemFontOfSize:21],NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, nil];
+    //    navCtrl.navigationBar.titleTextAttributes = size;
+    [self presentViewController:vc animated:YES completion:^{
+        
+    }];
+    //[self presentViewController:navCtrl animated:YES completion:nil];
+}
+
+- (void) twitterBtnAction:(ActivityFeedCell *)sender{
+    NSLog(@"Sender...%@",sender);
+}
+
+- (void) facebookBtnAction:(ActivityFeedCell *)sender{
+    NSLog(@"Sender...%@",sender);
+}
+
+- (void) viewAllLikeBtnAction:(ActivityFeedCell *)sender{
+    NSLog(@"Sender...%@",sender);
+}
+
+- (void) viewAllCommentBtnAction:(ActivityFeedCell *)sender{
+    NSLog(@"Sender...%@",sender);
+}
+
+
+#pragma mark - RootContainer Delegate Methods
+-(void)rightFirstBarButtonAction:(id)sender{
+    AddPostViewController * addPost = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"AddPostViewController"];
+    [self.navigationController presentViewController:addPost animated:YES completion:^{
+        
+    }];
 }
 
 @end
