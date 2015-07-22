@@ -10,7 +10,7 @@
 #import "Constants.h"
 #import "USTServiceProvider.h"
 
-@interface TravelLogisticsView ()
+@interface TravelLogisticsView ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong)NSMutableArray * dataArray;
@@ -37,7 +37,7 @@
     ContainerBridgeView * contBridgObj = [ContainerBridgeView sharedInstance];
     RootContainerView * rootContObj = (RootContainerView *)[contBridgObj getRootContainerObj];
     rootContObj.titleLabel.text = @"Travel-Logistics";
-    
+    _tableView.delegate=self;
     _dataArray=[[NSMutableArray alloc]init];
     [self executeNetworkService];
 }
@@ -46,9 +46,8 @@
 -(void)executeNetworkService{
     [USTServiceProvider getTralelAndLogisticsWithCompletionHandler:^(USTRequest * request) {
         if (request.responseDict) {
-            _dataArray=[NSMutableArray arrayWithArray:[request.responseDict objectForKey:@""]];
-           // UIWebView *webview =[UIWebView alloc]initWithFrame:self.
-            //[_tableView reloadData];
+            _dataArray=[NSMutableArray arrayWithArray:[request.responseDict objectForKey:@"travel"]];
+            [_tableView reloadData];
         }
     }];
      
@@ -89,20 +88,15 @@
     TravelLogisticsCell *cell ;
     NSString *CellIdentifier = @"TravelLogisticsCellView";
     cell= [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    NSDictionary * travel =[_dataArray objectAtIndex:indexPath.row];
-    
     cell.profileImg.layer.masksToBounds=YES;
     cell.profileImg.layer.cornerRadius = cell.profileImg.frame.size.height/2;
-   /* NSDictionary * attendee = [_dataArray objectAtIndex:indexPath.row];
+   NSDictionary * travel = [_dataArray objectAtIndex:indexPath.row];
     
-    cell.title.text=[NSString stringWithFormat:@"%@ %@",[attendee objectForKey:@"firstname"],[attendee objectForKey:@"lastname"]];
-    cell.descrip.text = [attendee objectForKey:@"designation"];
-    NSNumber * imageStatus = [attendee objectForKey:@"user_image_stat"];
-    NSString * imageName = [attendee objectForKey:@"user_image"];
-    
-    if (imageStatus) {
-        
+    cell.titleLabel.text=[NSString stringWithFormat:@"%@",[travel objectForKey:@"tname"]];
+    cell.descrip.text = [travel objectForKey:@"tintro"];
+    cell.subDescrip.text = @"";
+
+    NSString * imageName = [travel objectForKey:@"timage"];
         
         dispatch_async(kBgQueue, ^{
             NSData *imgData = [USTServiceProvider getImageWithName:imageName];//[NSData dataWithContentsOfURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",BaseImageUrlCroped,postImageName]]];
@@ -110,23 +104,24 @@
                 UIImage *image = [UIImage imageWithData:imgData];
                 if (image) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        AttendeesFeedCell * cell = (id)[tableView cellForRowAtIndexPath:indexPath];
+                        TravelLogisticsCell * cell = (id)[tableView cellForRowAtIndexPath:indexPath];
                         if (cell)
                             cell.profileImg.image = image;
                     });
                 }
             }
         });
-    }*/
     
     return cell;
 }
 
 - (void)configureCell:(TravelLogisticsCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    NSDictionary * travel = [_dataArray objectAtIndex:indexPath.row];
     
-   /* NSDictionary * attendee = [_dataArray objectAtIndex:indexPath.row];
-    cell.title.text=[NSString stringWithFormat:@"%@ %@",[attendee objectForKey:@"firstname"],[attendee objectForKey:@"lastname"]];
-    cell.descrip.text = [attendee objectForKey:@"designation"];*/
+    cell.titleLabel.text=[NSString stringWithFormat:@"%@",[travel objectForKey:@"tname"]];
+    cell.descrip.text = [travel objectForKey:@"tintro"];
+    cell.subDescrip.text = @"";
+
     
 }
 
@@ -163,5 +158,19 @@
     return 99;
 }
 
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary * travel = [_dataArray objectAtIndex:indexPath.row];
+
+    UIViewController * vc =[[UIViewController alloc]init];
+    UIWebView * webview = [[UIWebView alloc]initWithFrame:self.view.frame];
+    [webview loadHTMLString:[travel objectForKey:@"tdesc"] baseURL:nil];
+    [vc.view addSubview:webview];
+    
+    [self.navigationController presentViewController:vc animated:YES completion:^{
+        
+    }];
+}
 
 @end
