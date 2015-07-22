@@ -7,10 +7,14 @@
 //
 
 #import "TravelLogisticsView.h"
+#import "Constants.h"
+#import "USTServiceProvider.h"
 
 @interface TravelLogisticsView ()
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic, strong)NSMutableArray * dataArray;
+
 
 @end
 
@@ -33,6 +37,20 @@
     ContainerBridgeView * contBridgObj = [ContainerBridgeView sharedInstance];
     RootContainerView * rootContObj = (RootContainerView *)[contBridgObj getRootContainerObj];
     rootContObj.titleLabel.text = @"Travel-Logistics";
+    
+    _dataArray=[[NSMutableArray alloc]init];
+    [self executeNetworkService];
+}
+
+
+-(void)executeNetworkService{
+    [USTServiceProvider getTralelAndLogisticsWithCompletionHandler:^(USTRequest * request) {
+        if (request.responseDict) {
+            _dataArray=[NSMutableArray arrayWithArray:[request.responseDict objectForKey:@""]];
+            [_tableView reloadData];
+        }
+    }];
+     
 }
 
 - (void)didReceiveMemoryWarning
@@ -61,7 +79,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 10;
+    return [_dataArray count];
 }
 
 
@@ -70,6 +88,9 @@
     TravelLogisticsCell *cell ;
     NSString *CellIdentifier = @"TravelLogisticsCellView";
     cell= [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    NSDictionary * travel =[_dataArray objectAtIndex:indexPath.row];
+    
     cell.profileImg.layer.masksToBounds=YES;
     cell.profileImg.layer.cornerRadius = cell.profileImg.frame.size.height/2;
    /* NSDictionary * attendee = [_dataArray objectAtIndex:indexPath.row];
